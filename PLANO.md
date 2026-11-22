@@ -1,5 +1,7 @@
 # Plano de implementação — Cartões de Gratidão
 
+> **Revisão (22/nov/2026):** o modo “Ler a carta inteira” foi removido do site. O fecho da carta passa a usar o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais; o `selo` do professor continua apenas como fallback do carimbo de cera. Textos longos devem ser divididos em mais páginas.
+
 > **Revisão aprovada (20/nov/2026):** a capa 3D deixa de existir. A página 1 começa fechada dentro de um **envelope verde** de 1080 × 690, com um **carimbo de cera dourado** de 150 px no meio da borda superior. O carimbo é o único botão; ao abrir, a folha sobe por trás dele, o envelope desliza para fora e a folha cresce até o palco. A frente tem nome, três selos no canto inferior direito e um fio de acento; **não tem disciplina, marca nem rodapé**. O retrato é opcional no canto superior direito. O dourado do carimbo é a única exceção à regra de não usar dourado. A troca de páginas é fade-out (260 ms) + respiro (40 ms) + fade-in (260 ms) apenas no conteúdo; a folha fica parada e o contador atualiza o número sem fade. O resto da nota anterior continua, exceto o que conflitar com esta.
 
 > **Revisão anterior (nov/2026):** o cartão deixou de ser retrato 820 × 1160 e passou a ser **horizontal 1160 × 820**, inclusive na home. A capa agora é o **estado fechado da página 1**: o selo abre uma capa 3D pela lombada esquerda e revela a primeira página, sem `Reveal.next()`. A capa não conta como página; o piloto mostra `1 / 5`. As setas ficam dentro do cartão, em par no canto inferior direito; o contador fica fora e só aparece depois da abertura; a barra de progresso foi removida. O Reveal continua, com fade lento. Sem hash ou `#/1` começa fechado; `#/2` em diante abre direto. Esta nota substitui as decisões de layout e interação abaixo que conflitarem com ela, mas é substituída pela revisão de 20/nov/2026 no que conflitar.
@@ -37,7 +39,7 @@ O usuário autorizou tornar o repo público. Fazer isso somente depois de a base
 - **Sem indexação**: `noindex, nofollow` em todas as páginas e `robots.txt` com `Disallow: /`.
 - **Sem lista pública de professores**. A raiz não lista nomes; o editor e o README listam os slugs para a equipe.
 - **Sem confete, glitter, música automática, autoplay ou clichês de formatura. O único dourado é o carimbo de cera do envelope**; não usar ouro em nenhum outro elemento.
-- **Acessibilidade**: teclado, foco visível, contraste, alt text, `prefers-reduced-motion`, modo de leitura linear.
+- **Acessibilidade**: teclado, foco visível, contraste, alt text e `prefers-reduced-motion`.
 - **Mobile-first**: testar em 390×844 e 1440×900.
 
 ## 4. Entregáveis e estrutura de arquivos
@@ -72,7 +74,6 @@ Criar, no mínimo:
 │   ├── js/
 │   │   ├── theme.js
 │   │   ├── render-carta.js
-│   │   ├── reading-mode.js
 │   │   └── editor.js
 │   ├── fonts/                     # Fraunces + IBM Plex Sans WOFF2 + OFL
 │   └── img/
@@ -96,7 +97,7 @@ O número de páginas de professor é **8**: uma piloto (`professora-exemplo`) e
 ### 5.1 Conceito
 
 **Nome:** “Cartões de Gratidão”.
-**Conceito:** uma coleção de cartões digitais. Cada professor recebe um cartão com um envelope de abertura e páginas internas limpas. O envelope carrega a identidade (nome, três selos, carimbo de cera, acento); a disciplina fica nos metadados e no modo de leitura. As páginas internas de texto têm **apenas o conteúdo da carta**, com margens generosas. Fotos, recados, citações e assinatura ficam em páginas próprias.
+**Conceito:** uma coleção de cartões digitais. Cada professor recebe um cartão com um envelope de abertura e páginas internas limpas. O envelope carrega a identidade (nome, três selos, carimbo de cera, acento); a disciplina fica nos metadados. As páginas internas de texto têm **apenas o conteúdo da carta**, com margens generosas. Fotos, recados, citações e assinatura ficam em páginas próprias.
 
 O elemento memorável é o **carimbo de cera dourado** no meio da borda do envelope. O resto deve ser quieto e editorial.
 
@@ -151,7 +152,7 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 - **Página de foto:** 1–3 imagens com legenda, layout limpo. Sem fita adesiva, polaroid ou scrapbook.
 - **Página de recados:** mensagens curtas com autor, em lista ou blocos discretos.
 - **Página de citação:** um trecho em destaque, com autor opcional.
-- **Página de assinatura:** fechamento da Turma Ginga, curso/ano e selo final discreto.
+- **Página de assinatura:** fechamento da Turma Ginga, curso/ano e o símbolo da Turma Ginga em monocromático.
 - Máximo de ~500–700 caracteres por página de texto; o editor deve avisar se passar.
 - O envelope é gerado automaticamente a partir dos metadados; as páginas internas são blocos editáveis.
 
@@ -162,7 +163,6 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 - Um único momento orquestrado: o carimbo é um botão acessível; ao clicar, a folha sobe por trás dele, o envelope desliza para fora e a folha cresce até o palco. Não há giro 3D da capa.
 - A troca de páginas é fade-out (260 ms), respiro (40 ms) e fade-in (260 ms) apenas no conteúdo; a folha do cartão fica fixa. O contador atualiza o número sem fade. Sem zoom, rotação ou deslize.
 - `prefers-reduced-motion`: desligar transições e animações; abrir imediatamente.
-- Botão **“Ler a carta inteira”** abre um `<dialog>`/overlay com todas as páginas em um artigo rolável, acessível e fechável. Ao abrir, pausa teclado, swipe e hash do Reveal; ao fechar, retoma.
 - Toggle de tema claro/escuro fixo, acessível, com `aria-pressed` e ícone sol/lua. Persistir em `localStorage` (`cg-theme`); na primeira visita, seguir `prefers-color-scheme`. Aplicar o tema antes do paint para evitar flash.
 - Indicador de página fora do cartão, só visível depois da abertura, atualizado em `slidechanged`. Total = páginas internas (o envelope não conta).
 - A raiz é uma página simples, sem Reveal.js e sem lista de professores.
@@ -199,7 +199,7 @@ window.DADOS = [
 
 Regras:
 
-- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos fixos; `retrato`/`retratoAlt` são opcionais no canto superior direito. A `disciplina` continua nos metadados e no modo de leitura, mas não aparece na frente.
+- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos fixos; `retrato`/`retratoAlt` são opcionais no canto superior direito. A `disciplina` continua nos metadados, mas não aparece na frente.
 - `paginas` é uma lista aberta de blocos internos. Tipos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - O renderer monta: a página 1 com o envelope por cima (estado fechado) e mais um slide por bloco seguinte. Se não houver `assinatura`, adicionar uma assinatura padrão no fim. O envelope não é um slide separado.
 - Se `retrato` estiver vazio ou a imagem falhar, o envelope fica sem retrato; os três selos permanecem. Nunca deixe ícone quebrado.
@@ -233,7 +233,7 @@ Regras:
 
 - Shell estático com `<title>`, `description`, `og:title`, `og:description`, `og:image`, `twitter:card`, `noindex`.
 - `<body data-professor="<slug>">`.
-- Carregar `../../dados.js`, `../../vendor/reveal/reveal.js`, `../../assets/js/theme.js`, `../../assets/js/render-carta.js`, `../../assets/js/reading-mode.js`, CSS correspondente.
+- Carregar `../../dados.js`, `../../vendor/reveal/reveal.js`, `../../assets/js/theme.js`, `../../assets/js/render-carta.js`, CSS correspondente.
 - A página deve exibir um estado de carregamento e um erro amigável se o slug não existir.
 - `<noscript>` com mensagem curta.
 - Meta OG image genérica `../../assets/img/og/cartoes-de-gratidao.png` (1200×630).
@@ -264,12 +264,11 @@ Regras:
 ### Acessibilidade
 
 - `lang="pt-BR"`.
-- Skip link para “Ler a carta inteira”.
+- Skip link para o conteúdo da carta.
 - Foco visível em botões, links e controles.
 - Alt text em todas as imagens.
 - Contraste AA.
 - `prefers-reduced-motion`.
-- O modo de leitura completa deve ser navegável e fechável por teclado.
 - Não usar texto dentro de imagem.
 
 ## 8. Editor
@@ -414,7 +413,7 @@ Não commitar `node_modules`, arquivos temporários, tokens ou dados pessoais.
   - editor;
   - toggle claro/escuro e persistência;
   - navegação next/prev, teclado, swipe quando possível;
-  - botão “Ler a carta inteira” e fechamento;
+  - página de assinatura com o símbolo da Turma Ginga em monocromático;
   - 390×844 e 1440×900;
   - console sem erros;
   - imagens/fallbacks;

@@ -26,7 +26,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 ## Estrutura de conteúdo
 
 - `dados.js` define `window.DADOS`, um script clássico.
-- O envelope é automático: `nome`, `acento`, `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. `retrato`/`retratoAlt` são opcionais e aparecem no canto superior direito. A disciplina continua nos dados e no modo de leitura, mas não aparece na frente.
+- O envelope é automático: `nome`, `acento`, `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. `retrato`/`retratoAlt` são opcionais e aparecem no canto superior direito. A disciplina continua nos dados, mas não aparece na frente.
 - `paginas` é uma lista ordenada de blocos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - Se não houver `assinatura`, o renderer adiciona uma no fim.
 - O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; no piloto, `1 / 5`.
@@ -35,7 +35,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - **Caminhos de imagem nos dados são relativos à raiz do site** (`assets/img/...`). `render-carta.js` prefixa `../../` nas páginas de professor. O editor prefixa `../` na prévia. O ZIP mantém os caminhos da raiz.
 - Acentos válidos: `seal`, `azul`, `verde`, `ameixa`, `ocre`.
 - Se `retrato` estiver vazio ou a imagem falhar, o envelope fica sem retrato; os três selos continuam no canto inferior direito. Nunca deixe ícone quebrado.
-- Mantenha os textos de página dentro do cartão. O modo “Ler a carta inteira” é o fallback. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400; o editor avisa acima de ~400 para o celular.
+- Mantenha os textos de página dentro do cartão; não há modo de leitura alternativo. Textos maiores devem ser divididos em mais páginas. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400; o editor avisa acima de ~400 para o celular.
 
 ## Direção visual
 
@@ -43,6 +43,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - O envelope tem identidade: nome grande, três selos no canto inferior direito, carimbo de cera dourado e fio de acento; sem disciplina, marca ou rodapé na frente. O retrato é opcional no canto superior direito.
 - Os três selos são marcas discretas em creme monocromático; não competem com o carimbo.
 - Interior de texto limpo: sem molduras, carimbos, números ou enfeites dentro da folha.
+- O fecho da carta usa o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais. O selo de iniciais continua no envelope como fallback do carimbo.
 - O contador de páginas fica **fora** do cartão, no fundo, e só aparece depois da abertura. O par de setas fica **dentro** do cartão, no canto inferior direito, sem círculos. Não há barra de progresso.
 - O carimbo de cera é o elemento memorável. Não adicione outro objeto decorativo além dos três selos do envelope.
 - A capa da home usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da home repete os três selos do envelope (Ginga, Alpha EdTech e Cummins), em monocromático.
@@ -57,9 +58,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Teclado e foco visível em tudo.
 - `aria-pressed` no toggle de tema; persistir em `cg-theme`.
 - `prefers-reduced-motion` desliga animações/transições.
-- Skip link para o modo de leitura.
-- `<dialog>` para “Ler a carta inteira”, com foco preso, Esc e retorno de foco.
-- Suspenda teclado, swipe e navegação por hash do Reveal enquanto o diálogo estiver aberto, usando `window.Cartao.pausarNavegacao()` / `retomarNavegacao()`. Isso vale também se o diálogo abrir no meio da abertura do envelope.
+- Skip link para o conteúdo da carta.
 - Enquanto a carta está fechada, a página 1 é inerte e oculta para leitores de tela; só o carimbo é tabulável no deck. Depois de abrir, o envelope fica `inert` e o foco vai para a página 1.
 - Alt text em todas as imagens; fallback quando faltarem. O carimbo de cera é decorativo (`alt=""`) e o botão tem rótulo textual; se a imagem falhar, entra o selo tipográfico.
 - Contraste AA. `--muted` claro é `#67635B`; textos pequenos do selo tipográfico usam `--accent-ink`; no envelope, use `--envelope-ink` / `--envelope-muted`.
@@ -69,7 +68,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 
 - Página não listada em `editor/`, com `noindex, nofollow`; não linkar do site público.
 - Deve carregar `../dados.js` e usar `window.DADOS`.
-- A prévia usa o cartão 1160 × 820 e escala a partir de 1160. Os rótulos são “Capa” e páginas 1..N; a capa é o envelope e não conta como página. A prévia “Capa” mostra o envelope; a disciplina aparece só na prévia das páginas/modo de leitura.
+- A prévia usa o cartão 1160 × 820 e escala a partir de 1160. Os rótulos são “Capa” e páginas 1..N; a capa é o envelope e não conta como página. A prévia “Capa” mostra o envelope; a disciplina fica só nos dados e não aparece na prévia.
 - Upload de imagens: maior lado ≤ 1600 px, WebP com fallback JPEG, aviso para < 800 px ou > 500 KB.
 - Rascunho textual em `localStorage` (`cg-editor-draft-v1`); blobs em IndexedDB (`cartoes-gratidao-editor`).
 - Exportação: `dados.js` e ZIP com `dados.js` + imagens + `LEIA-ME.txt`.
@@ -86,10 +85,10 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - A transição entre páginas é fade-out, respiro curto e fade-in; o conteúdo antigo deve sumir antes do novo entrar, mas a folha do cartão não pode piscar nem desaparecer. O contador atualiza o número sem fazer fade.
 - Contador e setas ocultos fechado; visíveis e corretos depois. Setas `disabled` na primeira e na última página; sem círculos e sem barra de progresso.
 - Claro/escuro + persistência.
-- Teclado: só o carimbo tabulável no deck fechado, Enter/Space para abrir, foco na página 1, setas, Home/End, Esc no modo leitura.
+- Teclado: só o carimbo tabulável no deck fechado, Enter/Space para abrir, foco na página 1, setas e Home/End.
 - Hash: sem hash e `#/1` fechados; `#/2` e `#/3` abertos direto; voltar à página 1 mostra a página aberta.
 - Swipe quando possível.
-- “Ler a carta inteira” abre, rola, fecha e devolve o foco; abrir durante a abertura não deixa o deck ativo atrás do diálogo.
+- A página de assinatura mostra o símbolo da Turma Ginga em monocromático, sem as iniciais do professor, em claro/escuro e nas duas larguras.
 - `prefers-reduced-motion` abre sem transição e troca as páginas sem fade.
 - Home horizontal em desktop e mobile.
 - Console sem erros; imagens/fallbacks (inclusive o carimbo de cera); meta tags e `noindex`.

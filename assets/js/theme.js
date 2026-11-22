@@ -70,7 +70,7 @@
   /* Aplica antes do primeiro paint. */
   aplicar(lerPreferencia(), false);
 
-  /* Delegação: funciona também para botões criados depois (modo leitura). */
+  /* Delegação: funciona também para botões criados depois. */
   document.addEventListener("click", function (evento) {
     var botao = evento.target.closest
       ? evento.target.closest("[data-theme-toggle]")

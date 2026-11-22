@@ -2,7 +2,7 @@
    Renderer dos cartões
    Monta a primeira página com o envelope por cima (o cartão fechado), as
    demais páginas e o Reveal. O envelope sai pelo selo; a navegação só é
-   liberada depois da abertura. Publica "cartao:pronto" para o modo de leitura.
+   liberada depois da abertura.
    ========================================================================== */
 (function () {
   "use strict";
@@ -46,7 +46,6 @@
   var rotuloPrimeiraPagina = "";
   var estadoInterno = {
     abrindo: false,
-    pausada: false,
     trocando: false,
     programatica: false,
     temporizadorPress: 0,
@@ -346,6 +345,17 @@
     return { abertura: "Com carinho,", nome: limpo };
   }
 
+  function gingaMarkHtml() {
+    return (
+      '<div class="assinatura__seal" aria-hidden="true">' +
+      '<picture class="assinatura__ginga">' +
+      '<source srcset="../../assets/img/marca/selos/selo-01.webp" type="image/webp">' +
+      '<img src="../../assets/img/marca/selos/selo-01.png" alt="" width="180" height="180" loading="lazy" decoding="async" data-assinatura-selo>' +
+      "</picture>" +
+      "</div>"
+    );
+  }
+
   function assinaturaHtml(pagina, professor, padrao) {
     var dados = pagina || {};
     var partes = separarAssinatura(
@@ -363,9 +373,7 @@
       '<span class="assinatura__ano">' +
       esc(ano) +
       "</span>" +
-      '<div class="assinatura__seal">' +
-      svgSelo(professor) +
-      "</div>" +
+      gingaMarkHtml() +
       "</div></div>"
     );
   }
@@ -515,6 +523,16 @@
       if (img.complete && img.naturalWidth === 0) falhou();
       img.addEventListener("error", falhou);
     });
+
+    var seloAssinatura = document.querySelectorAll("[data-assinatura-selo]");
+    Array.prototype.forEach.call(seloAssinatura, function (img) {
+      function falhou() {
+        var marca = img.closest(".assinatura__seal");
+        if (marca) marca.hidden = true;
+      }
+      if (img.complete && img.naturalWidth === 0) falhou();
+      img.addEventListener("error", falhou);
+    });
   }
 
   function atualizarHash() {
@@ -533,10 +551,20 @@
   }
 
   function atualizarIndicador() {
+    var indice = window.Reveal.getIndices().h + 1;
+    var slideAtual = window.Reveal.getCurrentSlide();
     var atual = document.querySelector("[data-page-current]");
     var total = document.querySelector("[data-page-total]");
-    if (atual) atual.textContent = String(window.Reveal.getIndices().h + 1);
+    var anterior = slideAtual
+      ? slideAtual.querySelector('[data-carta-nav="prev"]')
+      : null;
+    var proximo = slideAtual
+      ? slideAtual.querySelector('[data-carta-nav="next"]')
+      : null;
+    if (atual) atual.textContent = String(indice);
     if (total) total.textContent = String(totalPaginas);
+    if (anterior) anterior.disabled = indice <= 1;
+    if (proximo) proximo.disabled = indice >= totalPaginas;
     atualizarHash();
   }
 
@@ -587,10 +615,7 @@
     atualizarIndicador();
     liberarNavegacao();
 
-    if (
-      !op.semFoco &&
-      !document.body.classList.contains("leitura-aberta")
-    ) {
+    if (!op.semFoco) {
       window.requestAnimationFrame(function () {
         primeiroSlide.focus({ preventScroll: true });
       });
@@ -599,17 +624,13 @@
 
   function liberarNavegacao() {
     if (!window.Reveal || !window.Reveal.configure) return;
-    if (document.body.classList.contains("leitura-aberta")) {
-      estadoInterno.pausada = true;
-      return;
-    }
     var aberta = app && app.dataset.carta === "aberta";
-    if (!aberta || estadoInterno.pausada) return;
+    if (!aberta) return;
     window.Reveal.configure({ keyboard: true, touch: true });
   }
 
   /* O Reveal só liga/desliga o listener de hash no initialize; por isso a
-     navegação por hash é controlada aqui, com a flag de pausa do modo leitura. */
+     navegação por hash é controlada aqui. */
   function alvoDoHash(valor) {
     var encontrado = /^#\/(\d+)/.exec(String(valor || ""));
     if (!encontrado) return 0;
@@ -631,8 +652,6 @@
 
   function aoMudarHash() {
     if (!app || !window.Reveal) return;
-    if (estadoInterno.pausada) return;
-    if (document.body.classList.contains("leitura-aberta")) return;
     var alvo = alvoDoHash(window.location.hash);
     if (!alvo) return;
 
@@ -658,8 +677,6 @@
 
   function antesDeTrocarPagina(evento) {
     if (!app || app.dataset.carta !== "aberta") return;
-    if (estadoInterno.pausada) return;
-    if (document.body.classList.contains("leitura-aberta")) return;
     if (!evento || typeof evento.indexh !== "number") return;
     if (reduzirMovimento()) return;
 
@@ -728,19 +745,6 @@
         DURACAO_ABERTURA
       );
     }, DURACAO_PRESS);
-  }
-
-  function pausarNavegacao() {
-    estadoInterno.pausada = true;
-    if (window.Reveal && window.Reveal.configure) {
-      window.Reveal.configure({ keyboard: false, touch: false });
-    }
-  }
-
-  function retomarNavegacao() {
-    estadoInterno.pausada = false;
-    if (!window.Reveal || !window.Reveal.configure) return;
-    liberarNavegacao();
   }
 
   function ligarBotoesCarta() {
@@ -835,8 +839,8 @@
     }
 
     /* Guardamos o hash e o retiramos antes do initialize: o Reveal interpreta
-       o hash por conta própria mesmo com respondToHashChanges: false. A leitura
-       e a validação do link profundo são feitas abaixo, depois do ready. */
+       o hash por conta própria mesmo com respondToHashChanges: false. A
+       validação do link profundo é feita abaixo, depois do ready. */
     var hashInicial = window.location.hash;
     if (hashInicial) {
       try {
@@ -901,18 +905,10 @@
         svgSelo: svgSelo,
         urlImagem: urlImagem,
         esc: esc,
-        pausarNavegacao: pausarNavegacao,
-        retomarNavegacao: retomarNavegacao,
         estaAberta: function () {
           return !!app && app.dataset.carta === "aberta";
         },
       };
-
-      document.dispatchEvent(
-        new CustomEvent("cartao:pronto", {
-          detail: { professor: professor, paginas: professor.paginas },
-        })
-      );
     }).catch(function (erro) {
       mostrarErro(
         "Não foi possível abrir o cartão neste navegador. Recarregue a página ou tente outro navegador."

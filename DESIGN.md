@@ -4,7 +4,7 @@
 
 Uma **coleção de cartões**, não um site de formatura. Cada professor recebe uma peça com capa e páginas internas, como uma carta impressa que foi digitalizada com cuidado. O cartão é o objeto principal; o site é apenas a mesa onde ele é aberto.
 
-O elemento memorável é o **carimbo de cera dourado** no meio da borda de cima do envelope. Ele é o único objeto fotorrealista e o único dourado do projeto. O **selo tipográfico** com iniciais e ano continua como marca: no fim da carta, no modo de leitura, no header e no favicon. A capa da home usa o **símbolo da Turma Ginga**, em verde, e o rodapé da home repete os três selos do envelope.
+O elemento memorável é o **carimbo de cera dourado** no meio da borda de cima do envelope. Ele é o único objeto fotorrealista e o único dourado do projeto. O **selo tipográfico** com iniciais e ano continua como marca no envelope, no header e no favicon. O fecho da carta usa o **símbolo da Turma Ginga** em monocromático. A capa da home usa o mesmo símbolo, em verde, e o rodapé da home repete os três selos do envelope.
 
 **Nome:** Cartões de Gratidão.
 **Público:** professores da Alpha EdTech e a Turma Ginga.
@@ -140,7 +140,7 @@ palco 1160 × 820
 
 ### Assinatura
 
-- Fechamento centralizado, com “Com carinho,”, o nome da Turma Ginga, o ano e um selo tipográfico menor.
+- Fechamento centralizado, com “Com carinho,”, o nome da Turma Ginga, o ano e o símbolo da Turma Ginga em monocromático.
 - É a única página interna centralizada; funciona como o fim de uma carta.
 
 ## Interação
@@ -153,8 +153,6 @@ palco 1160 × 820
 - As setas ficam **dentro do cartão**, em um par no canto inferior direito, sem círculos. A indisponível fica `disabled` e esmaecida.
 - O contador “1 / 5” fica **fora** do cartão, no canto inferior esquerdo, e só aparece depois da abertura. O envelope não conta como página; no piloto o total é 5.
 - A troca de páginas é sequencial: o conteúdo atual faz fade-out em 260 ms, fica 40 ms de respiro e o novo conteúdo entra em 260 ms. A folha do cartão, a borda e a sombra ficam paradas; só o conteúdo faz o fade. O contador atualiza o número sem fade, e o conteúdo antigo some antes do novo aparecer.
-- **Ler a carta inteira** abre um `<dialog>` com todas as páginas em um artigo linear, rolável, fechável por Esc ou botão.
-- Enquanto o diálogo está aberto, teclado, swipe e navegação por hash do Reveal são suspensos. A API `window.Cartao` expõe `pausarNavegacao()` e `retomarNavegacao()` para o modo de leitura, inclusive quando ele abre no meio da abertura.
 - Toggle claro/escuro fixo, com `aria-pressed`, ícone sol/lua e persistência em `localStorage` (`cg-theme`). Na primeira visita, segue `prefers-color-scheme`. O tema é aplicado antes do CSS para evitar flash.
 - Links profundos: sem hash ou `#/1` começam fechados; `#/2` em diante abre direto na página pedida, com o envelope considerado aberto. Voltar para a página 1 mostra a página aberta. A numeração nova não preserva hashes antigos.
 - `prefers-reduced-motion`: transições e animações zeradas; o conteúdo aparece imediatamente e a troca de páginas não faz fade.
@@ -162,12 +160,11 @@ palco 1160 × 820
 ## Acessibilidade
 
 - `lang="pt-BR"` em todas as páginas.
-- Skip link para “Ler a carta inteira”.
+- Skip link para o conteúdo da carta.
 - Foco visível em todos os botões, links e campos.
 - Contraste AA: tinta 13.8:1, secundário 4.7:1 sobre pedra e 5.6:1 sobre papel no tema claro; no escuro, secundário 7.2:1. No envelope, o creme sobre o verde passa AA.
 - Alt text obrigatório nas imagens; fallback visual quando a imagem falta. Se o carimbo de cera falhar, entra o selo tipográfico.
-- O modo de leitura é um diálogo nativo, com foco preso e retorno de foco ao botão que o abriu.
-- O carimbo de cera é decorativo (`alt=""`) e o botão tem rótulo textual; o selo tipográfico e as imagens decorativas são `aria-hidden`.
+- O carimbo de cera é decorativo (`alt=""`) e o botão tem rótulo textual; o selo tipográfico e as imagens decorativas são `aria-hidden`. O símbolo do fecho também é decorativo, porque o texto “Turma Ginga” já identifica a assinatura.
 - Enquanto fechada, a página 1 fica inerte e oculta para leitores de tela; só o carimbo é tabulável no deck. Depois de abrir, o envelope fica `inert` e `aria-hidden`, e o slide recebe o foco.
 - Não há texto essencial dentro de imagens. A imagem OG é a exceção de compartilhamento, não conteúdo da página.
 - O deck usa a região `aria-live` nativa do Reveal para anunciar a página atual.
@@ -175,10 +172,10 @@ palco 1160 × 820
 ## Responsivo
 
 - **Desktop:** cartão horizontal centralizado, com margem para a toolbar no topo e o contador no rodapé.
-- **Mobile (390 × 844):** o mesmo cartão 1160 × 820 é escalado; os tamanhos internos sobem para manter o corpo em torno de 14–15 px e o envelope legível. Textos longos reduzem um pouco o corpo; nesse caso, **Ler a carta inteira** é o caminho confortável. O envelope mantém a composição: nome central, retrato no canto e carimbo na borda; o retrato cresce um pouco e a dica encurta. Recados continuam em duas colunas. As setas internas ampliam a área de toque junto com o desenho.
+- **Mobile (390 × 844):** o mesmo cartão 1160 × 820 é escalado; os tamanhos internos sobem para manter o corpo em torno de 14–15 px e o envelope legível. Textos longos reduzem um pouco o corpo; prefira dividir em mais páginas. O envelope mantém a composição: nome central, retrato no canto e carimbo na borda; o retrato cresce um pouco e a dica encurta. Recados continuam em duas colunas. As setas internas ampliam a área de toque junto com o desenho.
 - **Tablet:** escala intermediária; nenhuma alteração estrutural.
 - **Home:** duas colunas no desktop, com o cartão da coleção em torno de 550 px; no mobile, empilha, mas o cartão continua horizontal. O cartão usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da página repete os três selos do envelope (Ginga, Alpha EdTech e Cummins), em monocromático.
-- Se o texto não couber no cartão, **Ler a carta inteira** é o caminho garantido. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral; a página de texto ganha corpo menor a partir de ~400 caracteres.
+- Texto que não couber no cartão é cortado; divida em mais páginas. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral; a página de texto ganha corpo menor a partir de ~400 caracteres.
 
 ## Imagens
 
@@ -191,7 +188,7 @@ palco 1160 × 820
 
 ## Editor
 
-O editor é uma ferramenta de trabalho: mais funcional do que o site, mas com os mesmos tokens. Três colunas no desktop (cartões, formulário, prévia), duas no tablet e uma no celular. A prévia usa as mesmas classes de cartão em 1160 × 820, escaladas por `transform` a partir da largura de 1160, para não divergir do resultado publicado. Os rótulos mostram “Capa” e depois as páginas 1..N; a capa é o envelope e não entra na contagem. A prévia “Capa” mostra o envelope; a disciplina continua no formulário, em Publicação e leitura, para os dados e o modo de leitura, mas não aparece nele.
+O editor é uma ferramenta de trabalho: mais funcional do que o site, mas com os mesmos tokens. Três colunas no desktop (cartões, formulário, prévia), duas no tablet e uma no celular. A prévia usa as mesmas classes de cartão em 1160 × 820, escaladas por `transform` a partir da largura de 1160, para não divergir do resultado publicado. Os rótulos mostram “Capa” e depois as páginas 1..N; a capa é o envelope e não entra na contagem. A prévia “Capa” mostra o envelope; a disciplina continua no formulário, em **Publicação**, só nos dados, e não aparece nele.
 
 ## O que evitar
 

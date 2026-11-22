@@ -68,7 +68,6 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 │   ├── js/
 │   │   ├── theme.js
 │   │   ├── render-carta.js
-│   │   ├── reading-mode.js
 │   │   └── editor.js
 │   ├── fonts/                  # Fraunces + IBM Plex Sans WOFF2 + OFL
 │   └── img/
@@ -85,7 +84,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
 2. Escolha o cartão na lista lateral.
-3. Edite o envelope: nome, acento, selo tipográfico e, se quiser, retrato. Em **Publicação e leitura**, ajuste o slug e a disciplina; a disciplina aparece no modo de leitura, não no envelope. Os três selos e o carimbo são fixos; o retrato, quando existe, aparece no canto superior direito.
+3. Edite o envelope: nome, acento, selo tipográfico e, se quiser, retrato. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. Os três selos e o carimbo são fixos; o retrato, quando existe, aparece no canto superior direito.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
 6. Use a prévia e o tema claro/escuro para conferir. A prévia reproduz o cartão 1160 × 820; os rótulos mostram “Capa” (o envelope) e depois as páginas 1..N, sem contar o envelope.
@@ -145,11 +144,11 @@ Regras:
 - O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: no piloto, `1 / 5`, não `1 / 6`.
 - O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
 - `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`.
-- `selo` são as iniciais do selo tipográfico usado no fechamento, no modo de leitura e como fallback do carimbo de cera. Não são os três selos do envelope.
+- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do professor.
 - Se `retrato` estiver vazio ou falhar, o envelope fica sem retrato; os três selos no canto inferior direito continuam. As fotos da carta ficam nas páginas de `foto`.
 - Se não houver página de assinatura, o renderer adiciona uma assinatura padrão no fim.
 - **Caminhos de imagem são relativos à raiz do site** (`assets/img/...`). O renderer da carta, que fica em `carta/<slug>/`, prefixa `../../` automaticamente. O editor usa `../` para a prévia. O ZIP mantém os caminhos da raiz.
-- Os textos de página devem caber no cartão. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral. No celular, prefira páginas menores ou use **Ler a carta inteira**.
+- Os textos de página devem caber no cartão. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral. Textos maiores devem ser divididos em mais páginas; não há modo de leitura alternativo.
 
 ### Abertura, contador e links profundos
 
@@ -246,7 +245,7 @@ Se quiser manter uma cópia local para a equipe, guarde fora do repositório pub
 - O editor não tem autenticação, banco, login ou token. Quem souber a URL pode abrir, mas só altera o próprio navegador.
 - Imagens antigas que não são mais referenciadas continuam no repositório até serem removidas manualmente.
 - O `noindex` reduz a descoberta por buscadores, mas não torna os links secretos.
-- O texto do cartão é dimensionado para caber no formato horizontal. Textos longos devem ir para o modo de leitura ou ser divididos em mais páginas; no celular, o cartão horizontal é pequeno por natureza e o modo de leitura é o caminho confortável.
+- O texto do cartão é dimensionado para caber no formato horizontal. Textos longos devem ser divididos em mais páginas; no celular, o cartão horizontal é pequeno por natureza e o texto que passa do cartão é cortado.
 - O GitHub Pages pode demorar alguns minutos para atualizar após o push.
 
 ## Licenças

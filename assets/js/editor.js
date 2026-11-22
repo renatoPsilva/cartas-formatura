@@ -576,7 +576,7 @@
       "</select></label>" +
       '<label class="field"><span>Selo tipográfico (até 3 caracteres)</span><input type="text" data-meta="selo" maxlength="3" value="' +
       esc(professor.selo) +
-      '" spellcheck="false"><small>Aparece no fechamento e no modo de leitura; é o fallback do carimbo de cera. Não é um dos três selos do envelope.</small></label>' +
+      '" spellcheck="false"><small>Iniciais do selo tipográfico; é o fallback do carimbo de cera. Não é um dos três selos do envelope.</small></label>' +
       "</div></div></section>"
     );
   }
@@ -584,7 +584,7 @@
   function painelPublicacao(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Publicação e leitura</h2><p>O endereço do cartão e a disciplina usada no modo de leitura. Nada aqui aparece no envelope.</p></div></div>' +
+      '<div class="panel__head"><div><h2>Publicação</h2><p>O endereço do cartão e a disciplina. Nada aqui aparece no envelope.</p></div></div>' +
       '<div class="panel__body"><div class="field-grid">' +
       '<label class="field"><span>Slug (endereço)</span><input type="text" data-meta="slug" value="' +
       esc(professor.slug) +
@@ -593,7 +593,7 @@
       "</strong>/ · use apenas letras minúsculas, números e hífens</small></label>" +
       '<label class="field"><span>Disciplina</span><input type="text" data-meta="disciplina" value="' +
       esc(professor.disciplina) +
-      '"><small>Fica nos dados e no modo de leitura; não entra no envelope.</small></label>' +
+      '"><small>Fica nos dados do cartão; não entra no envelope.</small></label>' +
       "</div></div>" +
       '<div class="panel__foot"><p>O link publicado usa o slug. Se mudar o slug, renomeie também a pasta <code>carta/<slug>/</code> e as meta tags.</p><button class="btn btn--small btn--danger" type="button" data-remove-professor>Remover cartão</button></div>' +
       "</section>"
@@ -627,7 +627,7 @@
     var paginas = Array.isArray(professor.paginas) ? professor.paginas : [];
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Páginas internas</h2><p>O envelope não entra aqui. Textos longos demais podem não caber no cartão; o modo “Ler a carta inteira” sempre mostra tudo.</p></div>' +
+      '<div class="panel__head"><div><h2>Páginas internas</h2><p>O envelope não entra aqui. Textos longos demais podem não caber no cartão; divida em mais páginas.</p></div>' +
       '<div class="pages-toolbar"><select data-add-page-type aria-label="Tipo de nova página">' +
       '<option value="texto">Texto</option>' +
       '<option value="foto">Foto</option>' +
@@ -717,7 +717,7 @@
         indice +
         '" data-campo="paragrafos" rows="7" placeholder="Separe os parágrafos com uma linha em branco.">' +
         esc(texto) +
-        '</textarea><small>Separe parágrafos com uma linha em branco. No desktop, o cartão fica melhor com até ~600 caracteres; no celular, até ~400. Textos maiores pedem “Ler a carta inteira”.</small><span class="char-count' +
+        '</textarea><small>Separe parágrafos com uma linha em branco. No desktop, o cartão fica melhor com até ~600 caracteres; no celular, até ~400. Textos maiores devem ser divididos em mais páginas.</small><span class="char-count' +
         (contagem > LIMITE_TEXTO ? " is-over" : "") +
         '" data-contador="' +
         indice +
@@ -1756,6 +1756,21 @@
     );
   }
 
+  function gingaPreviewHtml() {
+    return (
+      '<div class="assinatura__seal" aria-hidden="true">' +
+      '<picture class="assinatura__ginga">' +
+      '<source srcset="' +
+      urlRepo("assets/img/marca/selos/selo-01.webp") +
+      '" type="image/webp">' +
+      '<img src="' +
+      urlRepo("assets/img/marca/selos/selo-01.png") +
+      '" alt="" width="180" height="180" loading="lazy" decoding="async" data-assinatura-selo>' +
+      "</picture>" +
+      "</div>"
+    );
+  }
+
   function previewPagina(pagina) {
     if (pagina.tipo === "texto") {
       var paragrafos = (pagina.paragrafos || [])
@@ -1861,9 +1876,9 @@
       esc(nome) +
       '</strong><span class="assinatura__ano">' +
       esc(pagina.ano || "2026") +
-      '</span><div class="assinatura__seal">' +
-      svgSelo(atual() || {}) +
-      "</div></div>"
+      "</span>" +
+      gingaPreviewHtml() +
+      "</div>"
     );
   }
 
@@ -1886,6 +1901,11 @@
         if (img.matches("[data-envelope-selo]")) {
           var marca = img.closest(".envelope__selo");
           if (marca) marca.hidden = true;
+          return;
+        }
+        if (img.matches("[data-assinatura-selo]")) {
+          var seloAssinatura = img.closest(".assinatura__seal");
+          if (seloAssinatura) seloAssinatura.hidden = true;
           return;
         }
         var retrato = img.closest(".retrato");
@@ -2127,7 +2147,7 @@
       "- O editor deve ser removido ou bloqueado após a formatura.\n" +
       "- O envelope é o estado fechado da página 1 e não conta no total de páginas; o carimbo de cera abre a carta.\n" +
       "- O carimbo (assets/img/marca/selo-cera.*) e os três selos (assets/img/marca/selos/) são assets do site e não entram no ZIP.\n" +
-      "- Textos: no desktop, até ~600 caracteres; no celular, até ~400. Textos maiores pedem “Ler a carta inteira”.\n" +
+      "- Textos: no desktop, até ~600 caracteres; no celular, até ~400. Textos maiores devem ser divididos em mais páginas.\n" +
       "- O site é noindex/nofollow e não aparece em buscadores; os links são privados por obscuridade, não por login.\n" +
       "- Imagens ausentes no ZIP continuam as que já estão no repositório.\n"
     );

@@ -684,7 +684,24 @@ html[data-theme="dark"] .card::after {
 .assinatura__seal {
   width: 96px;
   margin-top: 30px;
-  color: var(--accent);
+}
+
+/* O símbolo da Turma Ginga entra como imagem e é reduzido a um único tom. */
+.assinatura__ginga {
+  display: block;
+}
+
+.assinatura__ginga img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0);
+  opacity: 0.55;
+}
+
+html[data-theme="dark"] .assinatura__ginga img {
+  filter: brightness(0) invert(1);
+  opacity: 0.62;
 }
 
 /* --------------------------------------------------------------------------
@@ -840,7 +857,7 @@ html[data-theme="dark"] .card::after {
 
 /* --------------------------------------------------------------------------
    Ajustes de viewport — o cartão mantém 1160 × 820; aumentamos a tipografia
-   no celular para compensar a escala do Reveal. O modo leitura é o fallback.
+   no celular para compensar a escala do Reveal. O texto precisa caber no cartão.
    -------------------------------------------------------------------------- */
 @media (max-width: 760px) {
   .envelope__nome {

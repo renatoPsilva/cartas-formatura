@@ -206,8 +206,7 @@ html:not([data-theme]) .theme-toggle .icon-moon {
 }
 
 .seal-mark text,
-.brand__seal text,
-.reading-bar__seal text {
+.brand__seal text {
   fill: var(--accent-ink);
   font-family: var(--font-display);
 }
