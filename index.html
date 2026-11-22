@@ -4,21 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Uma coleção de cartas da turma da Alpha EdTech para os professores. Cada professor recebeu um link próprio.">
+    <meta name="description" content="Uma coleção de cartas da Turma Ginga para os professores da Alpha EdTech. Cada professor recebeu um link próprio.">
     <title>Cartões de Gratidão</title>
 
     <meta property="og:locale" content="pt_BR">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Cartões de Gratidão">
     <meta property="og:title" content="Cartões de Gratidão">
-    <meta property="og:description" content="Uma coleção de cartas da turma da Alpha EdTech para os professores.">
+    <meta property="og:description" content="Uma coleção de cartas da Turma Ginga para os professores da Alpha EdTech.">
     <meta property="og:url" content="https://renatopsilva.github.io/cartas-formatura/">
     <meta property="og:image" content="https://renatopsilva.github.io/cartas-formatura/assets/img/og/cartoes-de-gratidao.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cartões de Gratidão">
-    <meta name="twitter:description" content="Uma coleção de cartas da turma da Alpha EdTech para os professores.">
+    <meta name="twitter:description" content="Uma coleção de cartas da Turma Ginga para os professores da Alpha EdTech.">
     <meta name="twitter:image" content="https://renatopsilva.github.io/cartas-formatura/assets/img/og/cartoes-de-gratidao.png">
 
     <link rel="icon" href="assets/img/marca/favicon.svg" type="image/svg+xml">
@@ -57,31 +57,28 @@
 
     <main class="home" id="conteudo">
       <section class="home-intro" aria-labelledby="titulo-home">
-        <p class="home-kicker">Alpha EdTech · Turma 2026</p>
+        <p class="home-kicker">Alpha EdTech · Turma Ginga</p>
         <h1 id="titulo-home" aria-label="Cartões de Gratidão"><span>Cartões de</span><span>Gratidão</span></h1>
-        <p class="home-lead">Uma coleção de cartas escritas pela turma para os professores da Alpha EdTech. Cada professor recebeu um link próprio.</p>
-        <p class="home-note">Se você recebeu um link, ele leva direto à sua carta. Se chegou aqui por acaso, fale com alguém da turma.</p>
+        <p class="home-lead">Uma coleção de cartas escritas pela Turma Ginga para os professores da Alpha EdTech. Cada professor recebeu um link próprio.</p>
+        <p class="home-note">Se você recebeu um link, ele leva direto à sua carta. Se chegou aqui por acaso, fale com alguém da Turma Ginga.</p>
       </section>
 
-      <aside class="home-card" aria-label="Capa da coleção de cartões">
+      <aside class="home-card" data-acento="verde" aria-label="Capa da coleção de cartões">
         <div class="home-card__stack">
           <div class="home-card__sheet">
             <div class="home-card__head">
               <span>Coleção 2026</span>
-              <span>Alpha EdTech</span>
+              <span>Turma Ginga</span>
             </div>
-            <div class="home-card__seal" aria-hidden="true">
-              <svg class="seal-mark" viewBox="0 0 200 200" focusable="false">
-                <circle class="seal-line" cx="100" cy="100" r="95" stroke-width="1.3"></circle>
-                <circle class="seal-line" cx="100" cy="100" r="86" stroke-width="0.7" stroke-dasharray="1.5 5.5" opacity="0.58"></circle>
-                <circle class="seal-diamond" cx="100" cy="6" r="1.7"></circle>
-                <circle class="seal-diamond" cx="194" cy="100" r="1.7"></circle>
-                <circle class="seal-diamond" cx="100" cy="194" r="1.7"></circle>
-                <circle class="seal-diamond" cx="6" cy="100" r="1.7"></circle>
-                <text class="seal-year" x="100" y="50" text-anchor="middle">2026</text>
-                <text x="100" y="126" text-anchor="middle" font-size="62" font-weight="360" letter-spacing="-1">CG</text>
-                <line class="seal-line" x1="69" y1="145" x2="131" y2="145" stroke-width="0.7" opacity="0.45"></line>
-                <text class="seal-micro" x="100" y="165" text-anchor="middle">TURMA ALPHA</text>
+            <div class="home-card__seal">
+              <svg class="home-card__ginga" viewBox="0 0 180 180" role="img" aria-label="Símbolo da Turma Ginga" focusable="false">
+                <defs>
+                  <filter id="ginga-verde" color-interpolation-filters="sRGB">
+                    <feFlood class="ginga-verde__flood" result="cor"></feFlood>
+                    <feComposite in="cor" in2="SourceAlpha" operator="in"></feComposite>
+                  </filter>
+                </defs>
+                <image href="assets/img/marca/selos/selo-01.png" width="180" height="180" filter="url(#ginga-verde)"></image>
               </svg>
             </div>
             <div class="home-card__foot">
@@ -94,8 +91,21 @@
     </main>
 
     <footer class="home-footer">
-      <span>Feito pela turma · 2026</span>
-      <span>Alpha EdTech</span>
+      <span>Feito pela Turma Ginga · 2026</span>
+      <div class="home-footer__marks">
+        <picture>
+          <source srcset="assets/img/marca/selos/selo-01.webp" type="image/webp">
+          <img src="assets/img/marca/selos/selo-01.png" alt="Ginga" width="180" height="180" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="assets/img/marca/selos/selo-02.webp" type="image/webp">
+          <img src="assets/img/marca/selos/selo-02.png" alt="Alpha EdTech" width="155" height="180" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="assets/img/marca/selos/selo-03.webp" type="image/webp">
+          <img src="assets/img/marca/selos/selo-03.png" alt="Cummins" width="180" height="166" loading="lazy" decoding="async">
+        </picture>
+      </div>
     </footer>
   </body>
 </html>

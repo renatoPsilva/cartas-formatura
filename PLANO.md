@@ -8,7 +8,7 @@ Este documento é a fonte de verdade para construir a base do site. O subagente 
 
 ## 1. Objetivo
 
-Criar a base de um site estático, em português, para a turma presentear **8 professores da Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
+Criar a base de um site estático, em português, para a Turma Ginga presentear **8 professores da Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
 O site será publicado no GitHub Pages. O conteúdo real será preenchido depois pela equipe; nesta etapa, usar **placeholders**. A base precisa ser boa o suficiente para ser mostrada aos colegas e fácil de editar por eles.
 
@@ -151,7 +151,7 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 - **Página de foto:** 1–3 imagens com legenda, layout limpo. Sem fita adesiva, polaroid ou scrapbook.
 - **Página de recados:** mensagens curtas com autor, em lista ou blocos discretos.
 - **Página de citação:** um trecho em destaque, com autor opcional.
-- **Página de assinatura:** fechamento da turma, curso/ano e selo final discreto.
+- **Página de assinatura:** fechamento da Turma Ginga, curso/ano e selo final discreto.
 - Máximo de ~500–700 caracteres por página de texto; o editor deve avisar se passar.
 - O envelope é gerado automaticamente a partir dos metadados; as páginas internas são blocos editáveis.
 
@@ -191,7 +191,7 @@ window.DADOS = [
       { tipo: "foto", fotos: [{ src: "...", alt: "...", legenda: "..." }] },
       { tipo: "recados", recados: [{ autor: "Aluno", texto: "..." }] },
       { tipo: "citacao", texto: "...", autor: "..." },
-      { tipo: "assinatura", texto: "Com carinho, Turma ...", ano: "2026" }
+      { tipo: "assinatura", texto: "Com carinho, Turma Ginga", ano: "2026" }
     ]
   }
 ];
@@ -221,10 +221,10 @@ Regras:
 
 - Título “Cartões de Gratidão”.
 - Subtítulo “Para os professores da Alpha EdTech”.
-- Parágrafo curto explicando o intuito: uma coleção de cartas da turma; cada professor recebeu um link próprio.
+- Parágrafo curto explicando o intuito: uma coleção de cartas da Turma Ginga; cada professor recebeu um link próprio.
 - Nenhuma lista de professores.
 - Toggle de tema.
-- Visual com um cartão/selo discreto, usando os tokens.
+- Visual com o símbolo da Turma Ginga no cartão da coleção e os três selos no rodapé, usando os tokens.
 - `noindex`.
 
 ### Páginas de professor
@@ -238,7 +238,7 @@ Regras:
 - `<noscript>` com mensagem curta.
 - Meta OG image genérica `../../assets/img/og/cartoes-de-gratidao.png` (1200×630).
 - Título exemplo: “Para Professora Exemplo — Cartões de Gratidão”.
-- Descrição exemplo: “Uma carta da turma da Alpha EdTech para Professora Exemplo.”
+- Descrição exemplo: “Uma carta da Turma Ginga para Professora Exemplo.”
 
 ### Reveal.js
 
@@ -312,7 +312,7 @@ Requisitos:
 - Estrutura: `assets/img/professores/<slug>/retrato.webp`, `foto-01.webp`, etc.
 - Carimbo de cera: `assets/img/marca/selo-cera.webp` + `selo-cera.png`, recortado de `carimbo.png` (fonte local, ignorada pelo git). O botão usa `<picture>` e o selo tipográfico como fallback.
 - Placeholders: criar SVGs/CSS com iniciais/pattern; não usar fotos falsas da internet.
-- A imagem OG genérica deve ser um PNG 1200×630 com o título e o selo tipográfico, gerada via Playwright/HTML ou ImageMagick.
+- A imagem OG genérica deve ser um PNG 1200×630 com o título e o símbolo da Turma Ginga, gerada via Playwright/HTML ou ImageMagick.
 - Favicon SVG simples com o selo tipográfico.
 - `loading="lazy"` e `decoding="async"` nas imagens; o retrato e o carimbo usam `loading="eager"`.
 - O editor aplica as restrições no upload; o usuário não precisa fazer manualmente.

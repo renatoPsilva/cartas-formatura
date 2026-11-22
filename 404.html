@@ -49,25 +49,26 @@
       <section class="home-intro">
         <p class="home-kicker">Erro 404</p>
         <h1 aria-label="Esta página não existe."><span>Esta página</span><span>não existe.</span></h1>
-        <p class="home-lead">Talvez o endereço esteja incompleto. Cada carta tem um link próprio, enviado pela turma.</p>
+        <p class="home-lead">Talvez o endereço esteja incompleto. Cada carta tem um link próprio, enviado pela Turma Ginga.</p>
         <p class="home-note"><a href="./">Voltar à página inicial</a></p>
       </section>
 
-      <aside class="home-card" aria-label="Selo dos Cartões de Gratidão">
+      <aside class="home-card" data-acento="verde" aria-label="Capa da coleção de cartões">
         <div class="home-card__stack">
           <div class="home-card__sheet">
             <div class="home-card__head">
               <span>Coleção 2026</span>
-              <span>Alpha EdTech</span>
+              <span>Turma Ginga</span>
             </div>
-            <div class="home-card__seal" aria-hidden="true">
-              <svg class="seal-mark" viewBox="0 0 200 200" focusable="false">
-                <circle class="seal-line" cx="100" cy="100" r="95" stroke-width="1.3"></circle>
-                <circle class="seal-line" cx="100" cy="100" r="86" stroke-width="0.7" stroke-dasharray="1.5 5.5" opacity="0.58"></circle>
-                <text class="seal-year" x="100" y="50" text-anchor="middle">2026</text>
-                <text x="100" y="126" text-anchor="middle" font-size="62" font-weight="360" letter-spacing="-1">CG</text>
-                <line class="seal-line" x1="69" y1="145" x2="131" y2="145" stroke-width="0.7" opacity="0.45"></line>
-                <text class="seal-micro" x="100" y="165" text-anchor="middle">TURMA ALPHA</text>
+            <div class="home-card__seal">
+              <svg class="home-card__ginga" viewBox="0 0 180 180" role="img" aria-label="Símbolo da Turma Ginga" focusable="false">
+                <defs>
+                  <filter id="ginga-verde" color-interpolation-filters="sRGB">
+                    <feFlood class="ginga-verde__flood" result="cor"></feFlood>
+                    <feComposite in="cor" in2="SourceAlpha" operator="in"></feComposite>
+                  </filter>
+                </defs>
+                <image href="assets/img/marca/selos/selo-01.png" width="180" height="180" filter="url(#ginga-verde)"></image>
               </svg>
             </div>
             <div class="home-card__foot">
@@ -80,7 +81,7 @@
     </main>
 
     <footer class="home-footer">
-      <span>Feito pela turma · 2026</span>
+      <span>Feito pela Turma Ginga · 2026</span>
       <span>Alpha EdTech</span>
     </footer>
   </body>

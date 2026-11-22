@@ -116,7 +116,7 @@
       })
       .join("");
     if (!itens) {
-      itens = "<li><p>Os recados da turma ainda serão adicionados.</p></li>";
+      itens = "<li><p>Os recados da Turma Ginga ainda serão adicionados.</p></li>";
     }
     return (
       '<section class="reading-section" aria-labelledby="leitura-sec-' +
@@ -136,7 +136,7 @@
 
   function secaoCitacao(pagina, indice) {
     var texto = String(pagina.texto || "").trim();
-    if (!texto) texto = "Uma frase da turma ainda será escolhida.";
+    if (!texto) texto = "Uma frase da Turma Ginga ainda será escolhida.";
     return (
       '<section class="reading-section reading-section--citacao" aria-labelledby="leitura-sec-' +
       indice +
@@ -153,7 +153,7 @@
   }
 
   function secaoAssinatura(pagina, indice) {
-    var texto = String(pagina.texto || "Com carinho, Turma Alpha EdTech").trim();
+    var texto = String(pagina.texto || "Com carinho, Turma Ginga").trim();
     return (
       '<section class="reading-section reading-assinatura" aria-labelledby="leitura-sec-' +
       indice +
@@ -178,12 +178,12 @@
     if (!conteudo || !window.Cartao) return;
     var paginas = Array.isArray(professor.paginas) ? professor.paginas : [];
     var selo = window.Cartao.svgSelo
-      ? window.Cartao.svgSelo(professor, { rodape: "ALPHA EDTECH" })
+      ? window.Cartao.svgSelo(professor, { rodape: "TURMA GINGA" })
       : "";
     var partes = [];
     partes.push(
       '<header class="reading-cover">' +
-        '<span class="reading-cover__eyebrow">Uma carta da turma · Alpha EdTech</span>' +
+        '<span class="reading-cover__eyebrow">Uma carta da Turma Ginga · Alpha EdTech</span>' +
         "<h1>" +
         esc(professor.nome) +
         "</h1>" +
@@ -213,7 +213,7 @@
     if (!temAssinatura) {
       partes.push(
         secaoAssinatura(
-          { texto: "Com carinho, Turma Alpha EdTech", ano: "2026" },
+          { texto: "Com carinho, Turma Ginga", ano: "2026" },
           paginas.length + 1
         )
       );

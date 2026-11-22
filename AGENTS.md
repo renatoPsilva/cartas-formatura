@@ -1,6 +1,6 @@
 # Convenções para agentes
 
-Este repositório é uma base estática para os **Cartões de Gratidão** da turma da Alpha EdTech.
+Este repositório é uma base estática para os **Cartões de Gratidão** da Turma Ginga, da Alpha EdTech.
 
 ## Antes de mexer no visual
 
@@ -26,7 +26,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da tur
 ## Estrutura de conteúdo
 
 - `dados.js` define `window.DADOS`, um script clássico.
-- O envelope é automático: `nome`, `acento`, `selo` (iniciais do carimbo de fallback) e três selos fixos no canto inferior direito. `retrato`/`retratoAlt` são opcionais e aparecem no canto superior direito. A disciplina continua nos metadados e no modo de leitura, mas não aparece na frente.
+- O envelope é automático: `nome`, `acento`, `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. `retrato`/`retratoAlt` são opcionais e aparecem no canto superior direito. A disciplina continua nos dados e no modo de leitura, mas não aparece na frente.
 - `paginas` é uma lista ordenada de blocos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - Se não houver `assinatura`, o renderer adiciona uma no fim.
 - O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; no piloto, `1 / 5`.
@@ -45,6 +45,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da tur
 - Interior de texto limpo: sem molduras, carimbos, números ou enfeites dentro da folha.
 - O contador de páginas fica **fora** do cartão, no fundo, e só aparece depois da abertura. O par de setas fica **dentro** do cartão, no canto inferior direito, sem círculos. Não há barra de progresso.
 - O carimbo de cera é o elemento memorável. Não adicione outro objeto decorativo além dos três selos do envelope.
+- A capa da home usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da home repete os três selos do envelope (Ginga, Alpha EdTech e Cummins), em monocromático.
 - O envelope e o carimbo são planos: sem sombra projetada. A separação vem da borda fina e do fundo.
 - O acento aparece no fio curto sob o nome e em linhas finas do interior; o carimbo é dourado. Nunca no corpo do texto.
 - A transição entre páginas é fade-out, respiro curto e fade-in apenas no conteúdo (texto, fotos, recados); a folha do cartão fica parada. Sem deslize, giro ou barra.

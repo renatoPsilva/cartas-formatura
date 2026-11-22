@@ -458,6 +458,11 @@ html[data-theme="dark"] .acento-ocre {
   line-height: 1.5;
 }
 
+.panel__seal {
+  flex: 0 0 auto;
+  width: 56px;
+}
+
 .panel__body {
   padding: 18px;
 }
@@ -740,8 +745,20 @@ html[data-theme="dark"] .char-count.is-over {
     ),
     var(--input-bg);
   color: var(--muted);
-  font-family: var(--font-display);
-  font-size: 1.75rem;
+}
+
+.image-upload__empty {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--muted);
+}
+
+.image-upload__empty svg {
+  width: 34px;
+  height: 34px;
+  opacity: 0.7;
 }
 
 .image-upload__preview img {
@@ -878,6 +895,16 @@ html[data-theme="dark"] .image-upload__warn {
 
 .preview-slide .card--envelope .envelope {
   transition: none;
+}
+
+/* A prévia é estática: o carimbo não é um botão aqui. */
+.preview-slide .seal-button {
+  cursor: default;
+}
+
+.preview-slide .seal-button:hover,
+.preview-slide .seal-button:active {
+  transform: translate(-50%, -50%);
 }
 
 .preview-empty {
@@ -1018,6 +1045,10 @@ html[data-theme="dark"] .image-upload__warn {
 
   .panel__head {
     flex-direction: column;
+  }
+
+  .panel__seal {
+    display: none;
   }
 
   .pages-toolbar {

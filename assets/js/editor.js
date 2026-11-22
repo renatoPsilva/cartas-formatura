@@ -184,7 +184,7 @@
       esc(iniciais) +
       "</text>" +
       '<line class="seal-line" x1="69" y1="145" x2="131" y2="145" stroke-width="0.7" opacity="0.45"/>' +
-      '<text class="seal-micro" x="100" y="165" text-anchor="middle">ALPHA EDTECH</text>' +
+      '<text class="seal-micro" x="100" y="165" text-anchor="middle">TURMA GINGA</text>' +
       "</svg>"
     );
   }
@@ -289,7 +289,7 @@
     if (tipo === "assinatura") {
       return {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026",
       };
     }
@@ -352,7 +352,7 @@
     if (tipo === "assinatura") {
       return {
         tipo: "assinatura",
-        texto: String(pagina.texto || "Com carinho, Turma Alpha EdTech"),
+        texto: String(pagina.texto || "Com carinho, Turma Ginga"),
         ano: String(pagina.ano || "2026"),
       };
     }
@@ -539,29 +539,26 @@
       wrap.innerHTML = "";
       return;
     }
-    wrap.innerHTML = painelCapa(professor) + painelRetrato(professor) + painelPaginas(professor);
+    wrap.innerHTML =
+      painelEnvelope(professor) +
+      painelRetrato(professor) +
+      painelPublicacao(professor) +
+      painelPaginas(professor);
     ligarFalhasImagensForm();
   }
 
-  function painelCapa(professor) {
+  function painelEnvelope(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Capa</h2><p>Estes dados geram o envelope automaticamente. O acento aparece no fio sob o nome; os três selos ocupam o canto inferior direito. O interior do cartão continua neutro.</p></div></div>' +
+      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome, acento e selo tipográfico. O retrato fica no painel abaixo; os três selos e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
+      esc(professor.acento) +
+      '" aria-hidden="true">' +
+      svgSelo(professor) +
+      "</div></div>" +
       '<div class="panel__body"><div class="field-grid">' +
-      '<label class="field"><span>Slug (endereço)</span><input type="text" data-meta="slug" value="' +
-      esc(professor.slug) +
-      '" spellcheck="false" autocapitalize="off"><small>carta/<strong>' +
-      esc(professor.slug) +
-      "</strong>/ · use apenas letras minúsculas, números e hífens</small></label>" +
-      '<label class="field"><span>Nome</span><input type="text" data-meta="nome" value="' +
+      '<label class="field field--full"><span>Nome</span><input type="text" data-meta="nome" value="' +
       esc(professor.nome) +
       '"></label>' +
-      '<label class="field"><span>Disciplina</span><input type="text" data-meta="disciplina" value="' +
-      esc(professor.disciplina) +
-      '"><small>Aparece nos metadados e no modo de leitura; não entra no envelope.</small></label>' +
-      '<label class="field"><span>Selo (até 3 caracteres)</span><input type="text" data-meta="selo" maxlength="3" value="' +
-      esc(professor.selo) +
-      '" spellcheck="false"><small>Usado no carimbo de cera quando a imagem do selo falha.</small></label>' +
       '<label class="field"><span>Acento</span><select data-meta="acento">' +
       ["seal", "azul", "verde", "ameixa", "ocre"]
         .map(function (acento) {
@@ -577,6 +574,26 @@
         })
         .join("") +
       "</select></label>" +
+      '<label class="field"><span>Selo tipográfico (até 3 caracteres)</span><input type="text" data-meta="selo" maxlength="3" value="' +
+      esc(professor.selo) +
+      '" spellcheck="false"><small>Aparece no fechamento e no modo de leitura; é o fallback do carimbo de cera. Não é um dos três selos do envelope.</small></label>' +
+      "</div></div></section>"
+    );
+  }
+
+  function painelPublicacao(professor) {
+    return (
+      '<section class="panel">' +
+      '<div class="panel__head"><div><h2>Publicação e leitura</h2><p>O endereço do cartão e a disciplina usada no modo de leitura. Nada aqui aparece no envelope.</p></div></div>' +
+      '<div class="panel__body"><div class="field-grid">' +
+      '<label class="field"><span>Slug (endereço)</span><input type="text" data-meta="slug" value="' +
+      esc(professor.slug) +
+      '" spellcheck="false" autocapitalize="off"><small>carta/<strong>' +
+      esc(professor.slug) +
+      "</strong>/ · use apenas letras minúsculas, números e hífens</small></label>" +
+      '<label class="field"><span>Disciplina</span><input type="text" data-meta="disciplina" value="' +
+      esc(professor.disciplina) +
+      '"><small>Fica nos dados e no modo de leitura; não entra no envelope.</small></label>' +
       "</div></div>" +
       '<div class="panel__foot"><p>O link publicado usa o slug. Se mudar o slug, renomeie também a pasta <code>carta/<slug>/</code> e as meta tags.</p><button class="btn btn--small btn--danger" type="button" data-remove-professor>Remover cartão</button></div>' +
       "</section>"
@@ -592,7 +609,7 @@
     });
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Retrato</h2><p>Opcional. O retrato aparece no canto superior direito do envelope. Os três selos ficam no canto inferior direito; as fotos da carta vão nas páginas do tipo Foto.</p></div></div>' +
+      '<div class="panel__head"><div><h2>Retrato</h2><p>Opcional. Quando existe, o retrato aparece no canto superior direito do envelope. Sem ele, o envelope mantém o nome, o carimbo e os três selos.</p></div></div>' +
       '<div class="panel__body">' +
       upload +
       '<div class="field-grid" style="margin-top:14px">' +
@@ -610,7 +627,7 @@
     var paginas = Array.isArray(professor.paginas) ? professor.paginas : [];
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Páginas internas</h2><p>A capa não entra aqui. Textos longos demais podem não caber no cartão; o modo “Ler a carta inteira” sempre mostra tudo.</p></div>' +
+      '<div class="panel__head"><div><h2>Páginas internas</h2><p>O envelope não entra aqui. Textos longos demais podem não caber no cartão; o modo “Ler a carta inteira” sempre mostra tudo.</p></div>' +
       '<div class="pages-toolbar"><select data-add-page-type aria-label="Tipo de nova página">' +
       '<option value="texto">Texto</option>' +
       '<option value="foto">Foto</option>' +
@@ -627,7 +644,7 @@
               return blocoPagina(pagina, indice, paginas.length);
             })
             .join("")
-        : '<p class="field-list-empty">Nenhuma página interna. A carta terá só a capa e uma assinatura padrão no site.</p>') +
+        : '<p class="field-list-empty">Nenhuma página interna. A carta terá só o envelope e uma assinatura padrão no site.</p>') +
       "</div></div></section>"
     );
   }
@@ -823,7 +840,7 @@
       indice +
       '" data-campo="texto" value="' +
       esc(pagina.texto || "") +
-      '"><small>Ex.: “Com carinho, Turma Alpha EdTech”.</small></label>' +
+      '"><small>Ex.: “Com carinho, Turma Ginga”.</small></label>' +
       '<label class="field"><span>Ano</span><input type="text" data-page="' +
       indice +
       '" data-campo="ano" value="' +
@@ -832,11 +849,21 @@
     );
   }
 
+  function placeholderImagemHTML() {
+    return (
+      '<span class="image-upload__empty" aria-hidden="true">' +
+      '<svg viewBox="0 0 24 24" focusable="false">' +
+      '<rect x="3.5" y="5" width="17" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1"/>' +
+      '<path d="m5.5 16 4-4 3 3 3.5-3.5 3 3" fill="none" stroke="currentColor" stroke-width="1"/>' +
+      '<circle cx="9" cy="9" r="1.2" fill="currentColor"/>' +
+      "</svg></span>"
+    );
+  }
+
   function uploaderHTML(opcoes) {
     var src = String(opcoes.src || "").trim();
     var entrada = src ? imagens.get(src) : null;
     var resolvida = src ? urlPreview(src) : "";
-    var iniciais = iniciaisDe(atual() || {});
     var meta = "";
     if (entrada && entrada.width && entrada.height) {
       meta =
@@ -850,7 +877,10 @@
     } else if (src) {
       meta = "Arquivo atual do repositório: " + src;
     } else {
-      meta = "Nenhuma imagem. O site usa o fallback visual.";
+      meta =
+        opcoes.tipo === "retrato"
+          ? "Sem retrato. O envelope mantém o nome, o carimbo e os três selos."
+          : "Sem imagem. No site, a página mostra um espaço reservado.";
     }
     var avisos = "";
     if (entrada && entrada.width && entrada.height) {
@@ -880,7 +910,7 @@
         ? '<img src="' +
           esc(resolvida) +
           '" alt="" loading="lazy" data-preview-img>'
-        : "<span>" + esc(iniciais) + "</span>") +
+        : placeholderImagemHTML()) +
       "</div>" +
       '<div class="image-upload__body"><div class="image-upload__actions">' +
       '<button class="btn btn--small" type="button" data-escolher>Escolher imagem</button>' +
@@ -903,10 +933,8 @@
         var caixa = img.parentNode;
         if (!caixa) return;
         img.remove();
-        if (!caixa.querySelector("span")) {
-          var span = document.createElement("span");
-          span.textContent = iniciaisDe(atual() || {});
-          caixa.appendChild(span);
+        if (!caixa.querySelector(".image-upload__empty")) {
+          caixa.insertAdjacentHTML("beforeend", placeholderImagemHTML());
         }
       });
     });
@@ -1608,7 +1636,7 @@
     if (!temAssinatura) {
       lista.push({
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026",
       });
     }
@@ -1793,14 +1821,13 @@
         return recado && String(recado.texto || "").trim();
       });
       if (!recados.length) {
-        recados = [{ texto: "Os recados da turma ainda serão adicionados.", autor: "" }];
+        recados = [{ texto: "Os recados da Turma Ginga ainda serão adicionados.", autor: "" }];
       }
       return (
         '<div class="page-head"><h2>' +
         esc(pagina.titulo || "Recados") +
         '</h2></div><ul class="recados-list">' +
         recados
-          .slice(0, 4)
           .map(function (recado) {
             return (
               "<li><blockquote><p>" +
@@ -1817,16 +1844,16 @@
     if (pagina.tipo === "citacao") {
       return (
         '<blockquote><p>' +
-        esc(pagina.texto || "Uma frase da turma ainda será escolhida.") +
+        esc(pagina.texto || "Uma frase da Turma Ginga ainda será escolhida.") +
         "</p>" +
         (pagina.autor ? "<cite>" + esc(pagina.autor) + "</cite>" : "") +
         "</blockquote>"
       );
     }
-    var texto = String(pagina.texto || "Com carinho, Turma Alpha EdTech");
+    var texto = String(pagina.texto || "Com carinho, Turma Ginga");
     var partes = texto.split(",");
     var abertura = partes.length > 1 ? partes.shift().trim() + "," : "Com carinho,";
-    var nome = partes.join(",").trim() || "Turma Alpha EdTech";
+    var nome = partes.join(",").trim() || "Turma Ginga";
     return (
       '<div class="assinatura__content"><p>' +
       esc(abertura) +

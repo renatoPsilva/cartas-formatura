@@ -1,8 +1,10 @@
 # Cartões de Gratidão
 
-Base de um site estático em português para a turma presentear os professores da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
+Base de um site estático em português para a Turma Ginga presentear os professores da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
-O conteúdo deste repositório é **de exemplo**. Nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela turma.
+O conteúdo deste repositório é **de exemplo**. Nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela Turma Ginga.
+
+A home usa o símbolo da Turma Ginga no cartão da coleção e repete os três selos institucionais no rodapé (Ginga, Alpha EdTech e Cummins).
 
 Cada carta é um cartão horizontal de 1160 × 820. Ela começa fechada dentro de um envelope verde com um carimbo de cera dourado; o carimbo é o único botão e, ao abrir, a folha sobe por trás dele e o envelope sai de cena. O envelope não conta como página e a carta não fecha de novo — para voltar ao envelope, recarregue o link sem hash (ou com `#/1`). Recarregar um link profundo `#/2` ou posterior reabre a carta naquela página. A troca de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada.
 
@@ -83,7 +85,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
 2. Escolha o cartão na lista lateral.
-3. Edite o envelope: slug, nome, disciplina, selo, acento e, se quiser, retrato. A disciplina continua nos metadados e no modo de leitura, mas não aparece na frente. Os três selos ficam fixos no canto inferior direito; o retrato, quando existe, aparece no canto superior direito.
+3. Edite o envelope: nome, acento, selo tipográfico e, se quiser, retrato. Em **Publicação e leitura**, ajuste o slug e a disciplina; a disciplina aparece no modo de leitura, não no envelope. Os três selos e o carimbo são fixos; o retrato, quando existe, aparece no canto superior direito.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
 6. Use a prévia e o tema claro/escuro para conferir. A prévia reproduz o cartão 1160 × 820; os rótulos mostram “Capa” (o envelope) e depois as páginas 1..N, sem contar o envelope.
@@ -131,7 +133,7 @@ window.DADOS = [
       { tipo: "foto", titulo: "Momentos", fotos: [{ src: "...", alt: "...", legenda: "..." }] },
       { tipo: "recados", titulo: "Recados", recados: [{ autor: "Aluno", texto: "..." }] },
       { tipo: "citacao", texto: "...", autor: "..." },
-      { tipo: "assinatura", texto: "Com carinho, Turma Alpha EdTech", ano: "2026" }
+      { tipo: "assinatura", texto: "Com carinho, Turma Ginga", ano: "2026" }
     ]
   }
 ];
@@ -143,6 +145,7 @@ Regras:
 - O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: no piloto, `1 / 5`, não `1 / 6`.
 - O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
 - `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`.
+- `selo` são as iniciais do selo tipográfico usado no fechamento, no modo de leitura e como fallback do carimbo de cera. Não são os três selos do envelope.
 - Se `retrato` estiver vazio ou falhar, o envelope fica sem retrato; os três selos no canto inferior direito continuam. As fotos da carta ficam nas páginas de `foto`.
 - Se não houver página de assinatura, o renderer adiciona uma assinatura padrão no fim.
 - **Caminhos de imagem são relativos à raiz do site** (`assets/img/...`). O renderer da carta, que fica em `carta/<slug>/`, prefixa `../../` automaticamente. O editor usa `../` para a prévia. O ZIP mantém os caminhos da raiz.

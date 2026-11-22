@@ -242,6 +242,10 @@ html[data-theme="dark"] .paper-grain::after {
   height: 88%;
 }
 
+.home-card__ginga .ginga-verde__flood {
+  flood-color: var(--accent);
+}
+
 .home-card__foot {
   display: flex;
   align-items: flex-end;
@@ -282,6 +286,30 @@ html[data-theme="dark"] .paper-grain::after {
 
 .home-footer a {
   text-decoration-color: var(--line);
+}
+
+.home-footer__marks {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
+.home-footer__marks picture {
+  display: flex;
+}
+
+.home-footer__marks img {
+  display: block;
+  width: auto;
+  height: 24px;
+  filter: brightness(0);
+  opacity: 0.55;
+}
+
+html[data-theme="dark"] .home-footer__marks img {
+  filter: brightness(0) invert(1);
+  opacity: 0.62;
 }
 
 /* --------------------------------------------------------------------------
@@ -888,8 +916,12 @@ html[data-theme="dark"] .paper-grain::after {
     padding: 20px;
   }
 
-  .home-footer span:last-child {
-    display: none;
+  .home-footer__marks {
+    gap: 11px;
+  }
+
+  .home-footer__marks img {
+    height: 22px;
   }
 
   .deck-brand .brand__name {

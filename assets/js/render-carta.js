@@ -102,7 +102,7 @@
     var op = opcoes || {};
     var iniciais = iniciaisDe(professor || {});
     var ano = (professor && professor.ano) || "2026";
-    var rodape = op.rodape || "ALPHA EDTECH";
+    var rodape = op.rodape || "TURMA GINGA";
     var tamanho =
       iniciais.length > 2 ? 50 : iniciais.length === 2 ? 62 : 70;
     var aria = op.decorativo === false ? "" : ' aria-hidden="true"';
@@ -306,7 +306,7 @@
       .join("");
     if (!itens) {
       itens =
-        '<li><blockquote><p>Os recados da turma ainda serão adicionados.</p></blockquote></li>';
+        '<li><blockquote><p>Os recados da Turma Ginga ainda serão adicionados.</p></blockquote></li>';
     }
     return (
       '<div class="card card--recados">' +
@@ -321,7 +321,7 @@
 
   function citacaoHtml(pagina) {
     var texto = String(pagina.texto || "").trim();
-    if (!texto) texto = "Uma frase da turma ainda será escolhida.";
+    if (!texto) texto = "Uma frase da Turma Ginga ainda será escolhida.";
     return (
       '<div class="card card--citacao"><blockquote><p>' +
       comQuebras(texto) +
@@ -334,7 +334,7 @@
   function separarAssinatura(texto) {
     var limpo = String(texto || "").trim();
     if (!limpo) {
-      return { abertura: "Com carinho,", nome: "Turma Alpha EdTech" };
+      return { abertura: "Com carinho,", nome: "Turma Ginga" };
     }
     var indice = limpo.indexOf(",");
     if (indice > 0 && indice < limpo.length - 1) {
@@ -349,7 +349,7 @@
   function assinaturaHtml(pagina, professor, padrao) {
     var dados = pagina || {};
     var partes = separarAssinatura(
-      dados.texto || (padrao ? "Com carinho, Turma Alpha EdTech" : "")
+      dados.texto || (padrao ? "Com carinho, Turma Ginga" : "")
     );
     var ano = dados.ano || "2026";
     return (
@@ -404,7 +404,7 @@
     if (!temAssinatura) {
       lista.push({
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026",
       });
     }
@@ -771,7 +771,7 @@
     var lista = Array.isArray(window.DADOS) ? window.DADOS : null;
     if (!lista) {
       mostrarErro(
-        "Os dados da carta não carregaram. Recarregue a página ou avise a turma."
+        "Os dados da carta não carregaram. Recarregue a página ou avise a Turma Ginga."
       );
       return;
     }
@@ -829,7 +829,7 @@
 
     if (!window.Reveal) {
       mostrarErro(
-        "O leitor do cartão não carregou. Recarregue a página ou avise a turma."
+        "O leitor do cartão não carregou. Recarregue a página ou avise a Turma Ginga."
       );
       return;
     }
@@ -925,7 +925,7 @@
     iniciar();
   } catch (erro) {
     mostrarErro(
-      "Algo deu errado ao abrir esta carta. Recarregue a página ou avise a turma."
+      "Algo deu errado ao abrir esta carta. Recarregue a página ou avise a Turma Ginga."
     );
     if (window.console && console.error) console.error(erro);
   }

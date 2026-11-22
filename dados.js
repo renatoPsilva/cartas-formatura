@@ -18,7 +18,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Para começar",
         paragrafos: [
-          "Esta é uma carta de exemplo, escrita para mostrar como o cartão funciona. O texto real será escrito pela turma, com as palavras que só vocês sabem dizer.",
+          "Esta é uma carta de exemplo, escrita para mostrar como o cartão funciona. O texto real será escrito pela Turma Ginga, com as palavras que só vocês sabem dizer.",
           "Quando a versão final estiver pronta, esta página pode falar sobre o começo das aulas, sobre a primeira vez que alguém entendeu um conceito difícil ou sobre o jeito de explicar que fez diferença."
         ]
       },
@@ -35,8 +35,8 @@ window.DADOS = [
         fotos: [
           {
             src: "assets/img/professores/professora-exemplo/foto-01.svg",
-            alt: "Ilustração abstrata usada como espaço reservado para uma foto da turma",
-            legenda: "Espaço reservado para uma foto da turma. Substitua esta imagem no editor."
+            alt: "Ilustração abstrata usada como espaço reservado para uma foto da Turma Ginga",
+            legenda: "Espaço reservado para uma foto da Turma Ginga. Substitua esta imagem no editor."
           },
           {
             src: "assets/img/professores/professora-exemplo/foto-02.svg",
@@ -47,11 +47,11 @@ window.DADOS = [
       },
       {
         tipo: "recados",
-        titulo: "Recados da turma",
+        titulo: "Recados da Turma Ginga",
         recados: [
           {
             autor: "Aluno 01",
-            texto: "Obrigado(a) por explicar de novo, sem pressa, quando a turma toda já tinha desistido."
+            texto: "Obrigado(a) por explicar de novo, sem pressa, quando a Turma Ginga toda já tinha desistido."
           },
           {
             autor: "Aluna 02",
@@ -69,7 +69,7 @@ window.DADOS = [
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -87,13 +87,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 01. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 01. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -111,13 +111,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 02. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 02. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -135,13 +135,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 03. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 03. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -159,13 +159,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 04. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 04. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -183,13 +183,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 05. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 05. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -207,13 +207,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 06. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 06. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
@@ -231,13 +231,13 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 07. O texto final será escrito pela turma e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
-          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da turma."
+          "Esta é uma carta de exemplo para o Professor 07. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
       {
         tipo: "assinatura",
-        texto: "Com carinho, Turma Alpha EdTech",
+        texto: "Com carinho, Turma Ginga",
         ano: "2026"
       }
     ]
