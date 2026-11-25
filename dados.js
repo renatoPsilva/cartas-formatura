@@ -593,7 +593,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "O ciclo",
         "paragrafos": [
-          "O que mais te move em sala é a nossa motivação, e isso cria um ciclo difícil de explicar: quanto mais você se empolga, mais a gente quer aprender. Entre uma referência de anime, uma conversa sobre jogos e uma maratona cyberpunk, você lembrava que tecnologia também é cultura, repertório e prazer. O samba e o rap que você carrega davam o ritmo desse jeito de ensinar."
+          "O que mais move você em sala é a nossa motivação, e isso cria um ciclo difícil de explicar: quanto mais você se empolga, mais a gente quer aprender. Entre uma referência de anime, uma conversa sobre jogos e uma maratona cyberpunk, você lembrava que tecnologia também é cultura, repertório e prazer. O samba e o rap que você carrega davam o ritmo desse jeito de ensinar."
         ]
       },
       {
