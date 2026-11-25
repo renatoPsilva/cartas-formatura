@@ -2,18 +2,18 @@
 
 ## Conceito
 
-Uma **coleção de cartões**, não um site de formatura. Cada professor recebe uma peça com capa e páginas internas, como uma carta impressa que foi digitalizada com cuidado. O cartão é o objeto principal; o site é apenas a mesa onde ele é aberto.
+Uma **coleção de cartões**, não um site de formatura. Cada homenageado recebe uma peça com capa e páginas internas, como uma carta impressa que foi digitalizada com cuidado. O cartão é o objeto principal; o site é apenas a mesa onde ele é aberto.
 
 O elemento memorável é o **carimbo de cera dourado** no meio da borda de cima do envelope. Ele é o único objeto fotorrealista e o único dourado do projeto. O **selo tipográfico** com iniciais e ano continua como marca no envelope, no header e no favicon. O fecho da carta usa o **símbolo da Turma Ginga** em monocromático. A capa da home usa o mesmo símbolo, em verde, e o rodapé da home repete os três selos do envelope.
 
 **Nome:** Cartões de Gratidão.
-**Público:** professores da Alpha EdTech e a Turma Ginga.
-**Trabalho principal:** fazer cada professor reconhecer, em poucos segundos, que aquela carta foi feita para ele(a) — e então ler com calma.
+**Público:** homenageados da Alpha EdTech e a Turma Ginga.
+**Trabalho principal:** fazer cada homenageado reconhecer, em poucos segundos, que aquela carta foi feita para ele(a) — e então ler com calma.
 
 ## Direção visual
 
 - Editorial, tátil e contido.
-- Pedra, papel e um envelope verde profundo; tinta escura; um único acento por professor.
+- Pedra, papel e um envelope verde profundo; tinta escura; um único acento por homenageado.
 - Nada de confete, glitter, fitas, polaroides, scrapbook, música automática ou clichês de formatura. O único dourado é o carimbo de cera.
 - O envelope tem identidade; as páginas de texto têm apenas o texto.
 - O carimbo é a única exceção fotorrealista e o único objeto decorativo. Selo postal, carimbo de correio, fita, kraft e papel rasgado continuam proibidos.
@@ -23,7 +23,7 @@ O elemento memorável é o **carimbo de cera dourado** no meio da borda de cima 
 A direção original do plano já pedia pedra + papel + Fraunces + selo. O risco seria cair no “cartão SaaS” ou no “scrapbook de formatura”. As decisões para evitar isso:
 
 - **Sem cards repetidos com sombra genérica.** Existe um único objeto: a folha. O chrome (toolbar, tema e contador) fica fora dela; apenas o par de setas entra na folha.
-- **Sem papel creme + serifa de banco + terracota como fórmula.** O fundo é pedra fria (`#E9E4DA`), a tinta é verde-azulada (`#1B2A2E`), o envelope é verde profundo e o carimbo é dourado. O selo tipográfico padrão é um vermelho queimado. O acento varia por professor e aparece só em marcas, nunca no corpo.
+- **Sem papel creme + serifa de banco + terracota como fórmula.** O fundo é pedra fria (`#E9E4DA`), a tinta é verde-azulada (`#1B2A2E`), o envelope é verde profundo e o carimbo é dourado. O selo tipográfico padrão é um vermelho queimado. O acento varia por homenageado e aparece só em marcas, nunca no corpo.
 - **Sem marcadores numerados decorativos.** Só a numeração real de página, fora do cartão.
 - **Sem micro-labels em caixa alta por toda parte.** Os rótulos internos do selo tipográfico são a exceção: são parte do carimbo.
 - **Movimento mínimo.** A transição de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada. O único gesto orquestrado é o envelope: o carimbo prende a folha, a folha sobe por trás dele e o envelope sai de cena. Depois de aberta, a carta não fecha de novo; recarregar volta ao envelope. `prefers-reduced-motion` desliga tudo.
@@ -61,7 +61,7 @@ A direção original do plano já pedia pedra + papel + Fraunces + selo. O risco
 | `--envelope-deep` | `#1A292C` | base do gradiente do envelope |
 | `--envelope-line` | `cream 22%` | bordas e fios do envelope |
 
-### Acentos por professor
+### Acentos por homenageado
 
 | Nome | Claro | Escuro |
 |---|---|---|
@@ -81,7 +81,7 @@ O carimbo de cera é o **único** dourado do projeto. Ele é uma imagem fornecid
 
 ## Tipografia
 
-- **Fraunces** (variável, self-hosted): títulos, nome do professor e corpo da carta. O eixo `opsz` é usado grande no envelope e menor no texto; `SOFT` alta no corpo para uma leitura mais macia; `WONK` em 0 para manter a carta quieta.
+- **Fraunces** (variável, self-hosted): títulos, nome do homenageado e corpo da carta. O eixo `opsz` é usado grande no envelope e menor no texto; `SOFT` alta no corpo para uma leitura mais macia; `WONK` em 0 para manter a carta quieta.
 - **IBM Plex Sans** (variável, self-hosted): navegação, rótulos, legendas, metadados e interface do editor.
 - Sem fonte manuscrita, sem script, sem “assinatura” falsa.
 - Corpo da carta: 30 px no desenho de 1160 × 820; 43 px no viewport estreito e 34 px nas páginas longas, compensando a escala do Reveal (cerca de 14–15 px e ~11 px na tela de 390 px). Linha de 1.44–1.58; medida confortável abaixo de 70ch.
@@ -99,7 +99,7 @@ palco 1160 × 820
   ┌──────────────────────────────────────────┐  ← envelope 1080 × 690
   │                                          │
   │                  Para                    │
-  │          Nome do professor               │  72 px
+  │          Nome do homenageado               │  72 px
   │                ─────                     │  fio de acento
   │                          [1] [2] [3]     │  selos, canto inferior direito
   └──────────────────────────────────────────┘
@@ -145,7 +145,7 @@ palco 1160 × 820
 
 ## Interação
 
-- Reveal.js 6.0.2, um deck por professor, 1160 × 820, margem 0.02, centro ligado, sem autoplay. Controles do Reveal e barra de progresso desligados.
+- Reveal.js 6.0.2, um deck por homenageado, 1160 × 820, margem 0.02, centro ligado, sem autoplay. Controles do Reveal e barra de progresso desligados.
 - A carta começa **fechada**: o primeiro slide contém a página 1 coberta pelo envelope. O carimbo é o único gatilho de abertura.
 - Abertura: um “press” de ~120 ms; a folha começa em `scale(.83)`, com o topo na borda do envelope, e sobe ~80 px em ~500 ms; o envelope desliza para fora em ~750 ms, com um fade curto no fim; o texto entra na folha em ~320 ms assim que ela sai do envelope; no fim, a folha cresce até 1 em ~380 ms. A dica sai com o envelope. O envelope fica inerte e a página 1 recebe o foco. `prefers-reduced-motion` abre imediatamente.
 - Depois de aberta, a carta não fecha de novo. Recarregar o link sem hash (ou `#/1`) volta ao envelope; um link profundo `#/2+` reabre na página pedida.
@@ -179,7 +179,7 @@ palco 1160 × 820
 
 ## Imagens
 
-- `assets/img/professores/<slug>/foto-01.webp`, `foto-02.webp`.
+- `assets/img/homenageados/<slug>/foto-01.webp`, `foto-02.webp`.
 - `assets/img/marca/selo-cera.webp` e `selo-cera.png`: o carimbo de cera recortado, otimizado e com fallback PNG. O original `carimbo.png` é fonte local, não vai para o site.
 - Placeholders atuais: SVGs abstratos, sem fotos falsas da internet.
 - Imagem OG 1200 × 630, gerada a partir de HTML com as fontes do próprio projeto; traz o símbolo da Turma Ginga em verde.
@@ -198,5 +198,5 @@ O editor é uma ferramenta de trabalho: mais funcional do que o site, mas com os
 - Texto dentro de imagem no conteúdo.
 - Cards SaaS repetidos e sombras genéricas.
 - Excesso de animação; mais de um momento orquestrado; giro 3D da capa na lombada.
-- Lista pública de professores na raiz.
+- Lista pública de homenageados na raiz.
 - Fontes manuscritas.

@@ -124,6 +124,43 @@
       .slice(0, 64);
   }
 
+  /* Migra rascunhos e dados antigos de “professor” para “homenageado”. */
+  function migrarSlug(valor) {
+    var slug = String(valor || "");
+    if (slug === "professor") return "homenageado";
+    if (slug === "professora") return "homenageada";
+    if (slug.indexOf("professora-") === 0) {
+      return "homenageada-" + slug.slice("professora-".length);
+    }
+    if (slug.indexOf("professor-") === 0) {
+      return "homenageado-" + slug.slice("professor-".length);
+    }
+    return slug;
+  }
+
+  function migrarNome(valor) {
+    var nome = String(valor == null ? "" : valor);
+    if (nome === "Novo professor") return "Novo homenageado";
+    return nome
+      .replace(/^Professora\b/, "Homenageada")
+      .replace(/^Professor\b/, "Homenageado");
+  }
+
+  function migrarCaminhoImagem(src) {
+    var valor = String(src || "");
+    var prefixo = "assets/img/professores/";
+    if (valor.indexOf(prefixo) !== 0) return valor;
+    var resto = valor.slice(prefixo.length);
+    var barra = resto.indexOf("/");
+    if (barra < 0) return "assets/img/homenageados/" + resto;
+    var slug = resto.slice(0, barra);
+    return (
+      "assets/img/homenageados/" +
+      migrarSlug(slug) +
+      resto.slice(barra)
+    );
+  }
+
   function iniciaisDe(professor) {
     var bruto = String(professor.selo || "").trim();
     if (bruto) return bruto.slice(0, 3).toUpperCase();
@@ -366,15 +403,24 @@
         return professor && typeof professor === "object";
       })
       .map(function (professor) {
+        var nome = migrarNome(String(professor.nome || "Sem nome"));
         var normalizado = {
-          slug: normalizarSlug(professor.slug || professor.nome || "professor"),
-          nome: String(professor.nome || "Sem nome"),
+          slug: migrarSlug(
+            normalizarSlug(professor.slug || nome || "homenageado")
+          ),
+          nome: nome,
           disciplina: String(professor.disciplina || ""),
           acento: ACENTOS.indexOf(professor.acento) >= 0 ? professor.acento : "seal",
           paginas: Array.isArray(professor.paginas)
             ? professor.paginas.map(normalizarPagina).filter(Boolean)
             : [],
         };
+        normalizado.paginas.forEach(function (pagina) {
+          if (pagina.tipo !== "foto") return;
+          (pagina.fotos || []).forEach(function (foto) {
+            foto.src = migrarCaminhoImagem(foto.src);
+          });
+        });
         /* O selo é legado: cartões antigos mantêm as iniciais, mas novos
            cartões derivam as iniciais do nome. Não grave selo vazio. */
         var selo = String(professor.selo || "").trim();
@@ -431,14 +477,32 @@
       var entradas = await idbGetAll();
       entradas.forEach(function (entrada) {
         if (!entrada || !entrada.path || !entrada.blob) return;
-        imagens.set(entrada.path, {
+        var caminho = entrada.path;
+        var caminhoNovo = migrarCaminhoImagem(caminho);
+        var dados = {
           blob: entrada.blob,
           url: URL.createObjectURL(entrada.blob),
           width: entrada.width || 0,
           height: entrada.height || 0,
           bytes: entrada.bytes || entrada.blob.size || 0,
           type: entrada.type || entrada.blob.type || "image/webp",
-        });
+        };
+        imagens.set(caminhoNovo, dados);
+        if (caminhoNovo === caminho) return;
+        idbPut({
+          path: caminhoNovo,
+          blob: dados.blob,
+          width: dados.width,
+          height: dados.height,
+          bytes: dados.bytes,
+          type: dados.type,
+        })
+          .then(function () {
+            return idbDelete(caminho);
+          })
+          .catch(function () {
+            /* A sessão segue com o blob em memória. */
+          });
       });
     } catch (erro) {
       anunciar(
@@ -476,15 +540,16 @@
   }
 
   /* ------------------------------------------------------------------------
-     Lista de professores
+     Lista de homenageados
      ------------------------------------------------------------------------ */
   function renderizarLista() {
     var lista = $("[data-prof-list]");
     if (!lista) return;
     lista.innerHTML = estado.dados
       .map(function (professor, indice) {
+        var nome = professor.nome || "Sem nome";
         return (
-          '<li><button class="prof-item" type="button" data-prof-index="' +
+          '<li class="prof-row"><button class="prof-item" type="button" data-prof-index="' +
           indice +
           '" aria-current="' +
           (indice === estado.selecionado ? "true" : "false") +
@@ -495,10 +560,15 @@
           esc(iniciaisDe(professor)) +
           "</span>" +
           '<span class="prof-item__text"><span class="prof-item__name">' +
-          esc(professor.nome || "Sem nome") +
+          esc(nome) +
           '</span><span class="prof-item__slug">' +
           esc(professor.slug) +
-          "</span></span></button></li>"
+          "</span></span></button>" +
+          '<button class="prof-item__remove" type="button" data-remove-index="' +
+          indice +
+          '" aria-label="Remover ' +
+          esc(nome) +
+          ' da lista" title="Remover da lista">×</button></li>'
         );
       })
       .join("");
@@ -517,6 +587,15 @@
     if (selo) {
       selo.textContent = iniciaisDe(professor);
       selo.className = "prof-item__seal acento-" + professor.acento;
+    }
+    var remover = item.parentNode
+      ? $(".prof-item__remove", item.parentNode)
+      : null;
+    if (remover) {
+      remover.setAttribute(
+        "aria-label",
+        "Remover " + (professor.nome || "este cartão") + " da lista"
+      );
     }
   }
 
@@ -560,7 +639,7 @@
   function painelEnvelope(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do professor. O acento e o selo tipográfico são automáticos; os três selos do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
+      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do homenageado. O acento e o selo tipográfico são automáticos; os três selos do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
       esc(professor.acento) +
       '" aria-hidden="true">' +
       svgSelo(professor) +
@@ -585,7 +664,7 @@
       esc(professor.disciplina) +
       '"><small>Fica nos dados do cartão; não entra no envelope.</small></label>' +
       "</div></div>" +
-      '<div class="panel__foot"><p>O link publicado usa o slug. Se mudar o slug, renomeie também a pasta <code>carta/<slug>/</code> e as meta tags.</p><button class="btn btn--small btn--danger" type="button" data-remove-professor>Remover cartão</button></div>' +
+      '<div class="panel__foot"><p>O link publicado usa o slug. Se mudar o slug, renomeie também a pasta <code>carta/<slug>/</code> e as meta tags.</p><button class="btn btn--small btn--danger" type="button" data-remove-homenageado>Remover cartão</button></div>' +
       "</section>"
     );
   }
@@ -905,6 +984,12 @@
      ------------------------------------------------------------------------ */
   function ligarEventosGlobais() {
     document.addEventListener("click", function (evento) {
+      var removerItem = evento.target.closest("[data-remove-index]");
+      if (removerItem) {
+        removerHomenageado(Number(removerItem.getAttribute("data-remove-index")));
+        return;
+      }
+
       var botaoLista = evento.target.closest("[data-prof-index]");
       if (botaoLista) {
         selecionar(Number(botaoLista.getAttribute("data-prof-index")));
@@ -928,13 +1013,13 @@
         return;
       }
 
-      if (evento.target.closest("[data-add-professor]")) {
-        adicionarProfessor();
+      if (evento.target.closest("[data-add-homenageado]")) {
+        adicionarHomenageado();
         return;
       }
 
-      if (evento.target.closest("[data-remove-professor]")) {
-        removerProfessor();
+      if (evento.target.closest("[data-remove-homenageado]")) {
+        removerHomenageado();
         return;
       }
 
@@ -1161,17 +1246,17 @@
     anunciar("Página adicionada.", "ok");
   }
 
-  function adicionarProfessor() {
+  function adicionarHomenageado() {
     var usados = {};
     estado.dados.forEach(function (p) {
       usados[p.slug] = true;
     });
     var numero = 1;
-    while (usados["professor-" + String(numero).padStart(2, "0")]) numero += 1;
-    var slug = "professor-" + String(numero).padStart(2, "0");
+    while (usados["homenageado-" + String(numero).padStart(2, "0")]) numero += 1;
+    var slug = "homenageado-" + String(numero).padStart(2, "0");
     var novo = {
       slug: slug,
-      nome: "Novo professor",
+      nome: "Novo homenageado",
       disciplina: "Disciplina",
       acento: ACENTOS[numero % ACENTOS.length],
       paginas: [
@@ -1184,15 +1269,16 @@
     renderizarTudo();
     agendarSalvar();
     anunciar(
-      "Professor adicionado. Para publicar, crie carta/" +
+      "Homenageado adicionado. Para publicar, crie carta/" +
         slug +
-        "/index.html copiando um shell e ajuste data-professor e as meta tags.",
+        "/index.html copiando um shell e ajuste data-homenageado e as meta tags.",
       "ok"
     );
   }
 
-  function removerProfessor() {
-    var professor = atual();
+  function removerHomenageado(indice) {
+    var alvoIndice = indice == null ? estado.selecionado : indice;
+    var professor = estado.dados[alvoIndice];
     if (!professor) return;
     if (
       !window.confirm(
@@ -1204,13 +1290,17 @@
       )
     )
       return;
-    estado.dados.splice(estado.selecionado, 1);
-    if (estado.selecionado >= estado.dados.length) {
-      estado.selecionado = Math.max(0, estado.dados.length - 1);
+    estado.dados.splice(alvoIndice, 1);
+    if (!estado.dados.length) {
+      estado.selecionado = 0;
+    } else if (alvoIndice < estado.selecionado) {
+      estado.selecionado -= 1;
+    } else if (alvoIndice === estado.selecionado) {
+      estado.selecionado = Math.min(alvoIndice, estado.dados.length - 1);
     }
     renderizarTudo();
     agendarSalvar();
-    anunciar("Cartão removido do rascunho. O shell HTML permanece no repositório.", "ok");
+    anunciar("Homenageado removido do rascunho. O shell HTML permanece no repositório.", "ok");
   }
 
   function mudarSlug(input) {
@@ -1260,9 +1350,9 @@
 
   function reescreverCaminho(caminho, antigo, novo) {
     var valor = String(caminho || "");
-    var prefixo = "assets/img/professores/" + antigo + "/";
+    var prefixo = "assets/img/homenageados/" + antigo + "/";
     if (valor.indexOf(prefixo) === 0) {
-      return "assets/img/professores/" + novo + "/" + valor.slice(prefixo.length);
+      return "assets/img/homenageados/" + novo + "/" + valor.slice(prefixo.length);
     }
     return valor;
   }
@@ -1280,7 +1370,7 @@
   }
 
   async function renomearImagens(antigo, novo, caminhosAntigos) {
-    var prefixo = "assets/img/professores/" + antigo + "/";
+    var prefixo = "assets/img/homenageados/" + antigo + "/";
     var caminhos = Array.from(
       new Set(
         (caminhosAntigos || []).concat(
@@ -1294,7 +1384,7 @@
       var caminhoAntigo = caminhos[i];
       if (caminhoAntigo.indexOf(prefixo) !== 0) continue;
       var caminhoNovo =
-        "assets/img/professores/" + novo + "/" + caminhoAntigo.slice(prefixo.length);
+        "assets/img/homenageados/" + novo + "/" + caminhoAntigo.slice(prefixo.length);
       var dados = imagens.get(caminhoAntigo);
       if (!dados) {
         /* Imagem que já estava no repositório: busca antes de mudar o slug,
@@ -1454,13 +1544,13 @@
       var caminhoAtual = foto ? String(foto.src || "") : "";
       var caminho;
       if (
-        caminhoAtual.indexOf("assets/img/professores/") === 0 &&
+        caminhoAtual.indexOf("assets/img/homenageados/") === 0 &&
         !/\.svg$/i.test(caminhoAtual)
       ) {
         caminho = caminhoAtual.replace(/\.[a-z0-9]+$/i, "") + "." + resultado.ext;
       } else {
         caminho =
-          "assets/img/professores/" +
+          "assets/img/homenageados/" +
           professor.slug +
           "/foto-" +
           Date.now().toString(36).slice(-6) +
@@ -2035,7 +2125,7 @@
       "\n\n" +
       "O QUE HÁ NESTE ZIP\n" +
       "- dados.js: conteúdo dos cartões (window.DADOS).\n" +
-      "- assets/img/professores/...: imagens referenciadas pelos cartões.\n\n" +
+      "- assets/img/homenageados/...: imagens referenciadas pelos cartões.\n\n" +
       "COMO PUBLICAR\n" +
       "1. Extraia este ZIP na raiz do repositório cartas-formatura, substituindo os arquivos existentes.\n" +
       "2. Confira o que mudou com: git status\n" +
@@ -2045,7 +2135,7 @@
       "O GitHub Pages publica a branch main automaticamente. Pode levar alguns minutos.\n\n" +
       "IMPORTANTE\n" +
       "- O editor não publica sozinho; ele apenas exporta arquivos.\n" +
-      "- Para um professor novo, crie carta/<slug>/index.html copiando um shell existente e ajuste data-professor e as meta tags.\n" +
+      "- Para um homenageado novo, crie carta/<slug>/index.html copiando um shell existente e ajuste data-homenageado e as meta tags.\n" +
       "- O editor deve ser removido ou bloqueado após a formatura.\n" +
       "- O envelope é o estado fechado da página 1 e não conta no total de páginas; o carimbo de cera abre a carta.\n" +
       "- O carimbo (assets/img/marca/selo-cera.*) e os três selos (assets/img/marca/selos/) são assets do site e não entram no ZIP.\n" +

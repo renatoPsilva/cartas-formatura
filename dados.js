@@ -6,8 +6,8 @@
 
 window.DADOS = [
   {
-    slug: "professora-exemplo",
-    nome: "Professora Exemplo",
+    slug: "homenageada-exemplo",
+    nome: "Homenageada Exemplo",
     disciplina: "Desenvolvimento Web",
     acento: "azul",
     selo: "PE",
@@ -32,12 +32,12 @@ window.DADOS = [
         titulo: "Alguns momentos",
         fotos: [
           {
-            src: "assets/img/professores/professora-exemplo/foto-01.svg",
+            src: "assets/img/homenageados/homenageada-exemplo/foto-01.svg",
             alt: "Ilustração abstrata usada como espaço reservado para uma foto da Turma Ginga",
             legenda: "Espaço reservado para uma foto da Turma Ginga. Substitua esta imagem no editor."
           },
           {
-            src: "assets/img/professores/professora-exemplo/foto-02.svg",
+            src: "assets/img/homenageados/homenageada-exemplo/foto-02.svg",
             alt: "Ilustração abstrata usada como espaço reservado para uma lembrança das aulas",
             legenda: "Outro espaço para uma lembrança das aulas. A legenda pode contar o contexto."
           }
@@ -73,8 +73,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-01",
-    nome: "Professor 01",
+    slug: "homenageado-01",
+    nome: "Homenageado 01",
     disciplina: "Lógica de Programação",
     acento: "verde",
     selo: "P1",
@@ -83,7 +83,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 01. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 01. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -95,8 +95,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-02",
-    nome: "Professor 02",
+    slug: "homenageado-02",
+    nome: "Homenageado 02",
     disciplina: "Banco de Dados",
     acento: "ameixa",
     selo: "P2",
@@ -105,7 +105,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 02. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 02. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -117,8 +117,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-03",
-    nome: "Professor 03",
+    slug: "homenageado-03",
+    nome: "Homenageado 03",
     disciplina: "Desenvolvimento Front-end",
     acento: "ocre",
     selo: "P3",
@@ -127,7 +127,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 03. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 03. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -139,8 +139,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-04",
-    nome: "Professor 04",
+    slug: "homenageado-04",
+    nome: "Homenageado 04",
     disciplina: "Desenvolvimento Back-end",
     acento: "seal",
     selo: "P4",
@@ -149,7 +149,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 04. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 04. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -161,8 +161,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-05",
-    nome: "Professor 05",
+    slug: "homenageado-05",
+    nome: "Homenageado 05",
     disciplina: "Design de Interfaces",
     acento: "azul",
     selo: "P5",
@@ -171,7 +171,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 05. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 05. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -183,8 +183,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-06",
-    nome: "Professor 06",
+    slug: "homenageado-06",
+    nome: "Homenageado 06",
     disciplina: "Infraestrutura",
     acento: "verde",
     selo: "P6",
@@ -193,7 +193,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 06. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 06. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },
@@ -205,8 +205,8 @@ window.DADOS = [
     ]
   },
   {
-    slug: "professor-07",
-    nome: "Professor 07",
+    slug: "homenageado-07",
+    nome: "Homenageado 07",
     disciplina: "Segurança da Informação",
     acento: "ameixa",
     selo: "P7",
@@ -215,7 +215,7 @@ window.DADOS = [
         tipo: "texto",
         titulo: "Uma carta para você",
         paragrafos: [
-          "Esta é uma carta de exemplo para o Professor 07. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
+          "Esta é uma carta de exemplo para o Homenageado 07. O texto final será escrito pela Turma Ginga e pode falar sobre as aulas, as conversas e as pequenas descobertas que ficaram deste período.",
           "Use este espaço para lembrar uma cena específica, uma explicação que abriu caminho ou uma qualidade que fez diferença no dia a dia da Turma Ginga."
         ]
       },

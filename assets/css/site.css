@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Site público — capa, páginas de professor (chrome) e erro
+   Site público — capa, páginas de homenageado (chrome) e erro
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -313,7 +313,7 @@ html[data-theme="dark"] .home-footer__marks img {
 }
 
 /* --------------------------------------------------------------------------
-   Páginas de professor — chrome fora do cartão
+   Páginas de homenageado — chrome fora do cartão
    -------------------------------------------------------------------------- */
 .carta-body {
   overflow: hidden;

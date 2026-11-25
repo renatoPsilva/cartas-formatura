@@ -1,8 +1,8 @@
 # Plano de implementação — Cartões de Gratidão
 
-> **Revisão (25/nov/2026):** o retrato opcional foi removido do envelope, do modelo de dados, do renderer e do editor. O envelope passa a ter apenas nome, três selos, carimbo e fio de acento. No editor, acento e selo deixam de ser editáveis: cartões existentes mantêm os valores e cartões novos recebem acento automático e iniciais derivadas do nome. Esta revisão substitui as menções a retrato abaixo.
+> **Revisão (25/nov/2026):** o retrato opcional foi removido do envelope, do modelo de dados, do renderer e do editor. O envelope passa a ter apenas nome, três selos, carimbo e fio de acento. No editor, acento e selo deixam de ser editáveis: cartões existentes mantêm os valores e cartões novos recebem acento automático e iniciais derivadas do nome. Também trocamos o termo “professor” por “homenageado” na interface, nos slugs, nas pastas, nos caminhos de imagem e nas meta tags; os links publicados mudaram. Esta revisão substitui as menções a retrato abaixo.
 
-> **Revisão (22/nov/2026):** o modo “Ler a carta inteira” foi removido do site. O fecho da carta passa a usar o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais; o `selo` do professor continua apenas como fallback do carimbo de cera. Textos longos devem ser divididos em mais páginas.
+> **Revisão (22/nov/2026):** o modo “Ler a carta inteira” foi removido do site. O fecho da carta passa a usar o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais; o `selo` do homenageado continua apenas como fallback do carimbo de cera. Textos longos devem ser divididos em mais páginas.
 
 > **Revisão aprovada (20/nov/2026):** a capa 3D deixa de existir. A página 1 começa fechada dentro de um **envelope verde** de 1080 × 690, com um **carimbo de cera dourado** de 150 px no meio da borda superior. O carimbo é o único botão; ao abrir, a folha sobe por trás dele, o envelope desliza para fora e a folha cresce até o palco. A frente tem nome, três selos no canto inferior direito e um fio de acento; **não tem disciplina, marca nem rodapé**. O retrato é opcional no canto superior direito. O dourado do carimbo é a única exceção à regra de não usar dourado. A troca de páginas é fade-out (260 ms) + respiro (40 ms) + fade-in (260 ms) apenas no conteúdo; a folha fica parada e o contador atualiza o número sem fade. O resto da nota anterior continua, exceto o que conflitar com esta.
 
@@ -12,7 +12,7 @@ Este documento é a fonte de verdade para construir a base do site. O subagente 
 
 ## 1. Objetivo
 
-Criar a base de um site estático, em português, para a Turma Ginga presentear **8 professores da Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
+Criar a base de um site estático, em português, para a Turma Ginga presentear **8 homenageados da Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
 O site será publicado no GitHub Pages. O conteúdo real será preenchido depois pela equipe; nesta etapa, usar **placeholders**. A base precisa ser boa o suficiente para ser mostrada aos colegas e fácil de editar por eles.
 
@@ -20,7 +20,7 @@ O site será publicado no GitHub Pages. O conteúdo real será preenchido depois
 
 - Pasta local: `/home/renato/Documentos/Projetos/cartas_formatura` — vazia, ainda sem git.
 - Repo remoto: `renatoPsilva/Cartas_Formatura` — privado, vazio, criado em 04/11/2026.
-- Descrição remota: “Cartas de formatura para os professores Alpha edtech com link compartilhável”.
+- Descrição remota: “Cartas de formatura para os homenageados Alpha edtech com link compartilhável”.
 - `gh` autenticado como `renatoPsilva`, com escopo `repo`; git usa SSH.
 - O repo deve ser renomeado para **`cartas-formatura`**, tornado **público** e publicado via GitHub Pages.
 - URL final: `https://renatopsilva.github.io/cartas-formatura/`
@@ -37,9 +37,9 @@ O usuário autorizou tornar o repo público. Fazer isso somente depois de a base
 - **Imagens ficam no repositório**, em `assets/img/`. Não usar Drive/Cloudflare para o site final.
 - **Caminhos relativos** em todos os arquivos, para funcionar no project site do GitHub Pages (`/cartas-formatura/`).
 - **Site em pt-BR**. `lang="pt-BR"` em todas as páginas.
-- **Sem dados reais de professores**. Usar placeholders claros.
+- **Sem dados reais de homenageados**. Usar placeholders claros.
 - **Sem indexação**: `noindex, nofollow` em todas as páginas e `robots.txt` com `Disallow: /`.
-- **Sem lista pública de professores**. A raiz não lista nomes; o editor e o README listam os slugs para a equipe.
+- **Sem lista pública de homenageados**. A raiz não lista nomes; o editor e o README listam os slugs para a equipe.
 - **Sem confete, glitter, música automática, autoplay ou clichês de formatura. O único dourado é o carimbo de cera do envelope**; não usar ouro em nenhum outro elemento.
 - **Acessibilidade**: teclado, foco visível, contraste, alt text e `prefers-reduced-motion`.
 - **Mobile-first**: testar em 390×844 e 1440×900.
@@ -50,7 +50,7 @@ Criar, no mínimo:
 
 ```text
 .
-├── index.html                     # capa do site, sem lista de professores
+├── index.html                     # capa do site, sem lista de homenageados
 ├── 404.html                       # opcional, mas recomendado
 ├── robots.txt                     # Disallow: /
 ├── .nojekyll
@@ -62,8 +62,8 @@ Criar, no mínimo:
 ├── AGENTS.md                      # convenções para agentes e link para a skill
 ├── LICENSES.md                    # licenças de fontes/Reveal/fflate
 ├── carta/
-│   ├── professora-exemplo/index.html
-│   └── professor-01..07/index.html
+│   ├── homenageada-exemplo/index.html
+│   └── homenageado-01..07/index.html
 ├── editor/
 │   └── index.html                 # editor não listado, noindex
 ├── assets/
@@ -81,7 +81,7 @@ Criar, no mínimo:
 │   └── img/
 │       ├── og/cartoes-de-gratidao.png
 │       ├── marca/                 # selo tipográfico, carimbo de cera, favicon
-│       └── professores/           # placeholders ou imagens reais
+│       └── homenageados/           # placeholders ou imagens reais
 ├── vendor/
 │   ├── reveal/                    # reveal.js + reveal.css + LICENSE
 │   └── fflate/ (ou jszip/)        # biblioteca de ZIP + licença
@@ -92,14 +92,14 @@ Criar, no mínimo:
             └── LICENSE.txt
 ```
 
-O número de páginas de professor é **8**: uma piloto (`professora-exemplo`) e sete placeholders (`professor-01` a `professor-07`). Se a equipe adicionar mais professores depois, será preciso duplicar um shell e atualizar as meta tags; documentar isso no README.
+O número de páginas de homenageado é **8**: uma piloto (`homenageada-exemplo`) e sete placeholders (`homenageado-01` a `homenageado-07`). Se a equipe adicionar mais homenageados depois, será preciso duplicar um shell e atualizar as meta tags; documentar isso no README.
 
 ## 5. Design
 
 ### 5.1 Conceito
 
 **Nome:** “Cartões de Gratidão”.
-**Conceito:** uma coleção de cartões digitais. Cada professor recebe um cartão com um envelope de abertura e páginas internas limpas. O envelope carrega a identidade (nome, três selos, carimbo de cera, acento); a disciplina fica nos metadados. As páginas internas de texto têm **apenas o conteúdo da carta**, com margens generosas. Fotos, recados, citações e assinatura ficam em páginas próprias.
+**Conceito:** uma coleção de cartões digitais. Cada homenageado recebe um cartão com um envelope de abertura e páginas internas limpas. O envelope carrega a identidade (nome, três selos, carimbo de cera, acento); a disciplina fica nos metadados. As páginas internas de texto têm **apenas o conteúdo da carta**, com margens generosas. Fotos, recados, citações e assinatura ficam em páginas próprias.
 
 O elemento memorável é o **carimbo de cera dourado** no meio da borda do envelope. O resto deve ser quieto e editorial.
 
@@ -127,7 +127,7 @@ Tema escuro:
 --seal: #C46A5E;
 ```
 
-Acentos por professor (claro / escuro):
+Acentos por homenageado (claro / escuro):
 
 - azul: `#2F5D7A` / `#7FA6C0`
 - verde: `#4E6B52` / `#93B394`
@@ -160,18 +160,18 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 
 ### 5.5 Interação
 
-- Reveal.js 6.0.2, um deck por professor, 1160 × 820, centro ligado, sem autoplay e sem barra de progresso.
+- Reveal.js 6.0.2, um deck por homenageado, 1160 × 820, centro ligado, sem autoplay e sem barra de progresso.
 - Navegação por setas internas, teclado e swipe **depois** de abrir. Antes disso, só o carimbo responde.
 - Um único momento orquestrado: o carimbo é um botão acessível; ao clicar, a folha sobe por trás dele, o envelope desliza para fora e a folha cresce até o palco. Não há giro 3D da capa.
 - A troca de páginas é fade-out (260 ms), respiro (40 ms) e fade-in (260 ms) apenas no conteúdo; a folha do cartão fica fixa. O contador atualiza o número sem fade. Sem zoom, rotação ou deslize.
 - `prefers-reduced-motion`: desligar transições e animações; abrir imediatamente.
 - Toggle de tema claro/escuro fixo, acessível, com `aria-pressed` e ícone sol/lua. Persistir em `localStorage` (`cg-theme`); na primeira visita, seguir `prefers-color-scheme`. Aplicar o tema antes do paint para evitar flash.
 - Indicador de página fora do cartão, só visível depois da abertura, atualizado em `slidechanged`. Total = páginas internas (o envelope não conta).
-- A raiz é uma página simples, sem Reveal.js e sem lista de professores.
+- A raiz é uma página simples, sem Reveal.js e sem lista de homenageados.
 
 ### 5.6 Revisão contra clichês
 
-Evitar: papel creme + serifa de banco + terracota; cartões SaaS com sombra genérica; scrapbook postal (selo postal, carimbo de correio, fita, kraft, papel rasgado); confete; dourado fora do carimbo de cera; autoplay. A identidade vem da tipografia Fraunces, do cartão limpo, do envelope com carimbo de cera, do selo tipográfico e do acento por professor. Usar a skill `frontend-design` e tirar screenshots para se autocriticar.
+Evitar: papel creme + serifa de banco + terracota; cartões SaaS com sombra genérica; scrapbook postal (selo postal, carimbo de correio, fita, kraft, papel rasgado); confete; dourado fora do carimbo de cera; autoplay. A identidade vem da tipografia Fraunces, do cartão limpo, do envelope com carimbo de cera, do selo tipográfico e do acento por homenageado. Usar a skill `frontend-design` e tirar screenshots para se autocriticar.
 
 ## 6. Modelo de dados
 
@@ -180,8 +180,8 @@ Evitar: papel creme + serifa de banco + terracota; cartões SaaS com sombra gen�
 ```js
 window.DADOS = [
   {
-    slug: "professora-exemplo",
-    nome: "Professora Exemplo",
+    slug: "homenageada-exemplo",
+    nome: "Homenageada Exemplo",
     disciplina: "Desenvolvimento Web",
     acento: "azul", // automático; "seal" | "azul" | "verde" | "ameixa" | "ocre"
     selo: "PE",     // opcional; sem ele, as iniciais vêm do nome
@@ -204,12 +204,12 @@ Regras:
 - O renderer monta: a página 1 com o envelope por cima (estado fechado) e mais um slide por bloco seguinte. Se não houver `assinatura`, adicionar uma assinatura padrão no fim. O envelope não é um slide separado.
 - Se uma foto estiver faltando, mostrar um placeholder discreto.
 - O editor deve permitir adicionar, remover, duplicar e reordenar blocos; editar todos os campos; e alterar os metadados da capa.
-- O editor pode adicionar um novo professor aos dados, mas **não cria o shell HTML**; documentar que é preciso duplicar uma pasta em `carta/` e atualizar as meta tags.
+- O editor pode adicionar um novo homenageado aos dados, mas **não cria o shell HTML**; documentar que é preciso duplicar uma pasta em `carta/` e atualizar as meta tags.
 
 ### Conteúdo piloto
 
-- `professora-exemplo`: capa + 2 páginas de texto + 1 página de foto + 1 página de recados + 1 assinatura. Texto genérico, afetuoso, claramente placeholder.
-- `professor-01` a `professor-07`: capa + 1 página de texto + assinatura, com nomes/disciplinas placeholder.
+- `homenageada-exemplo`: capa + 2 páginas de texto + 1 página de foto + 1 página de recados + 1 assinatura. Texto genérico, afetuoso, claramente placeholder.
+- `homenageado-01` a `homenageado-07`: capa + 1 página de texto + assinatura, com nomes/disciplinas placeholder.
 - Não usar nomes reais, fotos reais ou dados pessoais.
 
 ## 7. Site público
@@ -219,25 +219,25 @@ Regras:
 `index.html`:
 
 - Título “Cartões de Gratidão”.
-- Subtítulo “Para os professores da Alpha EdTech”.
-- Parágrafo curto explicando o intuito: uma coleção de cartas da Turma Ginga; cada professor recebeu um link próprio.
-- Nenhuma lista de professores.
+- Subtítulo “Para os homenageados da Alpha EdTech”.
+- Parágrafo curto explicando o intuito: uma coleção de cartas da Turma Ginga; cada homenageado recebeu um link próprio.
+- Nenhuma lista de homenageados.
 - Toggle de tema.
 - Visual com o símbolo da Turma Ginga no cartão da coleção e os três selos no rodapé, usando os tokens.
 - `noindex`.
 
-### Páginas de professor
+### Páginas de homenageado
 
 `carta/<slug>/index.html` × 8:
 
 - Shell estático com `<title>`, `description`, `og:title`, `og:description`, `og:image`, `twitter:card`, `noindex`.
-- `<body data-professor="<slug>">`.
+- `<body data-homenageado="<slug>">`.
 - Carregar `../../dados.js`, `../../vendor/reveal/reveal.js`, `../../assets/js/theme.js`, `../../assets/js/render-carta.js`, CSS correspondente.
 - A página deve exibir um estado de carregamento e um erro amigável se o slug não existir.
 - `<noscript>` com mensagem curta.
 - Meta OG image genérica `../../assets/img/og/cartoes-de-gratidao.png` (1200×630).
-- Título exemplo: “Para Professora Exemplo — Cartões de Gratidão”.
-- Descrição exemplo: “Uma carta da Turma Ginga para Professora Exemplo.”
+- Título exemplo: “Para Homenageada Exemplo — Cartões de Gratidão”.
+- Descrição exemplo: “Uma carta da Turma Ginga para Homenageada Exemplo.”
 
 ### Reveal.js
 
@@ -278,7 +278,7 @@ Requisitos:
 
 - Página **não listada**, com `noindex, nofollow`; não linkar a partir do site público.
 - Carregar `../dados.js` e usar `window.DADOS`.
-- Sidebar com os 8 professores; formulário para o professor selecionado.
+- Sidebar com os 8 homenageados; formulário para o homenageado selecionado.
 - Editar metadados do envelope: slug, nome e disciplina. Acento e selo são automáticos; não há retrato.
 - Lista de páginas internas com:
   - adicionar página (seletor de tipo: texto, foto, recados, citação, assinatura);
@@ -296,7 +296,7 @@ Requisitos:
   - persistir blobs em IndexedDB e o rascunho textual em localStorage.
 - Exportação:
   - botão “Baixar dados.js” (script clássico com `window.DADOS = ...`);
-  - botão “Baixar ZIP” com `dados.js`, `assets/img/professores/<slug>/...` e um `LEIA-ME.txt` explicando como commitar;
+  - botão “Baixar ZIP” com `dados.js`, `assets/img/homenageados/<slug>/...` e um `LEIA-ME.txt` explicando como commitar;
   - usar `fflate` ou `JSZip` vendorizado, com licença;
   - o ZIP deve conter as imagens com os caminhos exatos referenciados em `dados.js`.
 - Importação opcional de um `dados.js`/JSON para restaurar rascunho.
@@ -307,7 +307,7 @@ Requisitos:
 
 ## 9. Imagens
 
-- Estrutura: `assets/img/professores/<slug>/foto-01.webp`, etc.
+- Estrutura: `assets/img/homenageados/<slug>/foto-01.webp`, etc.
 - Carimbo de cera: `assets/img/marca/selo-cera.webp` + `selo-cera.png`, recortado de `carimbo.png` (fonte local, ignorada pelo git). O botão usa `<picture>` e o selo tipográfico como fallback.
 - Placeholders: criar SVGs/CSS com iniciais/pattern; não usar fotos falsas da internet.
 - A imagem OG genérica deve ser um PNG 1200×630 com o título e o símbolo da Turma Ginga, gerada via Playwright/HTML ou ImageMagick.
@@ -336,7 +336,7 @@ Incluir convenções:
 - Cartões: envelope com identidade (nome, três selos, carimbo de cera, fio de acento, sem disciplina, marca ou rodapé); interior de texto limpo.
 - Dados em `dados.js` (`window.DADOS`).
 - Testar claro/escuro, mobile, teclado e `prefers-reduced-motion`.
-- Não usar dados reais de professores.
+- Não usar dados reais de homenageados.
 - Imagens no repo; editor exporta ZIP.
 - Site `noindex`.
 - Idioma pt-BR.
@@ -349,7 +349,7 @@ Incluir:
 - Como rodar localmente: `python3 -m http.server 8000` e abrir `http://localhost:8000/`.
 - Estrutura de arquivos.
 - Como editar pelo editor: abrir `/editor/`, editar, baixar ZIP, extrair na raiz, commit/push.
-- Como adicionar um novo professor: duplicar uma pasta em `carta/`, ajustar `data-professor` e meta tags, adicionar entrada em `dados.js`.
+- Como adicionar um novo homenageado: duplicar uma pasta em `carta/`, ajustar `data-homenageado` e meta tags, adicionar entrada em `dados.js`.
 - Como remover o editor após a formatura.
 - Limitações: sem upload direto; publicação via commit; site público e não indexado.
 - Lista dos 8 slugs/URLs para a equipe.

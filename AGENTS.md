@@ -19,8 +19,8 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - `.nojekyll` na raiz.
 - Site em pt-BR; `lang="pt-BR"` em todas as páginas.
 - Todas as páginas com `noindex, nofollow`. `robots.txt` com `Disallow: /`.
-- Sem dados reais de professores. Nomes, disciplinas e imagens são placeholders.
-- Sem lista pública de professores na raiz.
+- Sem dados reais de homenageados. Nomes, disciplinas e imagens são placeholders.
+- Sem lista pública de homenageados na raiz.
 - Sem confete, glitter, autoplay, música automática ou clichês de formatura. O único dourado é o carimbo de cera do envelope; não use ouro em nenhum outro elemento.
 
 ## Estrutura de conteúdo
@@ -32,7 +32,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; no piloto, `1 / 5`.
 - A carta começa fechada. O carimbo de cera é o único botão: ao abrir, a folha sobe por trás dele, o envelope desliza para fora, o texto entra e a folha cresce até o palco. Não há giro 3D de página. Depois de aberta, ela não fecha de novo. Recarregar sem hash (ou `#/1`) volta ao envelope; recarregar `#/2+` reabre na página pedida.
 - Sem hash ou `#/1` começam fechados; `#/2` em diante abre direto na página pedida, com o envelope considerado aberto.
-- **Caminhos de imagem nos dados são relativos à raiz do site** (`assets/img/...`). `render-carta.js` prefixa `../../` nas páginas de professor. O editor prefixa `../` na prévia. O ZIP mantém os caminhos da raiz.
+- **Caminhos de imagem nos dados são relativos à raiz do site** (`assets/img/...`). `render-carta.js` prefixa `../../` nas páginas de homenageado. O editor prefixa `../` na prévia. O ZIP mantém os caminhos da raiz.
 - Acentos válidos: `seal`, `azul`, `verde`, `ameixa`, `ocre`. O acento é automático; o editor não o expõe.
 - O `selo` é automático e derivado do nome para cartões novos. Valores antigos são preservados até o nome ser editado; não há campo de selo no editor.
 - Mantenha os textos de página dentro do cartão; não há modo de leitura alternativo. Textos maiores devem ser divididos em mais páginas. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400; o editor avisa acima de ~400 para o celular.
@@ -70,11 +70,12 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Deve carregar `../dados.js` e usar `window.DADOS`.
 - A prévia usa o cartão 1160 × 820 e escala a partir de 1160. Os rótulos são “Capa” e páginas 1..N; a capa é o envelope e não conta como página. A prévia “Capa” mostra o envelope; a disciplina fica só nos dados e não aparece na prévia.
 - O formulário do envelope expõe apenas o **Nome**. Acento, selo tipográfico e retrato não têm campos: acento e selo são automáticos; não há retrato.
+- A lista lateral tem um **×** por cartão para remover do rascunho, com confirmação. A pasta `carta/<slug>/` não é apagada.
 - Upload de imagens: maior lado ≤ 1600 px, WebP com fallback JPEG, aviso para < 800 px ou > 500 KB.
 - Rascunho textual em `localStorage` (`cg-editor-draft-v1`); blobs em IndexedDB (`cartoes-gratidao-editor`).
 - Exportação: `dados.js` e ZIP com `dados.js` + imagens + `LEIA-ME.txt`.
 - O ZIP deve manter exatamente os caminhos referenciados nos dados.
-- O editor não cria shells HTML. Ao adicionar professor, documente que é preciso duplicar uma pasta em `carta/` e ajustar `data-professor` e meta tags.
+- O editor não cria shells HTML. Ao adicionar homenageado, documente que é preciso duplicar uma pasta em `carta/` e ajustar `data-homenageado` e meta tags.
 - Após a formatura, o editor deve ser removido ou bloqueado. Veja o README.
 
 ## Testes antes de publicar
@@ -89,10 +90,11 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Teclado: só o carimbo tabulável no deck fechado, Enter/Space para abrir, foco na página 1, setas e Home/End.
 - Hash: sem hash e `#/1` fechados; `#/2` e `#/3` abertos direto; voltar à página 1 mostra a página aberta.
 - Swipe quando possível.
-- A página de assinatura mostra o símbolo da Turma Ginga em monocromático, sem as iniciais do professor, em claro/escuro e nas duas larguras.
+- A página de assinatura mostra o símbolo da Turma Ginga em monocromático, sem as iniciais do homenageado, em claro/escuro e nas duas larguras.
 - `prefers-reduced-motion` abre sem transição e troca as páginas sem fade.
 - Home horizontal em desktop e mobile.
 - Console sem erros; imagens/fallbacks (inclusive o carimbo de cera); meta tags e `noindex`.
+- Editor: o **×** da lista remove só o rascunho, pede confirmação e mantém uma seleção válida; **Adicionar homenageado** cria o próximo slug `homenageado-XX`.
 - ZIP do editor com `dados.js` + imagens + `LEIA-ME.txt`.
 - Verificar a URL publicada do GitHub Pages depois do deploy.
 

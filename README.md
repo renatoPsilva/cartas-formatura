@@ -1,6 +1,6 @@
 # Cartões de Gratidão
 
-Base de um site estático em português para a Turma Ginga presentear os professores da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
+Base de um site estático em português para a Turma Ginga presentear os homenageados da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
 O conteúdo deste repositório é **de exemplo**. Nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela Turma Ginga.
 
@@ -35,7 +35,7 @@ Abra:
 
 - Site: <http://localhost:8000/>
 - Editor: <http://localhost:8000/editor/>
-- Carta piloto: <http://localhost:8000/carta/professora-exemplo/>
+- Carta piloto: <http://localhost:8000/carta/homenageada-exemplo/>
 
 Não é preciso instalar nada. O servidor local evita restrições de `file://`, especialmente para o editor e para o ZIP.
 
@@ -43,7 +43,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 ```text
 .
-├── index.html                  # capa do site, sem lista de professores
+├── index.html                  # capa do site, sem lista de homenageados
 ├── 404.html
 ├── robots.txt                  # Disallow: /
 ├── .nojekyll
@@ -54,8 +54,8 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 ├── AGENTS.md
 ├── LICENSES.md
 ├── carta/
-│   ├── professora-exemplo/index.html
-│   └── professor-01..07/index.html
+│   ├── homenageada-exemplo/index.html
+│   └── homenageado-01..07/index.html
 ├── editor/
 │   └── index.html              # editor não listado, noindex
 ├── assets/
@@ -73,7 +73,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 │   └── img/
 │       ├── og/cartoes-de-gratidao.png
 │       ├── marca/               # selo.svg, favicon.svg, selo-cera.webp/png, selos/
-│       └── professores/
+│       └── homenageados/
 ├── vendor/
 │   ├── reveal/                 # reveal.js + reveal.css + LICENSE
 │   └── fflate/                 # fflate + LICENSE
@@ -83,7 +83,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 ## Como a equipe edita
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
-2. Escolha o cartão na lista lateral.
+2. Escolha o cartão na lista lateral. Para remover um cartão do rascunho, use o **×** ao lado do nome; a pasta em `carta/` não é apagada.
 3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos e o carimbo são fixos. O envelope não tem retrato.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
@@ -106,7 +106,7 @@ O GitHub Pages publica a branch `main` automaticamente. Pode levar alguns minuto
 - **Rascunho textual:** `localStorage`, chave `cg-editor-draft-v1`.
 - **Imagens enviadas:** IndexedDB do navegador, banco `cartoes-gratidao-editor`.
 - **Nada é enviado a um servidor.** O editor não tem login, banco ou token.
-- O ZIP contém `dados.js`, as imagens referenciadas em `assets/img/professores/...` e um `LEIA-ME.txt` com o passo a passo. O carimbo de cera (`assets/img/marca/selo-cera.*`) e os três selos (`assets/img/marca/selos/`) são assets do site, não do ZIP.
+- O ZIP contém `dados.js`, as imagens referenciadas em `assets/img/homenageados/...` e um `LEIA-ME.txt` com o passo a passo. O carimbo de cera (`assets/img/marca/selo-cera.*`) e os três selos (`assets/img/marca/selos/`) são assets do site, não do ZIP.
 - Ao trocar de navegador ou limpar os dados do site, o rascunho local se perde. Exporte o ZIP com frequência.
 
 ### Importar um dados.js
@@ -120,8 +120,8 @@ O botão **Importar** aceita um `dados.js` exportado pelo editor ou um JSON com 
 ```js
 window.DADOS = [
   {
-    slug: "professora-exemplo",
-    nome: "Professora Exemplo",
+    slug: "homenageada-exemplo",
+    nome: "Homenageada Exemplo",
     disciplina: "Desenvolvimento Web",
     acento: "azul", // automático
     selo: "PE",     // opcional; sem ele, as iniciais vêm do nome
@@ -142,7 +142,7 @@ Regras:
 - O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: no piloto, `1 / 5`, não `1 / 6`.
 - O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
 - `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`. O editor o define automaticamente e não expõe o campo; cartões existentes mantêm o valor.
-- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do professor. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
+- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do homenageado. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
 - O envelope não tem retrato. As fotos da carta ficam nas páginas de `foto`.
 - Se não houver página de assinatura, o renderer adiciona uma assinatura padrão no fim.
 - **Caminhos de imagem são relativos à raiz do site** (`assets/img/...`). O renderer da carta, que fica em `carta/<slug>/`, prefixa `../../` automaticamente. O editor usa `../` para a prévia. O ZIP mantém os caminhos da raiz.
@@ -157,24 +157,24 @@ Regras:
 - A troca de páginas é sequencial: 260 ms de fade-out, 40 ms de respiro e 260 ms de fade-in apenas no conteúdo. A folha do cartão fica parada; o contador atualiza o número sem fade, e o conteúdo antigo some antes do novo entrar.
 - A numeração nova não preserva hashes antigos (`#/2` antigo apontava para outra página). O site é novo; compartilhe os links atuais.
 
-## Como adicionar um novo professor
+## Como adicionar um novo homenageado
 
 O editor pode adicionar uma entrada em `dados.js`, mas **não cria a página HTML**.
 
 1. Copie uma pasta existente:
 
 ```bash
-cp -r carta/professor-01 carta/professor-08
+cp -r carta/homenageado-01 carta/homenageado-08
 ```
 
-2. Em `carta/professor-08/index.html`, ajuste:
-   - `data-professor="professor-08"` no `<body>`;
+2. Em `carta/homenageado-08/index.html`, ajuste:
+   - `data-homenageado="homenageado-08"` no `<body>`;
    - `<title>`;
    - `meta name="description"`;
    - `og:title`, `og:description`, `og:url`;
    - `data-acento` (opcional): o acento é automático; se quiser evitar o flash antes do JS, copie o valor de `acento` do `dados.js`.
-3. No editor, clique em **Adicionar professor**, use o slug `professor-08` e edite o conteúdo.
-4. Exporte o ZIP e publique. O link será `/carta/professor-08/`.
+3. No editor, clique em **Adicionar homenageado**, use o slug `homenageado-08` e edite o conteúdo.
+4. Exporte o ZIP e publique. O link será `/carta/homenageado-08/`.
 
 Se o slug mudar, renomeie também a pasta e as meta tags. O editor avisa sobre isso.
 
@@ -182,14 +182,16 @@ Se o slug mudar, renomeie também a pasta e as meta tags. O editor avisa sobre i
 
 | Cartão | Slug | Link |
 |---|---|---|
-| Professora Exemplo (piloto) | `professora-exemplo` | `/carta/professora-exemplo/` |
-| Professor 01 | `professor-01` | `/carta/professor-01/` |
-| Professor 02 | `professor-02` | `/carta/professor-02/` |
-| Professor 03 | `professor-03` | `/carta/professor-03/` |
-| Professor 04 | `professor-04` | `/carta/professor-04/` |
-| Professor 05 | `professor-05` | `/carta/professor-05/` |
-| Professor 06 | `professor-06` | `/carta/professor-06/` |
-| Professor 07 | `professor-07` | `/carta/professor-07/` |
+| Homenageada Exemplo (piloto) | `homenageada-exemplo` | `/carta/homenageada-exemplo/` |
+| Homenageado 01 | `homenageado-01` | `/carta/homenageado-01/` |
+| Homenageado 02 | `homenageado-02` | `/carta/homenageado-02/` |
+| Homenageado 03 | `homenageado-03` | `/carta/homenageado-03/` |
+| Homenageado 04 | `homenageado-04` | `/carta/homenageado-04/` |
+| Homenageado 05 | `homenageado-05` | `/carta/homenageado-05/` |
+| Homenageado 06 | `homenageado-06` | `/carta/homenageado-06/` |
+| Homenageado 07 | `homenageado-07` | `/carta/homenageado-07/` |
+
+Os links antigos com `professor`/`professora` foram substituídos; compartilhe os links novos.
 
 No site publicado, os links completos ficam em:
 

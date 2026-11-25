@@ -69,7 +69,7 @@
   }
 
   /* Os dados guardam caminhos relativos à raiz do site (assets/...).
-     A página do professor está em carta/<slug>/, então prefixamos ../../. */
+     A página do homenageado está em carta/<slug>/, então prefixamos ../../. */
   function urlImagem(valor) {
     var src = String(valor || "").trim();
     if (!src) return "";
@@ -173,7 +173,7 @@
   }
 
   function envelopeHtml(professor) {
-    var nome = professor.nome || "professor";
+    var nome = professor.nome || "homenageado";
     return (
       '<div class="envelope" data-envelope>' +
       '<div class="envelope__body">' +
@@ -736,7 +736,7 @@
   }
 
   function iniciar() {
-    var slug = document.body.getAttribute("data-professor");
+    var slug = document.body.getAttribute("data-homenageado");
     var lista = Array.isArray(window.DADOS) ? window.DADOS : null;
     if (!lista) {
       mostrarErro(
@@ -762,7 +762,7 @@
 
     var acento = ACENTOS.indexOf(professor.acento) >= 0 ? professor.acento : "seal";
     document.body.setAttribute("data-acento", acento);
-    nomeProfessor = professor.nome || "professor";
+    nomeProfessor = professor.nome || "homenageado";
 
     var paginas = paginasEfetivas(professor);
     totalPaginas = paginas.length;

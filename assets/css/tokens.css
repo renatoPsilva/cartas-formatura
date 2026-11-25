@@ -65,7 +65,7 @@
   --ink-soft: #405055;
   --seal-soft: #f0e3df;
 
-  /* Acento padrão; cada professor sobrescreve com data-acento. */
+  /* Acento padrão; cada homenageado sobrescreve com data-acento. */
   --accent: var(--seal);
   --accent-ink: #7f2c25;
   --accent-wash: #f2e4e0;
@@ -125,7 +125,7 @@ html[data-theme="dark"] {
   --shadow-raised: 0 1px 1px rgb(0 0 0 / 35%), 0 30px 80px -24px rgb(0 0 0 / 80%);
 }
 
-/* Acentos por professor — claro */
+/* Acentos por homenageado — claro */
 [data-acento="seal"] {
   --accent: #a33b32;
   --accent-ink: #7f2c25;
@@ -157,7 +157,7 @@ html[data-theme="dark"] {
   --accent-envelope: #d8a75e;
 }
 
-/* Acentos por professor — escuro */
+/* Acentos por homenageado — escuro */
 html[data-theme="dark"] [data-acento="seal"] {
   --accent: #c46a5e;
   --accent-ink: #e5a198;

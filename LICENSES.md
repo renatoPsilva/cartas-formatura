@@ -4,7 +4,7 @@ Este projeto usa apenas software e fontes de código aberto, vendorizados no rep
 
 ## Fraunces
 
-- **Uso:** títulos, nome dos professores e corpo das cartas.
+- **Uso:** títulos, nome dos homenageados e corpo das cartas.
 - **Licença:** SIL Open Font License 1.1.
 - **Arquivos:** `assets/fonts/fraunces-latin.woff2`, `assets/fonts/fraunces-latin-ext.woff2`.
 - **Licença incluída:** `assets/fonts/OFL-Fraunces.txt`.
@@ -62,8 +62,8 @@ As fontes foram baixadas em subset latino/latin-ext do Google Fonts e são servi
 
 ## Conteúdo e imagens
 
-- Textos e nomes de professores são **placeholders** criados para esta base.
-- As ilustrações abstratas em `assets/img/professores/professora-exemplo/` são SVGs originais deste projeto, sem fotos de terceiros.
+- Textos e nomes de homenageados são **placeholders** criados para esta base.
+- As ilustrações abstratas em `assets/img/homenageados/homenageada-exemplo/` são SVGs originais deste projeto, sem fotos de terceiros.
 - O selo tipográfico e o favicon são desenhos originais em SVG/CSS.
 - O carimbo de cera em `assets/img/marca/selo-cera.webp` / `.png` foi fornecido pela Turma Ginga e recortado para uso no envelope; o original `carimbo.png` é uma fonte local e não é publicado.
 - Os três selos em `assets/img/marca/selos/` foram fornecidos pela Turma Ginga e recortados para uso no envelope e na home: `selo-01` (símbolo da Turma Ginga), `selo-02` (marca Alpha EdTech) e `selo-03` (marca Cummins). Os originais na raiz são fontes locais e não são publicados. As marcas pertencem aos seus titulares; confirmar a autorização de uso antes de publicar.
