@@ -10,14 +10,138 @@ window.DADOS = [
     "nome": "Nuricel",
     "disciplina": "Fundadora e Presidente",
     "acento": "ameixa",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Querida Nuricel",
+        "paragrafos": [
+          "Quando o Instituto Alpha Lumen e a Alpha EdTech ainda eram um sonho, você já enxergava o que ninguém tinha visto: jovens de escolas públicas capazes de construir tecnologia de verdade, desde que alguém abrisse a porta. Esta carta nasce desse gesto. Somos a turma de 2026, e a nossa formatura é, antes de tudo, a prova de que a sua coragem de acreditar chegou no tempo certo."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O sonho",
+        "paragrafos": [
+          "Um sonho sozinho não sustenta uma escola. O seu virou método: formação acelerada, gratuita, com rigor técnico e impacto social genuíno. A Alpha EdTech nasceu sem fins lucrativos, apostando que talento existe em todos os lugares e que a oportunidade precisa ser construída. Você a construiu com amor, rigor e generosidade. Cada linha de código que aprendemos carrega um pouco dessa escolha."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "A escola",
+        "paragrafos": [
+          "O Instituto Alpha Lumen, que você preside desde 2013, nasceu para reconhecer potencial em estudantes de escolas públicas. Dele vieram o Science Days, as alianças com o mercado e uma cultura de colaboração e autonomia que chegou até a Alpha EdTech. Em 2026, mais de quarenta profissionais de software saem daqui — sabendo programar e entendendo que o conhecimento serve para transformar o ecossistema ao redor."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O compromisso",
+        "paragrafos": [
+          "Saímos com uma responsabilidade que não cabe em um diploma: a de retribuir. “Uma vez Alpha, sempre Alpha” deixa de ser lema e vira compromisso — abrir portas para quem vem depois, como você abriu para nós. Obrigado, Dona Nuricel, por sonhar antes, por sustentar o sonho quando ele ainda era frágil e por nos dar ferramentas para transformar não só nossas vidas, mas tudo ao redor."
+        ]
+      },
+      {
+        "tipo": "foto",
+        "titulo": "Registros",
+        "fotos": [
+          {
+            "src": "assets/img/homenageados/nuricel/foto-02.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Nuricel com formandos e time segurando a bandeira da Alpha EdTech em frente ao Instituto Alpha Lumen.",
+            "legenda": "Com os formandos, em frente ao Instituto."
+          },
+          {
+            "src": "assets/img/homenageados/nuricel/foto-01.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Nuricel com o time no balcão da Alpha EdTech.",
+            "legenda": "No balcão da Alpha EdTech."
+          },
+          {
+            "src": "assets/img/homenageados/nuricel/foto-03.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Nuricel com um grupo grande no Science Days, sob a bandeira da Alpha EdTech.",
+            "legenda": "Science Days."
+          }
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "O verdadeiro impacto da tecnologia só existe quando ela é colocada a serviço da transformação social e do potencial humano.",
+        "autor": "Nuricel, sobre o propósito da Alpha"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   },
   {
     "slug": "cummins",
     "nome": "Cummins",
     "disciplina": "Parceira Institucional",
     "acento": "azul",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Para a Cummins",
+        "paragrafos": [
+          "Muitos de nós chegamos à Alpha EdTech com vontade de aprender e com o peso de uma distância que parecia grande demais. O mercado de tecnologia era uma cidade iluminada do outro lado do rio: dava para ver, mas não parecia haver caminho até lá.",
+          "Sua parceria construiu esse caminho, sem pedir que fôssemos outros. Obrigado por acreditar em nós antes mesmo de nos conhecer."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "A porta",
+        "paragrafos": [
+          "A formação foi gratuita do começo ao fim. Dito assim, parece pouco, mas essa escolha mudou tudo: significou estudar sem calcular o custo de cada mês, sem escolher entre o curso e a casa. Significou ocupar uma sala de Python, web, IA e arquitetura sabendo que o lugar era nosso.",
+          "A gratuidade não era um detalhe: era a condição para estarmos ali. A autonomia começou ali, no direito de aprender sem pedir licença."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O que se multiplica",
+        "paragrafos": [
+          "Levamos a excelência técnica que a formação exigiu e a certeza de que ela não para em nós. Quando alguém de casa vê o primeiro projeto rodando, o primeiro emprego chegando, a primeira renda ajudando no fim do mês, a vida muda para a família inteira — não só para quem assina o diploma.",
+          "Ficou também o hábito de perguntar, testar e refazer. É discreto, mas é o que sustenta uma carreira."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O que desejamos",
+        "paragrafos": [
+          "Desejamos que essa parceria continue encontrando quem ainda está do outro lado do rio, gente com talento e poucas chances de mostrar o que sabe. Que as próximas turmas entrem na mesma sala, com a mesma gratuidade, e saiam com as mesmas ferramentas na mão.",
+          "O nosso desejo é simples: que a porta siga aberta para outras turmas, com outros nomes, e que a chegada delas seja tão possível quanto a nossa foi."
+        ]
+      },
+      {
+        "tipo": "foto",
+        "titulo": "Registros",
+        "fotos": [
+          {
+            "src": "assets/img/homenageados/cummins/foto-01.webp",
+            "alt": "Imagem ilustrativa gerada por IA: jovens em formação intensiva de software, em uma composição noturna com as marcas Cummins e Alpha EdTech.",
+            "legenda": "A formação intensiva em software."
+          },
+          {
+            "src": "assets/img/homenageados/cummins/foto-02.webp",
+            "alt": "Imagem ilustrativa gerada por IA: equipe e formandos da Alpha EdTech reunidos com a bandeira da escola e troféus sobre a mesa.",
+            "legenda": "A turma com a bandeira e os troféus."
+          },
+          {
+            "src": "assets/img/homenageados/cummins/foto-03.webp",
+            "alt": "Imagem ilustrativa gerada por IA: mosaico da formatura virtual das turmas da Alpha EdTech, com dezenas de participantes em chamada de vídeo.",
+            "legenda": "A formatura virtual das turmas."
+          }
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "Um motor potente move máquinas. Uma empresa consciente move destinos.",
+        "autor": "Síntese da Turma Ginga"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   },
   {
     "slug": "samir",
@@ -91,7 +215,49 @@ window.DADOS = [
     "nome": "Rogério",
     "disciplina": "Suporte & Operações",
     "acento": "ocre",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Querido Rogério",
+        "paragrafos": [
+          "Quando alguma coisa trava no meio da aula, o primeiro nome que a turma procura é o seu. Não porque você esteja no palco, mas porque você está por perto — nos bastidores de cada aula, no ambiente que insiste em não abrir. Foi assim em muitos dias: um código que não rodava, um ambiente que falhava, uma aula que precisava acontecer sem atrito. Você aparecia, ouvia e resolvia. E a aula seguia."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "Os gargalos que somem",
+        "paragrafos": [
+          "Seu trabalho é feito de gargalos que somem. Um acesso liberado, um ambiente ajustado, uma dúvida que já não é urgente. Quase não se nota, mas é o que permite a aula acontecer sem tropeço.",
+          "Você descomplica o que parece difícil e não trata problema técnico como incômodo. Trata como parte do caminho de quem aprende, com paciência para explicar de novo."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "De onde vem a calma",
+        "paragrafos": [
+          "De Campinas, formado pela Unicamp e com anos de estrada na tecnologia, você chegou à Alpha Digital como desenvolvedor full stack. Mas o que a turma conheceu foi outra face desse caminho: a de quem já viu sistemas falharem e aprendeu a manter a calma.",
+          "Talvez venha daí a paciência. Anos de TI ensinam que nem tudo se resolve na primeira tentativa e que explicar de novo, com cuidado, também é trabalho."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O que fica",
+        "paragrafos": [
+          "Levamos daqui a certeza de que tecnologia se faz com presença, apoio e colaboração. Não é só o código que roda: é alguém do outro lado, garantindo que ninguém fique parado por causa de um obstáculo.",
+          "Obrigado por cuidar dos bastidores e por acreditar no nosso potencial mesmo quando tudo parecia travar. O que você sustenta não aparece no palco, mas acontece em cada aula."
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "A maior tecnologia é aquela que permite que cada aluno e professor alcance seu máximo sem nenhum obstáculo no caminho.",
+        "autor": "Síntese da presença de Rogério na Alpha EdTech"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   },
   {
     "slug": "kenji",
@@ -122,7 +288,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O que fica",
+        "titulo": "A régua",
         "paragrafos": [
           "Fica a ética antes do atalho, o método antes da pressa e a coragem de perguntar até entender. Fica a sua régua: a de quem forma arquitetos, não apenas programadores. Vamos levar o hábito de buscar o fundamento e de tratar as pessoas com o mesmo cuidado que dedicamos ao código. Obrigado por não nos deixar acomodar. A exigência que hoje reconhecemos como cuidado seguirá conosco."
         ]
@@ -189,7 +355,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O que fica",
+        "titulo": "Antes do código",
         "paragrafos": [
           "A pergunta do cinema combina com você: o que acontece com uma tecnologia que precisa aprender com a realidade? A resposta é simples: ela aprende com quem está por perto. Você nos ensinou comunicação, inteligência emocional e coragem de mudar de ideia. A medida que levamos: antes do código, a pessoa. Que sua startup, o mestrado e o doutorado aconteçam, e que saibamos retribuir o orgulho que sente por nós."
         ]
@@ -217,8 +383,8 @@ window.DADOS = [
       },
       {
         "tipo": "citacao",
-        "texto": "Obrigada por nos lembrar que o código mais complexo e mais valioso a ser cultivado é o coração humano.",
-        "autor": "Homenagem das turmas Berim & Maracá"
+        "texto": "A possibilidade de ver e vibrar com o sucesso dos meus alunos.",
+        "autor": "Flávia, sobre o que a move"
       },
       {
         "tipo": "assinatura",
@@ -250,7 +416,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "A casa",
+        "titulo": "A família",
         "paragrafos": [
           "De Limoeiro do Norte você trouxe a simplicidade de quem sabe receber. A família aparece no jeito de cuidar e nas filhas que atravessam suas histórias.",
           "Fortnite com os amigos de longa data, Iron Maiden e Metallica para embalar o foco, o Corinthians na teimosia de quem acredita até o fim. Entre uma partida e um solo de guitarra, você ensina que tecnologia ganha alma quando é feita com coração."
@@ -258,7 +424,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O ciclo",
+        "titulo": "O caminho de volta",
         "paragrafos": [
           "Você já esteve exatamente onde estamos. Foi aspirante na Alpha EdTech, sentiu na pele as mesmas incertezas e o peso do recomeço. Ver você hoje como professor e arquiteto de software prova, na prática, que o caminho é real e possível.",
           "É isso que fica: a prova de que dá para chegar lá. Obrigado por voltar, puxar uma cadeira e segurar a mão de quem vem depois."
@@ -319,7 +485,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O ciclo",
+        "titulo": "A volta",
         "paragrafos": [
           "Você já esteve do lado de cá. Foi aspirante na Alpha EdTech e conhece o peso de um primeiro projeto, a insegurança de um código que não roda, o tamanho de cada recomeço. Voltou como professor para ajudar as novas gerações e ver o programa crescer.",
           "Obrigado por mostrar que o caminho de volta também é uma forma de ensinar. A Alpha cresce porque existe gente como você, que fica."
@@ -390,7 +556,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O que fica",
+        "titulo": "Depois dos títulos",
         "paragrafos": [
           "O que fica não cabe num diploma. Fica a vontade de seguir aprendendo depois dos títulos, e a frase que o senhor repete: se parar, não vai saber mais nada; é preciso correr atrás da garotada.",
           "A turma corre. Leva daqui a serenidade diante do bug, o cuidado com quem está começando e a certeza de que ensinar é uma forma de permanecer. Obrigado por nos acompanhar de igual para igual, professor."
