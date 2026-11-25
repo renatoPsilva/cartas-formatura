@@ -373,7 +373,7 @@ window.DADOS = [
       {
         "tipo": "citacao",
         "texto": "Obrigada por nos lembrar que o código mais complexo e mais valioso a ser cultivado é o coração humano.",
-        "autor": "Homenagem das turmas Berim & Maracá"
+        "autor": "Homenagem da Turma Ginga"
       },
       {
         "tipo": "assinatura",
