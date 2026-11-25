@@ -134,7 +134,7 @@ window.DADOS = [
       },
       {
         tipo: "assinatura",
-        texto: "Com admiração, Turmas Berim & Maracá",
+        texto: "Com admiração, Turma Ginga",
         ano: "2026"
       }
     ]
