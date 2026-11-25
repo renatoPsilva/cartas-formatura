@@ -154,24 +154,6 @@
     );
   }
 
-  function retratoHtml(professor) {
-    var src = String(professor.retrato || "").trim();
-    if (!src) return "";
-    var alt = String(professor.retratoAlt || "").trim();
-    if (!alt) alt = "Retrato de " + (professor.nome || "professor");
-    return (
-      '<header class="envelope__top">' +
-      '<div class="retrato" data-retrato>' +
-      '<img src="' +
-      esc(urlImagem(src)) +
-      '" alt="' +
-      esc(alt) +
-      '" loading="eager" decoding="async" data-retrato-img>' +
-      "</div>" +
-      "</header>"
-    );
-  }
-
   function sealHtml(professor) {
     return (
       '<span class="seal-button__media">' +
@@ -195,7 +177,6 @@
     return (
       '<div class="envelope" data-envelope>' +
       '<div class="envelope__body">' +
-      retratoHtml(professor) +
       '<div class="envelope__address">' +
       '<p class="envelope__para">Para</p>' +
       '<h1 class="envelope__nome">' +
@@ -477,22 +458,6 @@
   }
 
   function ligarImagens() {
-    var retratos = document.querySelectorAll("[data-retrato-img]");
-    Array.prototype.forEach.call(retratos, function (img) {
-      function carregou() {
-        var caixa = img.closest(".retrato");
-        if (caixa) caixa.classList.add("has-image");
-      }
-      function falhou() {
-        var caixa = img.closest(".retrato");
-        if (caixa) caixa.hidden = true;
-        if (img.parentNode) img.parentNode.removeChild(img);
-      }
-      if (img.complete && img.naturalWidth > 0) carregou();
-      img.addEventListener("load", carregou);
-      img.addEventListener("error", falhou);
-    });
-
     var fotos = document.querySelectorAll(".photo__frame img");
     Array.prototype.forEach.call(fotos, function (img) {
       function falhou() {

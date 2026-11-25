@@ -27,7 +27,7 @@ A direção original do plano já pedia pedra + papel + Fraunces + selo. O risco
 - **Sem marcadores numerados decorativos.** Só a numeração real de página, fora do cartão.
 - **Sem micro-labels em caixa alta por toda parte.** Os rótulos internos do selo tipográfico são a exceção: são parte do carimbo.
 - **Movimento mínimo.** A transição de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada. O único gesto orquestrado é o envelope: o carimbo prende a folha, a folha sobe por trás dele e o envelope sai de cena. Depois de aberta, a carta não fecha de novo; recarregar volta ao envelope. `prefers-reduced-motion` desliga tudo.
-- **Assimetria discreta.** O envelope tem o nome no eixo central, o retrato no canto superior direito e o carimbo no centro da borda; o vazio à esquerda equilibra o retrato. Não é um hero centralizado.
+- **Assimetria discreta.** O envelope tem o nome no eixo central, o carimbo no centro da borda e os três selos no canto inferior direito. Não é um hero centralizado.
 
 ## Tokens
 
@@ -108,7 +108,7 @@ palco 1160 × 820
 
 - O envelope mede 1080 × 690 no palco de 1160 × 820, com 80 px de chão no topo, 40 px nas laterais e 50 px na base. O carimbo de 150 px fica no centro da borda superior, metade para fora; a borda de cima tem 2 px e as outras, 1 px.
 - O corpo é verde profundo com grão CSS discreto; o texto é creme. O nome fica no eixo central, em Fraunces, com “Para” acima e uma linha fina de acento embaixo. A disciplina não entra na frente.
-- Os três selos ficam em uma fileira horizontal no canto inferior direito, em creme monocromático, sem moldura: o símbolo da Turma Ginga, a marca Alpha EdTech e a marca Cummins. O retrato é opcional no canto superior direito; as fotos da carta ficam nas páginas internas.
+- Os três selos ficam em uma fileira horizontal no canto inferior direito, em creme monocromático, sem moldura: o símbolo da Turma Ginga, a marca Alpha EdTech e a marca Cummins. As fotos da carta ficam nas páginas internas.
 - A frente não tem marca nem rodapé. A dica “Toque no selo para abrir” fica no chão, fora do objeto.
 - O envelope e o carimbo são planos, sem sombra projetada. A separação vem da borda fina, do gradiente sutil do corpo e do contraste com o fundo.
 - O carimbo é o único botão, com rótulo “Abrir a carta de Nome”; a imagem é decorativa e o selo tipográfico entra como fallback se ela falhar.
@@ -172,19 +172,19 @@ palco 1160 × 820
 ## Responsivo
 
 - **Desktop:** cartão horizontal centralizado, com margem para a toolbar no topo e o contador no rodapé.
-- **Mobile (390 × 844):** o mesmo cartão 1160 × 820 é escalado; os tamanhos internos sobem para manter o corpo em torno de 14–15 px e o envelope legível. Textos longos reduzem um pouco o corpo; prefira dividir em mais páginas. O envelope mantém a composição: nome central, retrato no canto e carimbo na borda; o retrato cresce um pouco e a dica encurta. Recados continuam em duas colunas. As setas internas ampliam a área de toque junto com o desenho.
+- **Mobile (390 × 844):** o mesmo cartão 1160 × 820 é escalado; os tamanhos internos sobem para manter o corpo em torno de 14–15 px e o envelope legível. Textos longos reduzem um pouco o corpo; prefira dividir em mais páginas. O envelope mantém a composição: nome central, três selos no canto inferior direito e carimbo na borda; a dica encurta. Recados continuam em duas colunas. As setas internas ampliam a área de toque junto com o desenho.
 - **Tablet:** escala intermediária; nenhuma alteração estrutural.
 - **Home:** duas colunas no desktop, com o cartão da coleção em torno de 550 px; no mobile, empilha, mas o cartão continua horizontal. O cartão usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da página repete os três selos do envelope (Ginga, Alpha EdTech e Cummins), em monocromático.
 - Texto que não couber no cartão é cortado; divida em mais páginas. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral; a página de texto ganha corpo menor a partir de ~400 caracteres.
 
 ## Imagens
 
-- `assets/img/professores/<slug>/retrato.webp` e `foto-01.webp`, `foto-02.webp`.
+- `assets/img/professores/<slug>/foto-01.webp`, `foto-02.webp`.
 - `assets/img/marca/selo-cera.webp` e `selo-cera.png`: o carimbo de cera recortado, otimizado e com fallback PNG. O original `carimbo.png` é fonte local, não vai para o site.
 - Placeholders atuais: SVGs abstratos, sem fotos falsas da internet.
 - Imagem OG 1200 × 630, gerada a partir de HTML com as fontes do próprio projeto; traz o símbolo da Turma Ginga em verde.
 - Favicon SVG com o selo CG.
-- `loading="lazy"` e `decoding="async"` nas imagens de conteúdo; retrato do envelope com `loading="eager"`; o carimbo com `loading="eager"` e fallback.
+- `loading="lazy"` e `decoding="async"` nas imagens de conteúdo; o carimbo com `loading="eager"` e fallback.
 
 ## Editor
 

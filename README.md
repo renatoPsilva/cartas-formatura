@@ -84,7 +84,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
 2. Escolha o cartão na lista lateral.
-3. Edite o envelope: nome, acento, selo tipográfico e, se quiser, retrato. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. Os três selos e o carimbo são fixos; o retrato, quando existe, aparece no canto superior direito.
+3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos e o carimbo são fixos. O envelope não tem retrato.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
 6. Use a prévia e o tema claro/escuro para conferir. A prévia reproduz o cartão 1160 × 820; os rótulos mostram “Capa” (o envelope) e depois as páginas 1..N, sem contar o envelope.
@@ -123,10 +123,8 @@ window.DADOS = [
     slug: "professora-exemplo",
     nome: "Professora Exemplo",
     disciplina: "Desenvolvimento Web",
-    retrato: "assets/img/professores/professora-exemplo/retrato.webp",
-    retratoAlt: "Retrato da Professora Exemplo",
-    acento: "azul",
-    selo: "PE",
+    acento: "azul", // automático
+    selo: "PE",     // opcional; sem ele, as iniciais vêm do nome
     paginas: [
       { tipo: "texto", titulo: "Para começar", paragrafos: ["...", "..."] },
       { tipo: "foto", titulo: "Momentos", fotos: [{ src: "...", alt: "...", legenda: "..." }] },
@@ -143,9 +141,9 @@ Regras:
 - O envelope é gerado automaticamente. Ele não é um bloco de `paginas`.
 - O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: no piloto, `1 / 5`, não `1 / 6`.
 - O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
-- `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`.
-- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do professor.
-- Se `retrato` estiver vazio ou falhar, o envelope fica sem retrato; os três selos no canto inferior direito continuam. As fotos da carta ficam nas páginas de `foto`.
+- `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`. O editor o define automaticamente e não expõe o campo; cartões existentes mantêm o valor.
+- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do professor. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
+- O envelope não tem retrato. As fotos da carta ficam nas páginas de `foto`.
 - Se não houver página de assinatura, o renderer adiciona uma assinatura padrão no fim.
 - **Caminhos de imagem são relativos à raiz do site** (`assets/img/...`). O renderer da carta, que fica em `carta/<slug>/`, prefixa `../../` automaticamente. O editor usa `../` para a prévia. O ZIP mantém os caminhos da raiz.
 - Os textos de página devem caber no cartão. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400. O editor avisa acima de ~400 para o celular e acima de ~600 no geral. Textos maiores devem ser divididos em mais páginas; não há modo de leitura alternativo.
@@ -174,7 +172,7 @@ cp -r carta/professor-01 carta/professor-08
    - `<title>`;
    - `meta name="description"`;
    - `og:title`, `og:description`, `og:url`;
-   - `data-acento` se quiser evitar o flash do acento errado.
+   - `data-acento` (opcional): o acento é automático; se quiser evitar o flash antes do JS, copie o valor de `acento` do `dados.js`.
 3. No editor, clique em **Adicionar professor**, use o slug `professor-08` e edite o conteúdo.
 4. Exporte o ZIP e publique. O link será `/carta/professor-08/`.
 

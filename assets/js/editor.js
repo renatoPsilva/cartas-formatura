@@ -366,18 +366,20 @@
         return professor && typeof professor === "object";
       })
       .map(function (professor) {
-        return {
+        var normalizado = {
           slug: normalizarSlug(professor.slug || professor.nome || "professor"),
           nome: String(professor.nome || "Sem nome"),
           disciplina: String(professor.disciplina || ""),
-          retrato: normalizarCaminhoImagem(professor.retrato),
-          retratoAlt: String(professor.retratoAlt || ""),
           acento: ACENTOS.indexOf(professor.acento) >= 0 ? professor.acento : "seal",
-          selo: String(professor.selo || ""),
           paginas: Array.isArray(professor.paginas)
             ? professor.paginas.map(normalizarPagina).filter(Boolean)
             : [],
         };
+        /* O selo é legado: cartões antigos mantêm as iniciais, mas novos
+           cartões derivam as iniciais do nome. Não grave selo vazio. */
+        var selo = String(professor.selo || "").trim();
+        if (selo) normalizado.selo = selo;
+        return normalizado;
       });
   }
 
@@ -518,6 +520,15 @@
     }
   }
 
+  function atualizarSeloPainel() {
+    var professor = atual();
+    if (!professor) return;
+    var alvo = $(".panel__seal");
+    if (!alvo) return;
+    alvo.setAttribute("data-acento", professor.acento);
+    alvo.innerHTML = svgSelo(professor);
+  }
+
   function selecionar(indice) {
     if (indice < 0 || indice >= estado.dados.length) return;
     estado.selecionado = indice;
@@ -541,7 +552,6 @@
     }
     wrap.innerHTML =
       painelEnvelope(professor) +
-      painelRetrato(professor) +
       painelPublicacao(professor) +
       painelPaginas(professor);
     ligarFalhasImagensForm();
@@ -550,34 +560,14 @@
   function painelEnvelope(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome, acento e selo tipográfico. O retrato fica no painel abaixo; os três selos e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
+      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do professor. O acento e o selo tipográfico são automáticos; os três selos do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
       esc(professor.acento) +
       '" aria-hidden="true">' +
       svgSelo(professor) +
       "</div></div>" +
-      '<div class="panel__body"><div class="field-grid">' +
-      '<label class="field field--full"><span>Nome</span><input type="text" data-meta="nome" value="' +
+      '<div class="panel__body"><label class="field"><span>Nome</span><input type="text" data-meta="nome" value="' +
       esc(professor.nome) +
-      '"></label>' +
-      '<label class="field"><span>Acento</span><select data-meta="acento">' +
-      ["seal", "azul", "verde", "ameixa", "ocre"]
-        .map(function (acento) {
-          return (
-            '<option value="' +
-            acento +
-            '"' +
-            (professor.acento === acento ? " selected" : "") +
-            ">" +
-            acento +
-            "</option>"
-          );
-        })
-        .join("") +
-      "</select></label>" +
-      '<label class="field"><span>Selo tipográfico (até 3 caracteres)</span><input type="text" data-meta="selo" maxlength="3" value="' +
-      esc(professor.selo) +
-      '" spellcheck="false"><small>Iniciais do selo tipográfico; é o fallback do carimbo de cera. Não é um dos três selos do envelope.</small></label>' +
-      "</div></div></section>"
+      '"></label></div></section>'
     );
   }
 
@@ -597,29 +587,6 @@
       "</div></div>" +
       '<div class="panel__foot"><p>O link publicado usa o slug. Se mudar o slug, renomeie também a pasta <code>carta/<slug>/</code> e as meta tags.</p><button class="btn btn--small btn--danger" type="button" data-remove-professor>Remover cartão</button></div>' +
       "</section>"
-    );
-  }
-
-  function painelRetrato(professor) {
-    var upload = uploaderHTML({
-      tipo: "retrato",
-      src: professor.retrato,
-      rotulo: "Retrato",
-      alt: professor.retratoAlt,
-    });
-    return (
-      '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Retrato</h2><p>Opcional. Quando existe, o retrato aparece no canto superior direito do envelope. Sem ele, o envelope mantém o nome, o carimbo e os três selos.</p></div></div>' +
-      '<div class="panel__body">' +
-      upload +
-      '<div class="field-grid" style="margin-top:14px">' +
-      '<label class="field"><span>Texto alternativo</span><input type="text" data-meta="retratoAlt" value="' +
-      esc(professor.retratoAlt) +
-      '"></label>' +
-      '<label class="field"><span>Caminho no repositório</span><input type="text" data-meta="retrato" value="' +
-      esc(professor.retrato) +
-      '" spellcheck="false" placeholder="assets/img/professores/slug/retrato.webp"><small>Também é possível colar o caminho de uma imagem já commitada.</small></label>' +
-      "</div></div></section>"
     );
   }
 
@@ -738,9 +705,7 @@
             fotoIndice +
             '" aria-label="Remover foto" title="Remover foto">×</button></div></div>' +
             uploaderHTML({
-              tipo: "foto",
               src: foto.src,
-              rotulo: "Foto " + (fotoIndice + 1),
               page: indice,
               photo: fotoIndice,
             }) +
@@ -877,10 +842,7 @@
     } else if (src) {
       meta = "Arquivo atual do repositório: " + src;
     } else {
-      meta =
-        opcoes.tipo === "retrato"
-          ? "Sem retrato. O envelope mantém o nome, o carimbo e os três selos."
-          : "Sem imagem. No site, a página mostra um espaço reservado.";
+      meta = "Sem imagem. No site, a página mostra um espaço reservado.";
     }
     var avisos = "";
     if (entrada && entrada.width && entrada.height) {
@@ -899,9 +861,7 @@
       }
     }
     return (
-      '<div class="image-upload" data-upload-zone data-upload-tipo="' +
-      esc(opcoes.tipo) +
-      '"' +
+      '<div class="image-upload" data-upload-zone' +
       (opcoes.page != null ? ' data-page="' + opcoes.page + '"' : "") +
       (opcoes.photo != null ? ' data-photo="' + opcoes.photo + '"' : "") +
       ">" +
@@ -1033,21 +993,6 @@
       }
       if (alvo.matches('[data-meta="slug"]')) {
         mudarSlug(alvo);
-        return;
-      }
-      if (alvo.matches('[data-meta="acento"]')) {
-        var professor = atual();
-        if (!professor) return;
-        professor.acento = alvo.value;
-        atualizarItemLista();
-        renderizarPreview();
-        agendarSalvar();
-        return;
-      }
-      if (alvo.matches('[data-meta="retrato"]')) {
-        renderizarFormulario();
-        renderizarPreview();
-        agendarSalvar();
       }
     });
 
@@ -1087,8 +1032,12 @@
        validar duplicidade e reescrever os caminhos das imagens. */
     if (campo === "slug") return;
     professor[campo] = input.value;
-    if (campo === "nome" || campo === "selo" || campo === "acento") {
+    if (campo === "nome") {
+      /* As iniciais agora são automáticas: editar o nome descarta o selo
+         legado para não deixar “P1” em um cartão renomeado. */
+      delete professor.selo;
       atualizarItemLista();
+      atualizarSeloPainel();
     }
     agendarPreview();
     agendarSalvar();
@@ -1224,10 +1173,7 @@
       slug: slug,
       nome: "Novo professor",
       disciplina: "Disciplina",
-      retrato: "",
-      retratoAlt: "Retrato do novo professor",
       acento: ACENTOS[numero % ACENTOS.length],
-      selo: "NP",
       paginas: [
         paginaPadrao("texto"),
         paginaPadrao("assinatura"),
@@ -1291,7 +1237,6 @@
     }
     var caminhosAntigos = caminhosDeImagens(professor);
     professor.slug = novo;
-    professor.retrato = reescreverCaminho(professor.retrato, antigo, novo);
     professor.paginas.forEach(function (pagina) {
       if (pagina.tipo === "foto" && Array.isArray(pagina.fotos)) {
         pagina.fotos.forEach(function (foto) {
@@ -1324,7 +1269,6 @@
 
   function caminhosDeImagens(professor) {
     var caminhos = new Set();
-    if (professor.retrato) caminhos.add(professor.retrato);
     (professor.paginas || []).forEach(function (pagina) {
       if (pagina.tipo === "foto") {
         (pagina.fotos || []).forEach(function (foto) {
@@ -1395,16 +1339,11 @@
     if (!zona) return;
     var professor = atual();
     if (!professor) return;
-    var tipo = zona.getAttribute("data-upload-tipo");
-    if (tipo === "retrato") {
-      professor.retrato = "";
-    } else {
-      var indice = Number(zona.getAttribute("data-page"));
-      var fotoIndice = Number(zona.getAttribute("data-photo"));
-      var pagina = professor.paginas[indice];
-      if (pagina && pagina.fotos && pagina.fotos[fotoIndice]) {
-        pagina.fotos[fotoIndice].src = "";
-      }
+    var indice = Number(zona.getAttribute("data-page"));
+    var fotoIndice = Number(zona.getAttribute("data-photo"));
+    var pagina = professor.paginas[indice];
+    if (pagina && pagina.fotos && pagina.fotos[fotoIndice]) {
+      pagina.fotos[fotoIndice].src = "";
     }
     renderizarFormulario();
     renderizarPreview();
@@ -1496,7 +1435,6 @@
     }
     var professor = atual();
     if (!professor) return;
-    var tipo = zona.getAttribute("data-upload-tipo");
     var pageIndice =
       zona.getAttribute("data-page") != null
         ? Number(zona.getAttribute("data-page"))
@@ -1511,31 +1449,23 @@
 
     try {
       var resultado = await redimensionarImagem(arquivo);
+      var pagina = professor.paginas[pageIndice];
+      var foto = pagina && pagina.fotos && pagina.fotos[photoIndice];
+      var caminhoAtual = foto ? String(foto.src || "") : "";
       var caminho;
-      if (tipo === "retrato") {
+      if (
+        caminhoAtual.indexOf("assets/img/professores/") === 0 &&
+        !/\.svg$/i.test(caminhoAtual)
+      ) {
+        caminho = caminhoAtual.replace(/\.[a-z0-9]+$/i, "") + "." + resultado.ext;
+      } else {
         caminho =
           "assets/img/professores/" +
           professor.slug +
-          "/retrato." +
+          "/foto-" +
+          Date.now().toString(36).slice(-6) +
+          "." +
           resultado.ext;
-      } else {
-        var pagina = professor.paginas[pageIndice];
-        var foto = pagina && pagina.fotos && pagina.fotos[photoIndice];
-        var caminhoAtual = foto ? String(foto.src || "") : "";
-        if (
-          caminhoAtual.indexOf("assets/img/professores/") === 0 &&
-          !/\.svg$/i.test(caminhoAtual)
-        ) {
-          caminho = caminhoAtual.replace(/\.[a-z0-9]+$/i, "") + "." + resultado.ext;
-        } else {
-          caminho =
-            "assets/img/professores/" +
-            professor.slug +
-            "/foto-" +
-            Date.now().toString(36).slice(-6) +
-            "." +
-            resultado.ext;
-        }
       }
 
       var existente = imagens.get(caminho);
@@ -1565,18 +1495,11 @@
         );
       }
 
-      if (tipo === "retrato") {
-        professor.retrato = caminho;
-        if (!professor.retratoAlt) {
-          professor.retratoAlt = "Retrato de " + professor.nome;
-        }
-      } else {
-        var paginaAtual = professor.paginas[pageIndice];
-        var fotoAtual = paginaAtual.fotos[photoIndice];
-        fotoAtual.src = caminho;
-        if (!fotoAtual.alt) {
-          fotoAtual.alt = "Foto da carta de " + professor.nome;
-        }
+      var paginaAtual = professor.paginas[pageIndice];
+      var fotoAtual = paginaAtual.fotos[photoIndice];
+      fotoAtual.src = caminho;
+      if (!fotoAtual.alt) {
+        fotoAtual.alt = "Foto da carta de " + professor.nome;
       }
 
       renderizarFormulario();
@@ -1697,14 +1620,6 @@
   }
 
   function previewCapa(professor) {
-    var retrato = professor.retrato
-      ? '<header class="envelope__top">' +
-        '<div class="retrato has-image">' +
-        '<img src="' +
-        esc(urlPreview(professor.retrato)) +
-        '" alt="" loading="lazy" data-retrato-img>' +
-        "</div></header>"
-      : "";
     var selos = SELOS_ENVELOPE.map(function (selo) {
       return (
         '<picture class="envelope__selo">' +
@@ -1724,7 +1639,6 @@
     return (
       '<div class="envelope">' +
       '<div class="envelope__body">' +
-      retrato +
       '<div class="envelope__address">' +
       '<p class="envelope__para">Para</p>' +
       '<h1 class="envelope__nome">' +
@@ -1908,10 +1822,6 @@
           if (seloAssinatura) seloAssinatura.hidden = true;
           return;
         }
-        var retrato = img.closest(".retrato");
-        if (retrato) retrato.classList.remove("has-image");
-        var cabecalho = img.closest(".envelope__top");
-        if (cabecalho) cabecalho.hidden = true;
         var selo = img.closest(".seal-button");
         if (selo) selo.classList.add("is-fallback");
         var fallback = img.parentNode.querySelector(".photo__fallback");
@@ -1990,13 +1900,6 @@
           }
         });
       });
-      if (
-        professor.retrato &&
-        (!/^assets\/img\//.test(professor.retrato) ||
-          professor.retrato.indexOf("..") >= 0)
-      ) {
-        erros.push(nome + ": caminho do retrato inválido.");
-      }
     });
     return erros;
   }
@@ -2075,7 +1978,6 @@
 
       var caminhos = new Set();
       estado.dados.forEach(function (professor) {
-        if (professor.retrato) caminhos.add(professor.retrato);
         (professor.paginas || []).forEach(function (pagina) {
           if (pagina.tipo === "foto") {
             (pagina.fotos || []).forEach(function (foto) {

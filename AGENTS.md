@@ -26,21 +26,21 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 ## Estrutura de conteúdo
 
 - `dados.js` define `window.DADOS`, um script clássico.
-- O envelope é automático: `nome`, `acento`, `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. `retrato`/`retratoAlt` são opcionais e aparecem no canto superior direito. A disciplina continua nos dados, mas não aparece na frente.
+- O envelope é automático: `nome`, `acento` e `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. Não há retrato. A disciplina continua nos dados, mas não aparece na frente.
 - `paginas` é uma lista ordenada de blocos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - Se não houver `assinatura`, o renderer adiciona uma no fim.
 - O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; no piloto, `1 / 5`.
 - A carta começa fechada. O carimbo de cera é o único botão: ao abrir, a folha sobe por trás dele, o envelope desliza para fora, o texto entra e a folha cresce até o palco. Não há giro 3D de página. Depois de aberta, ela não fecha de novo. Recarregar sem hash (ou `#/1`) volta ao envelope; recarregar `#/2+` reabre na página pedida.
 - Sem hash ou `#/1` começam fechados; `#/2` em diante abre direto na página pedida, com o envelope considerado aberto.
 - **Caminhos de imagem nos dados são relativos à raiz do site** (`assets/img/...`). `render-carta.js` prefixa `../../` nas páginas de professor. O editor prefixa `../` na prévia. O ZIP mantém os caminhos da raiz.
-- Acentos válidos: `seal`, `azul`, `verde`, `ameixa`, `ocre`.
-- Se `retrato` estiver vazio ou a imagem falhar, o envelope fica sem retrato; os três selos continuam no canto inferior direito. Nunca deixe ícone quebrado.
+- Acentos válidos: `seal`, `azul`, `verde`, `ameixa`, `ocre`. O acento é automático; o editor não o expõe.
+- O `selo` é automático e derivado do nome para cartões novos. Valores antigos são preservados até o nome ser editado; não há campo de selo no editor.
 - Mantenha os textos de página dentro do cartão; não há modo de leitura alternativo. Textos maiores devem ser divididos em mais páginas. No desktop, o limite confortável é de ~600 caracteres; no celular, de ~350–400; o editor avisa acima de ~400 para o celular.
 
 ## Direção visual
 
 - O cartão parece uma folha, não um slide corporativo.
-- O envelope tem identidade: nome grande, três selos no canto inferior direito, carimbo de cera dourado e fio de acento; sem disciplina, marca ou rodapé na frente. O retrato é opcional no canto superior direito.
+- O envelope tem identidade: nome grande, três selos no canto inferior direito, carimbo de cera dourado e fio de acento; sem disciplina, marca, retrato ou rodapé na frente.
 - Os três selos são marcas discretas em creme monocromático; não competem com o carimbo.
 - Interior de texto limpo: sem molduras, carimbos, números ou enfeites dentro da folha.
 - O fecho da carta usa o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais. O selo de iniciais continua no envelope como fallback do carimbo.
@@ -69,6 +69,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Página não listada em `editor/`, com `noindex, nofollow`; não linkar do site público.
 - Deve carregar `../dados.js` e usar `window.DADOS`.
 - A prévia usa o cartão 1160 × 820 e escala a partir de 1160. Os rótulos são “Capa” e páginas 1..N; a capa é o envelope e não conta como página. A prévia “Capa” mostra o envelope; a disciplina fica só nos dados e não aparece na prévia.
+- O formulário do envelope expõe apenas o **Nome**. Acento, selo tipográfico e retrato não têm campos: acento e selo são automáticos; não há retrato.
 - Upload de imagens: maior lado ≤ 1600 px, WebP com fallback JPEG, aviso para < 800 px ou > 500 KB.
 - Rascunho textual em `localStorage` (`cg-editor-draft-v1`); blobs em IndexedDB (`cartoes-gratidao-editor`).
 - Exportação: `dados.js` e ZIP com `dados.js` + imagens + `LEIA-ME.txt`.

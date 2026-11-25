@@ -1,5 +1,7 @@
 # Plano de implementação — Cartões de Gratidão
 
+> **Revisão (25/nov/2026):** o retrato opcional foi removido do envelope, do modelo de dados, do renderer e do editor. O envelope passa a ter apenas nome, três selos, carimbo e fio de acento. No editor, acento e selo deixam de ser editáveis: cartões existentes mantêm os valores e cartões novos recebem acento automático e iniciais derivadas do nome. Esta revisão substitui as menções a retrato abaixo.
+
 > **Revisão (22/nov/2026):** o modo “Ler a carta inteira” foi removido do site. O fecho da carta passa a usar o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais; o `selo` do professor continua apenas como fallback do carimbo de cera. Textos longos devem ser divididos em mais páginas.
 
 > **Revisão aprovada (20/nov/2026):** a capa 3D deixa de existir. A página 1 começa fechada dentro de um **envelope verde** de 1080 × 690, com um **carimbo de cera dourado** de 150 px no meio da borda superior. O carimbo é o único botão; ao abrir, a folha sobe por trás dele, o envelope desliza para fora e a folha cresce até o palco. A frente tem nome, três selos no canto inferior direito e um fio de acento; **não tem disciplina, marca nem rodapé**. O retrato é opcional no canto superior direito. O dourado do carimbo é a única exceção à regra de não usar dourado. A troca de páginas é fade-out (260 ms) + respiro (40 ms) + fade-in (260 ms) apenas no conteúdo; a folha fica parada e o contador atualiza o número sem fade. O resto da nota anterior continua, exceto o que conflitar com esta.
@@ -147,7 +149,7 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 
 - Cartão horizontal, base de design **1160×820**. Ver a nota de revisão no topo.
 - Fundo pedra; cartão centralizado com borda fina, sombra suave e textura de papel discreta.
-- **Envelope:** nome, três selos no canto inferior direito, carimbo de cera, fio de acento. Retrato opcional no canto superior direito. Sem disciplina, marca ou rodapé na frente. O envelope é o estado fechado da página 1; o carimbo é o único botão.
+- **Envelope:** nome, três selos no canto inferior direito, carimbo de cera, fio de acento. Sem disciplina, marca, retrato ou rodapé na frente. O envelope é o estado fechado da página 1; o carimbo é o único botão.
 - **Página de texto:** só o conteúdo. Título opcional. Nenhum carimbo, moldura, nota de margem ou enfeite. O contador fica **fora** do cartão; o par de setas fica dentro, no canto inferior direito.
 - **Página de foto:** 1–3 imagens com legenda, layout limpo. Sem fita adesiva, polaroid ou scrapbook.
 - **Página de recados:** mensagens curtas com autor, em lista ou blocos discretos.
@@ -181,10 +183,8 @@ window.DADOS = [
     slug: "professora-exemplo",
     nome: "Professora Exemplo",
     disciplina: "Desenvolvimento Web",
-    retrato: "assets/img/professores/professora-exemplo/retrato.webp", // ou ""
-    retratoAlt: "Retrato da Professora Exemplo",
-    acento: "azul", // "seal" | "azul" | "verde" | "ameixa" | "ocre"
-    selo: "PE",     // iniciais do carimbo de fallback
+    acento: "azul", // automático; "seal" | "azul" | "verde" | "ameixa" | "ocre"
+    selo: "PE",     // opcional; sem ele, as iniciais vêm do nome
     paginas: [
       { tipo: "texto", titulo: "Para começar", paragrafos: ["...", "..."] },
       { tipo: "texto", titulo: "O que ficou", paragrafos: ["..."] },
@@ -199,10 +199,9 @@ window.DADOS = [
 
 Regras:
 
-- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos fixos; `retrato`/`retratoAlt` são opcionais no canto superior direito. A `disciplina` continua nos metadados, mas não aparece na frente.
+- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos fixos; o envelope não tem retrato. A `disciplina` continua nos metadados, mas não aparece na frente.
 - `paginas` é uma lista aberta de blocos internos. Tipos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - O renderer monta: a página 1 com o envelope por cima (estado fechado) e mais um slide por bloco seguinte. Se não houver `assinatura`, adicionar uma assinatura padrão no fim. O envelope não é um slide separado.
-- Se `retrato` estiver vazio ou a imagem falhar, o envelope fica sem retrato; os três selos permanecem. Nunca deixe ícone quebrado.
 - Se uma foto estiver faltando, mostrar um placeholder discreto.
 - O editor deve permitir adicionar, remover, duplicar e reordenar blocos; editar todos os campos; e alterar os metadados da capa.
 - O editor pode adicionar um novo professor aos dados, mas **não cria o shell HTML**; documentar que é preciso duplicar uma pasta em `carta/` e atualizar as meta tags.
@@ -280,7 +279,7 @@ Requisitos:
 - Página **não listada**, com `noindex, nofollow`; não linkar a partir do site público.
 - Carregar `../dados.js` e usar `window.DADOS`.
 - Sidebar com os 8 professores; formulário para o professor selecionado.
-- Editar metadados do envelope: slug, nome, disciplina, retrato, alt, acento, selo.
+- Editar metadados do envelope: slug, nome e disciplina. Acento e selo são automáticos; não há retrato.
 - Lista de páginas internas com:
   - adicionar página (seletor de tipo: texto, foto, recados, citação, assinatura);
   - remover, duplicar, reordenar (subir/descer);
@@ -308,12 +307,12 @@ Requisitos:
 
 ## 9. Imagens
 
-- Estrutura: `assets/img/professores/<slug>/retrato.webp`, `foto-01.webp`, etc.
+- Estrutura: `assets/img/professores/<slug>/foto-01.webp`, etc.
 - Carimbo de cera: `assets/img/marca/selo-cera.webp` + `selo-cera.png`, recortado de `carimbo.png` (fonte local, ignorada pelo git). O botão usa `<picture>` e o selo tipográfico como fallback.
 - Placeholders: criar SVGs/CSS com iniciais/pattern; não usar fotos falsas da internet.
 - A imagem OG genérica deve ser um PNG 1200×630 com o título e o símbolo da Turma Ginga, gerada via Playwright/HTML ou ImageMagick.
 - Favicon SVG simples com o selo tipográfico.
-- `loading="lazy"` e `decoding="async"` nas imagens; o retrato e o carimbo usam `loading="eager"`.
+- `loading="lazy"` e `decoding="async"` nas imagens; o carimbo usa `loading="eager"`.
 - O editor aplica as restrições no upload; o usuário não precisa fazer manualmente.
 - Se uma imagem faltar, o site usa fallback visual, nunca um ícone quebrado.
 

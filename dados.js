@@ -9,8 +9,6 @@ window.DADOS = [
     slug: "professora-exemplo",
     nome: "Professora Exemplo",
     disciplina: "Desenvolvimento Web",
-    retrato: "",
-    retratoAlt: "Retrato da Professora Exemplo",
     acento: "azul",
     selo: "PE",
     paginas: [
@@ -78,8 +76,6 @@ window.DADOS = [
     slug: "professor-01",
     nome: "Professor 01",
     disciplina: "Lógica de Programação",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 01",
     acento: "verde",
     selo: "P1",
     paginas: [
@@ -102,8 +98,6 @@ window.DADOS = [
     slug: "professor-02",
     nome: "Professor 02",
     disciplina: "Banco de Dados",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 02",
     acento: "ameixa",
     selo: "P2",
     paginas: [
@@ -126,8 +120,6 @@ window.DADOS = [
     slug: "professor-03",
     nome: "Professor 03",
     disciplina: "Desenvolvimento Front-end",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 03",
     acento: "ocre",
     selo: "P3",
     paginas: [
@@ -150,8 +142,6 @@ window.DADOS = [
     slug: "professor-04",
     nome: "Professor 04",
     disciplina: "Desenvolvimento Back-end",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 04",
     acento: "seal",
     selo: "P4",
     paginas: [
@@ -174,8 +164,6 @@ window.DADOS = [
     slug: "professor-05",
     nome: "Professor 05",
     disciplina: "Design de Interfaces",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 05",
     acento: "azul",
     selo: "P5",
     paginas: [
@@ -198,8 +186,6 @@ window.DADOS = [
     slug: "professor-06",
     nome: "Professor 06",
     disciplina: "Infraestrutura",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 06",
     acento: "verde",
     selo: "P6",
     paginas: [
@@ -222,8 +208,6 @@ window.DADOS = [
     slug: "professor-07",
     nome: "Professor 07",
     disciplina: "Segurança da Informação",
-    retrato: "",
-    retratoAlt: "Retrato do Professor 07",
     acento: "ameixa",
     selo: "P7",
     paginas: [
