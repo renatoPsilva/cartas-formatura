@@ -62,8 +62,8 @@ As fontes foram baixadas em subset latino/latin-ext do Google Fonts e são servi
 
 ## Conteúdo e imagens
 
-- Textos e nomes de homenageados são **placeholders** criados para esta base.
-- As ilustrações abstratas em `assets/img/homenageados/homenageada-exemplo/` são SVGs originais deste projeto, sem fotos de terceiros.
+- Textos e nomes de homenageados são conteúdo real, adaptado dos briefs da Turma Ginga no Stitch.
+- As imagens em `assets/img/homenageados/<slug>/` foram geradas por IA a partir dos briefs da turma; não são fotografias. O alt de cada imagem declara isso. Ao substituir por fotos reais, mantenha os caminhos e atualize o alt.
 - O selo tipográfico e o favicon são desenhos originais em SVG/CSS.
 - O carimbo de cera em `assets/img/marca/selo-cera.webp` / `.png` foi fornecido pela Turma Ginga e recortado para uso no envelope; o original `carimbo.png` é uma fonte local e não é publicado.
 - Os três selos em `assets/img/marca/selos/` foram fornecidos pela Turma Ginga e recortados para uso no envelope e na home: `selo-01` (símbolo da Turma Ginga), `selo-02` (marca Alpha EdTech) e `selo-03` (marca Cummins). Os originais na raiz são fontes locais e não são publicados. As marcas pertencem aos seus titulares; confirmar a autorização de uso antes de publicar.

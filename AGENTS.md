@@ -19,7 +19,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - `.nojekyll` na raiz.
 - Site em pt-BR; `lang="pt-BR"` em todas as páginas.
 - Todas as páginas com `noindex, nofollow`. `robots.txt` com `Disallow: /`.
-- Sem dados reais de homenageados, exceto o cartão `samir`, cujo conteúdo foi aprovado a partir do item “Alpha Edtech - Carta Afetiva: Samir” no Stitch. Os demais nomes, disciplinas e imagens são placeholders.
+- Conteúdo real dos 10 homenageados, adaptado dos itens “Carta Afetiva” do projeto Stitch da Turma Ginga. Não invente fatos, cenas ou falas: use os briefs do Stitch. As imagens atuais são ilustrações geradas por IA; o alt deve declarar isso. Não publique dados pessoais sensíveis.
 - Sem lista pública de homenageados na raiz.
 - Sem confete, glitter, autoplay, música automática ou clichês de formatura. O único dourado é o carimbo de cera do envelope; não use ouro em nenhum outro elemento.
 
@@ -29,7 +29,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - O envelope é automático: `nome`, `acento` e `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. Não há retrato. A disciplina continua nos dados, mas não aparece na frente.
 - `paginas` é uma lista ordenada de blocos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - Se não houver `assinatura`, o renderer adiciona uma no fim.
-- O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; no piloto, `1 / 5`.
+- O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; em uma carta de 7 páginas, `1 / 7`.
 - A carta começa fechada. O carimbo de cera é o único botão: ao abrir, a folha sobe por trás dele, o envelope desliza para fora, o texto entra e a folha cresce até o palco. Não há giro 3D de página. Depois de aberta, ela não fecha de novo. Recarregar sem hash (ou `#/1`) volta ao envelope; recarregar `#/2+` reabre na página pedida.
 - Sem hash ou `#/1` começam fechados; `#/2` em diante abre direto na página pedida, com o envelope considerado aberto.
 - **Caminhos de imagem nos dados são relativos à raiz do site** (`assets/img/...`). `render-carta.js` prefixa `../../` nas páginas de homenageado. O editor prefixa `../` na prévia. O ZIP mantém os caminhos da raiz.
@@ -82,7 +82,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 
 - Servidor local: `python3 -m http.server 8000`.
 - Chrome headless via `puppeteer-core` em 390 × 844 e 1440 × 900.
-- Raiz, piloto, pelo menos um placeholder, editor e 404.
+- Raiz, pelo menos duas cartas reais, editor e 404.
 - Envelope fechado, quadro do meio da abertura (folha saindo por trás do carimbo) e página 1 aberta, em claro/escuro.
 - A transição entre páginas é fade-out, respiro curto e fade-in; o conteúdo antigo deve sumir antes do novo entrar, mas a folha do cartão não pode piscar nem desaparecer. O contador atualiza o número sem fazer fade.
 - Contador e setas ocultos fechado; visíveis e corretos depois. Setas `disabled` na primeira e na última página; sem círculos e sem barra de progresso.

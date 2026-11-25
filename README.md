@@ -2,7 +2,7 @@
 
 Base de um site estático em português para a Turma Ginga presentear os homenageados da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
-O conteúdo deste repositório é **de exemplo**, exceto o cartão do Samir, que é o primeiro conteúdo real adaptado do item “Alpha Edtech - Carta Afetiva: Samir” no Stitch. Os demais nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela Turma Ginga.
+O conteúdo deste repositório é **real**, adaptado dos itens “Carta Afetiva” do projeto Stitch da Turma Ginga. As 10 cartas são Nuricel, Cummins, Samir, Rogério, Kenji, Flávia, Luis, Mori, Marcotti e Zanetti. As imagens dos homenageados são ilustrações geradas por IA a partir dos briefs da turma; quando houver fotos reais, substitua os arquivos mantendo os mesmos caminhos.
 
 A home usa o símbolo da Turma Ginga no cartão da coleção e repete os três selos institucionais no rodapé (Ginga, Alpha EdTech e Cummins).
 
@@ -35,7 +35,7 @@ Abra:
 
 - Site: <http://localhost:8000/>
 - Editor: <http://localhost:8000/editor/>
-- Carta piloto: <http://localhost:8000/carta/homenageada-exemplo/>
+- Carta do Samir: <http://localhost:8000/carta/samir/>
 
 Não é preciso instalar nada. O servidor local evita restrições de `file://`, especialmente para o editor e para o ZIP.
 
@@ -54,9 +54,16 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 ├── AGENTS.md
 ├── LICENSES.md
 ├── carta/
-│   ├── homenageada-exemplo/index.html
+│   ├── nuricel/index.html
+│   ├── cummins/index.html
 │   ├── samir/index.html
-│   └── homenageado-01..07/index.html
+│   ├── rogerio/index.html
+│   ├── kenji/index.html
+│   ├── flavia/index.html
+│   ├── luis/index.html
+│   ├── mori/index.html
+│   ├── marcotti/index.html
+│   └── zanetti/index.html
 ├── editor/
 │   └── index.html              # editor não listado, noindex
 ├── assets/
@@ -121,11 +128,10 @@ O botão **Importar** aceita um `dados.js` exportado pelo editor ou um JSON com 
 ```js
 window.DADOS = [
   {
-    slug: "homenageada-exemplo",
-    nome: "Homenageada Exemplo",
-    disciplina: "Desenvolvimento Web",
-    acento: "azul", // automático
-    selo: "PE",     // opcional; sem ele, as iniciais vêm do nome
+    slug: "mori",
+    nome: "Mori",
+    disciplina: "Desenvolvimento de Software",
+    acento: "verde", // automático
     paginas: [
       { tipo: "texto", titulo: "Para começar", paragrafos: ["...", "..."] },
       { tipo: "foto", titulo: "Momentos", fotos: [{ src: "...", alt: "...", legenda: "..." }] },
@@ -140,7 +146,7 @@ window.DADOS = [
 Regras:
 
 - O envelope é gerado automaticamente. Ele não é um bloco de `paginas`.
-- O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: no piloto, `1 / 5`, não `1 / 6`.
+- O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: em uma carta de 7 páginas, `1 / 7`, não `1 / 8`.
 - O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
 - `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`. O editor o define automaticamente e não expõe o campo; cartões existentes mantêm o valor.
 - `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do homenageado. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
@@ -165,33 +171,34 @@ O editor pode adicionar uma entrada em `dados.js`, mas **não cria a página HTM
 1. Copie uma pasta existente:
 
 ```bash
-cp -r carta/homenageado-01 carta/homenageado-08
+cp -r carta/samir carta/novo-slug
 ```
 
-2. Em `carta/homenageado-08/index.html`, ajuste:
-   - `data-homenageado="homenageado-08"` no `<body>`;
+2. Em `carta/novo-slug/index.html`, ajuste:
+   - `data-homenageado="novo-slug"` no `<body>`;
    - `<title>`;
    - `meta name="description"`;
    - `og:title`, `og:description`, `og:url`;
    - `data-acento` (opcional): o acento é automático; se quiser evitar o flash antes do JS, copie o valor de `acento` do `dados.js`.
-3. No editor, clique em **Adicionar homenageado**, use o slug `homenageado-08` e edite o conteúdo.
-4. Exporte o ZIP e publique. O link será `/carta/homenageado-08/`.
+3. No editor, clique em **Adicionar homenageado**, use o slug `novo-slug` e edite o conteúdo.
+4. Exporte o ZIP e publique. O link será `/carta/novo-slug/`.
 
 Se o slug mudar, renomeie também a pasta e as meta tags. O editor avisa sobre isso.
 
-## Os 9 cartões desta base
+## As 10 cartas desta base
 
 | Cartão | Slug | Link |
 |---|---|---|
-| Homenageada Exemplo (piloto) | `homenageada-exemplo` | `/carta/homenageada-exemplo/` |
+| Nuricel | `nuricel` | `/carta/nuricel/` |
+| Cummins | `cummins` | `/carta/cummins/` |
 | Samir | `samir` | `/carta/samir/` |
-| Homenageado 01 | `homenageado-01` | `/carta/homenageado-01/` |
-| Homenageado 02 | `homenageado-02` | `/carta/homenageado-02/` |
-| Homenageado 03 | `homenageado-03` | `/carta/homenageado-03/` |
-| Homenageado 04 | `homenageado-04` | `/carta/homenageado-04/` |
-| Homenageado 05 | `homenageado-05` | `/carta/homenageado-05/` |
-| Homenageado 06 | `homenageado-06` | `/carta/homenageado-06/` |
-| Homenageado 07 | `homenageado-07` | `/carta/homenageado-07/` |
+| Rogério | `rogerio` | `/carta/rogerio/` |
+| Kenji | `kenji` | `/carta/kenji/` |
+| Flávia | `flavia` | `/carta/flavia/` |
+| Luis | `luis` | `/carta/luis/` |
+| Mori | `mori` | `/carta/mori/` |
+| Marcotti | `marcotti` | `/carta/marcotti/` |
+| Zanetti | `zanetti` | `/carta/zanetti/` |
 
 Os links antigos com `professor`/`professora` foram substituídos; compartilhe os links novos.
 
