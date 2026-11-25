@@ -200,6 +200,8 @@ Se o slug mudar, renomeie também a pasta e as meta tags. O editor avisa sobre i
 | Marcotti | `marcotti` | `/carta/marcotti/` |
 | Zanetti | `zanetti` | `/carta/zanetti/` |
 
+**Exceção:** Rogério tem 6 páginas e não tem página de foto. A única imagem disponível no Stitch era um print de perfil do LinkedIn, com botões e texto de interface; preferimos não publicar esse print. Quando houver uma foto real, adicione uma página `foto` e o arquivo em `assets/img/homenageados/rogerio/`.
+
 Os links antigos com `professor`/`professora` foram substituídos; compartilhe os links novos.
 
 No site publicado, os links completos ficam em:

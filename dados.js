@@ -27,9 +27,9 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "A escola",
+        "titulo": "O Instituto",
         "paragrafos": [
-          "O Instituto Alpha Lumen, que você preside desde 2013, nasceu para reconhecer potencial em estudantes de escolas públicas. Dele vieram o Science Days, as alianças com o mercado e uma cultura de colaboração e autonomia que chegou até a Alpha EdTech. Em 2026, mais de quarenta profissionais de software saem daqui — sabendo programar e entendendo que o conhecimento serve para transformar o ecossistema ao redor."
+          "O Instituto Alpha Lumen, que você preside desde 2013, nasceu para reconhecer potencial em estudantes de escolas públicas. Foi essa cultura de colaboração e autonomia que chegou até a Alpha EdTech e fez a turma acreditar que o lugar era nosso. Em 2026, mais de quarenta profissionais de software saem daqui — sabendo programar e entendendo que o conhecimento serve para transformar o ecossistema ao redor."
         ]
       },
       {
@@ -63,7 +63,7 @@ window.DADOS = [
       {
         "tipo": "citacao",
         "texto": "O verdadeiro impacto da tecnologia só existe quando ela é colocada a serviço da transformação social e do potencial humano.",
-        "autor": "Nuricel, sobre o propósito da Alpha"
+        "autor": "Síntese da presença de Nuricel na Alpha EdTech"
       },
       {
         "tipo": "assinatura",
@@ -98,7 +98,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "O que se multiplica",
         "paragrafos": [
-          "Levamos a excelência técnica que a formação exigiu e a certeza de que ela não para em nós. Quando alguém de casa vê o primeiro projeto rodando, o primeiro emprego chegando, a primeira renda ajudando no fim do mês, a vida muda para a família inteira — não só para quem assina o diploma.",
+          "Levamos a excelência técnica que a formação exigiu e a convicção de que ela não para em nós. Quando alguém de casa vê o primeiro projeto rodando, o primeiro emprego chegando, a primeira renda ajudando no fim do mês, a vida muda para a família inteira — não só para quem recebe o diploma.",
           "Ficou também o hábito de perguntar, testar e refazer. É discreto, mas é o que sustenta uma carreira."
         ]
       },
@@ -106,8 +106,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "O que desejamos",
         "paragrafos": [
-          "Desejamos que essa parceria continue encontrando quem ainda está do outro lado do rio, gente com talento e poucas chances de mostrar o que sabe. Que as próximas turmas entrem na mesma sala, com a mesma gratuidade, e saiam com as mesmas ferramentas na mão.",
-          "O nosso desejo é simples: que a porta siga aberta para outras turmas, com outros nomes, e que a chegada delas seja tão possível quanto a nossa foi."
+          "Desejamos que essa parceria continue encontrando quem ainda está do outro lado do rio, gente com talento e poucas chances de mostrar o que sabe. Que as próximas turmas entrem na mesma sala, com a mesma gratuidade, e que a porta siga aberta para outras, tão possível quanto foi para nós."
         ]
       },
       {
@@ -116,18 +115,8 @@ window.DADOS = [
         "fotos": [
           {
             "src": "assets/img/homenageados/cummins/foto-01.webp",
-            "alt": "Imagem ilustrativa gerada por IA: jovens em formação intensiva de software, em uma composição noturna com as marcas Cummins e Alpha EdTech.",
-            "legenda": "A formação intensiva em software."
-          },
-          {
-            "src": "assets/img/homenageados/cummins/foto-02.webp",
             "alt": "Imagem ilustrativa gerada por IA: equipe e formandos da Alpha EdTech reunidos com a bandeira da escola e troféus sobre a mesa.",
             "legenda": "A turma com a bandeira e os troféus."
-          },
-          {
-            "src": "assets/img/homenageados/cummins/foto-03.webp",
-            "alt": "Imagem ilustrativa gerada por IA: mosaico da formatura virtual das turmas da Alpha EdTech, com dezenas de participantes em chamada de vídeo.",
-            "legenda": "A formatura virtual das turmas."
           }
         ]
       },
@@ -153,7 +142,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Querido Samir",
         "paragrafos": [
-          "Durante os meses desta jornada na Alpha EdTech, aprendemos a admirar a engrenagem viva que faz o projeto acontecer. Enquanto os professores compartilhavam código, lógica e arquitetura, você era o alicerce silencioso que mantinha o chão firme sob nossos pés."
+          "Durante os meses desta formação na Alpha EdTech, aprendemos a reconhecer o trabalho que faz o projeto acontecer. Enquanto os professores compartilhavam código, lógica e arquitetura, você sustentava o chão sob nossos pés. Você estava nas conversas de corredor, nas telas e nos bastidores que ninguém vê, garantindo que cada detalhe chegasse ao lugar certo."
         ]
       },
       {
@@ -167,14 +156,14 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "O que fica",
         "paragrafos": [
-          "Obrigado pelas palavras nos corredores e nas telas, pelas noites de organização para que avaliações, mentorias e eventos acontecessem, e pela serenidade que nos lembrava de que todo obstáculo tinha solução."
+          "Obrigado pelas palavras nos corredores e nas telas, pelas noites de organização para que avaliações, mentorias e eventos acontecessem, e pela serenidade que nos lembrava de que todo obstáculo tinha solução. Obrigado por ouvir o que a turma trazia, mesmo quando o assunto não era operacional."
         ]
       },
       {
         "tipo": "texto",
         "titulo": "O que levamos",
         "paragrafos": [
-          "Levamos daqui um modelo de gestão humanizada e a certeza de que cuidar também é fazer acontecer. Aonde quer que a nossa carreira nos leve, haverá para sempre um traço do seu cuidado viabilizando nossos sonhos. Obrigado por acreditar que nenhuma trajetória fica para trás."
+          "Levamos daqui um modelo de gestão humanizada e a certeza de que cuidar também é fazer acontecer. Você nos mostrou que liderar é abrir espaço para que os outros cresçam. Aonde quer que a nossa carreira nos leve, haverá para sempre um traço do seu cuidado viabilizando nossos sonhos. Obrigado por acreditar que nenhuma trajetória fica para trás."
         ]
       },
       {
@@ -241,7 +230,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O que fica",
+        "titulo": "O que sustenta",
         "paragrafos": [
           "Levamos daqui a certeza de que tecnologia se faz com presença, apoio e colaboração. Não é só o código que roda: é alguém do outro lado, garantindo que ninguém fique parado por causa de um obstáculo.",
           "Obrigado por cuidar dos bastidores e por acreditar no nosso potencial mesmo quando tudo parecia travar. O que você sustenta não aparece no palco, mas acontece em cada aula."
@@ -269,7 +258,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Querido Kenji",
         "paragrafos": [
-          "Há professores que ensinam a escrever código e há quem ensine a pensar antes dele. Você fez as duas coisas. Na coordenação de hard skills, a régua alta nunca foi vaidade: era o jeito de dizer que a profissão que escolhemos exige preparo. Aprender com você foi descobrir que exigência e cuidado cabem na mesma frase, e que ser referência começa por não aceitar respostas pela metade."
+          "Ensinar a escrever código é uma coisa; ensinar a pensar antes dele é outra. Você fez as duas. Na coordenação de hard skills, a régua alta nunca foi vaidade: era o jeito de dizer que a profissão que escolhemos exige preparo. Aprender com você foi descobrir que exigência e cuidado cabem na mesma frase, e que ser referência começa por não aceitar respostas pela metade."
         ]
       },
       {
@@ -317,7 +306,7 @@ window.DADOS = [
       {
         "tipo": "citacao",
         "texto": "Ser professor dessa nova geração significa ser referência. Referência de valores, dos valores éticos e morais para o futuro.",
-        "autor": "Kenji, sobre ensinar"
+        "autor": "Síntese da presença de Kenji na Alpha EdTech"
       },
       {
         "tipo": "assinatura",
@@ -336,14 +325,14 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Querida Flávia",
         "paragrafos": [
-          "Antes de qualquer conteúdo, você chegava. Perguntava como estávamos, lembrava de um detalhe contado semanas antes, percebia quem tinha ficado quieto demais. A aula de soft skills começava ali, na conversa sem pressa que você abria, e só depois vinham o exercício, o slide, a pergunta difícil. Na Berim e na Maracá, aprendemos que escutar também é uma competência — talvez a primeira de todas."
+          "Antes de qualquer conteúdo, você chegava. Perguntava como estávamos e abria espaço para a conversa antes do exercício, do slide, da pergunta difícil. A aula de soft skills começava ali, na escuta atenta, e seguia quando a turma inteira já estava presente. Na nossa turma, aprendemos que escutar também é uma competência — talvez a primeira de todas."
         ]
       },
       {
         "tipo": "texto",
         "titulo": "A escuta",
         "paragrafos": [
-          "Você escutava sem pressa de responder. Fazia perguntas que abriam espaço, não que fechavam assunto, e a firmeza vinha junto com o acolhimento: não era preciso escolher entre ser gentil e ser honesta. Quando alguém confessava um medo, você não minimizava. A chama vinha do seu professor de Estatística, que ensinou inclusão, resiliência e paixão pela vida. Saíamos com a impressão de ter sido vistos por inteiro."
+          "Você escutava antes de responder. Fazia perguntas que abriam espaço, não que fechavam assunto, e a firmeza vinha junto com o acolhimento: não era preciso escolher entre ser gentil e ser honesta. Essa chama veio do seu professor de Estatística, que ensinou inclusão, resiliência e paixão pela vida. Saíamos com a impressão de ter sido vistos por inteiro."
         ]
       },
       {
@@ -357,7 +346,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Antes do código",
         "paragrafos": [
-          "A pergunta do cinema combina com você: o que acontece com uma tecnologia que precisa aprender com a realidade? A resposta é simples: ela aprende com quem está por perto. Você nos ensinou comunicação, inteligência emocional e coragem de mudar de ideia. A medida que levamos: antes do código, a pessoa. Que sua startup, o mestrado e o doutorado aconteçam, e que saibamos retribuir o orgulho que sente por nós."
+          "O cinema te fez a pergunta que combina com a sua aula: o que acontece com uma tecnologia que precisa aprender com a realidade? Ela aprende com quem está por perto. Obrigado por cada conversa em que a turma foi vista por inteiro. O que levamos: antes do código, a pessoa. Que sua startup, o mestrado e o doutorado aconteçam, e que saibamos retribuir o orgulho que sente por nós."
         ]
       },
       {
@@ -383,8 +372,8 @@ window.DADOS = [
       },
       {
         "tipo": "citacao",
-        "texto": "A possibilidade de ver e vibrar com o sucesso dos meus alunos.",
-        "autor": "Flávia, sobre o que a move"
+        "texto": "Obrigada por nos lembrar que o código mais complexo e mais valioso a ser cultivado é o coração humano.",
+        "autor": "Homenagem das turmas Berim & Maracá"
       },
       {
         "tipo": "assinatura",
@@ -411,23 +400,22 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "A paciência",
         "paragrafos": [
-          "Paciência, no seu caso, é uma forma de cuidado. Sentar junto era o método: você decifra o raciocínio devagar, acalma o desespero diante do erro vermelho e insiste sem humilhar. Nunca respondeu por nós: fez perguntas até que a lógica aparecesse. E, quando o cansaço batia, lembrava que todo desenvolvedor nasce da persistência e da empatia. A gente respirava e tentava de novo."
+          "Paciência, no seu caso, é cuidado. Sentar junto era o método: você decifra o raciocínio devagar, acalma o desespero diante do erro vermelho e insiste com respeito. Nunca respondeu por nós: fez perguntas até que a lógica aparecesse. E, quando o cansaço batia, lembrava que todo grande desenvolvedor nasce da persistência e da empatia. A gente respirava e tentava de novo."
         ]
       },
       {
         "tipo": "texto",
         "titulo": "A família",
         "paragrafos": [
-          "De Limoeiro do Norte você trouxe a simplicidade de quem sabe receber. A família aparece no jeito de cuidar e nas filhas que atravessam suas histórias.",
-          "Fortnite com os amigos de longa data, Iron Maiden e Metallica para embalar o foco, o Corinthians na teimosia de quem acredita até o fim. Entre uma partida e um solo de guitarra, você ensina que tecnologia ganha alma quando é feita com coração."
+          "A paternidade aparece no seu jeito de cuidar: as filhas entram nas histórias, e você conta que foi pai que preencheu lacunas do passado. Nas horas livres, Fortnite com os amigos de longa data e Iron Maiden ou Metallica para embalar o foco. O Corinthians fica para os dias de teimosia. Entre uma partida e um solo de guitarra, o cuidado que você leva para a sala fica evidente."
         ]
       },
       {
         "tipo": "texto",
         "titulo": "O caminho de volta",
         "paragrafos": [
-          "Você já esteve exatamente onde estamos. Foi aspirante na Alpha EdTech, sentiu na pele as mesmas incertezas e o peso do recomeço. Ver você hoje como professor e arquiteto de software prova, na prática, que o caminho é real e possível.",
-          "É isso que fica: a prova de que dá para chegar lá. Obrigado por voltar, puxar uma cadeira e segurar a mão de quem vem depois."
+          "Poucos professores podem dizer que já estiveram nesta cadeira. Você pode. Foi aspirante na Alpha EdTech e sentiu as mesmas incertezas e o peso do recomeço. Ver você hoje como professor e arquiteto de software prova que o caminho é real e possível.",
+          "É isso que fica: a prova de que dá para chegar lá. Obrigado por voltar e segurar a mão de quem vem depois."
         ]
       },
       {
@@ -471,7 +459,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "A calma",
         "paragrafos": [
-          "Programar é conviver com o erro. Foi vendo você diante dos nossos bugs que aprendemos a diferença entre travar e respirar. Você lia o código, escutava a dúvida e explicava de novo — quantas vezes precisasse. Sem ironia, sem pressa, sem diminuir ninguém.",
+          "Programar é conviver com o erro. Foi vendo você diante dos nossos bugs que aprendemos a diferença entre travar e respirar. Você lia o código, escutava a dúvida e explicava outra vez, com a mesma paciência. Sem ironia, sem atropelo, sem diminuir ninguém.",
           "Essa paciência virou método. Hoje, quando algo não funciona, a gente respira antes de tentar de novo."
         ]
       },
@@ -479,7 +467,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "A casa",
         "paragrafos": [
-          "Você nasceu em São Bernardo do Campo e hoje vive em Juazeiro do Norte. O melhor do tempo livre tem nome: a esposa, os filhos, um anime, uma faixa d'O Grilo. Você fala disso sem pressa, com o mesmo carinho com que explica uma função.",
+          "Você nasceu em São Bernardo do Campo e hoje vive em Juazeiro do Norte. O melhor do tempo livre tem nome: a esposa, os filhos, um anime, uma música d'O Grilo. Você fala disso sem pressa, com o mesmo carinho com que explica uma função.",
           "São detalhes que não entram no código, mas dizem muito sobre você. É bom saber que a calma que você ensina mora também em casa."
         ]
       },
@@ -487,8 +475,8 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "A volta",
         "paragrafos": [
-          "Você já esteve do lado de cá. Foi aspirante na Alpha EdTech e conhece o peso de um primeiro projeto, a insegurança de um código que não roda, o tamanho de cada recomeço. Voltou como professor para ajudar as novas gerações e ver o programa crescer.",
-          "Obrigado por mostrar que o caminho de volta também é uma forma de ensinar. A Alpha cresce porque existe gente como você, que fica."
+          "Você conhece o caminho por dentro. Foi aspirante na Alpha EdTech e sabe o peso de um primeiro projeto, a insegurança de um código que não roda, o tamanho de cada recomeço. Voltou como professor para ajudar as novas gerações e ver o programa crescer.",
+          "Obrigado por mostrar que a volta também ensina. A Alpha cresce porque existe gente como você, que fica."
         ]
       },
       {
@@ -504,11 +492,6 @@ window.DADOS = [
             "src": "assets/img/homenageados/mori/foto-02.webp",
             "alt": "Imagem ilustrativa gerada por IA: Mori sentado com o filho ao lado e a filha no colo, em um retrato em preto e branco.",
             "legenda": "Com os filhos."
-          },
-          {
-            "src": "assets/img/homenageados/mori/foto-03.webp",
-            "alt": "Imagem ilustrativa gerada por IA: Mori e a esposa sentados juntos, encostados, em uma sala com árvores de Natal.",
-            "legenda": "Mori e a esposa."
           }
         ]
       },
@@ -534,8 +517,8 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Querido Marcotti",
         "paragrafos": [
-          "O código era só o começo. Antes da sintaxe vinha a calma de quem já viu muitos erros e sabe que nenhum é o fim do mundo. O senhor nos ensinou que dominar Python não é decorar comandos: é pensar com clareza e tratar cada erro com paciência.",
-          "Foi assim que sua presença virou referência. Não pelo volume da voz, mas pela segurança de quem explica de novo, quantas vezes precisar."
+          "O código era só o começo. Antes da sintaxe vinha a serenidade de quem já viu muitos erros e sabe que nenhum é o fim do mundo. O senhor nos ensinou que dominar Python não é decorar comandos: é pensar com clareza e tratar cada erro com paciência.",
+          "Foi assim que sua presença virou referência. Não pelo volume da voz, mas pela segurança de quem explica outra vez, sem medir esforço."
         ]
       },
       {
@@ -550,7 +533,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "O avô",
         "paragrafos": [
-          "Foi numa conversa qualquer que o time mudou: era Palmeiras, até o netinho chegar corintiano e virar a casa. Contou rindo, do mesmo jeito tranquilo com que fala do rádio na Jovem Pan e das viagens a São José, Jacareí e Taubaté.",
+          "Foi numa conversa qualquer que o coração mudou: era Palmeiras, até o netinho chegar corintiano e virar a casa. Contou rindo, do mesmo jeito tranquilo com que fala do rádio do carro, sempre na Jovem Pan, e das viagens a São José, Jacareí e Taubaté.",
           "Há também o “Perfume de Mulher” e a piada sobre olfato e daltonismo — um humor seco, que aparece de repente e explica o “Garfield” que o senhor diz ser."
         ]
       },
@@ -559,7 +542,7 @@ window.DADOS = [
         "titulo": "Depois dos títulos",
         "paragrafos": [
           "O que fica não cabe num diploma. Fica a vontade de seguir aprendendo depois dos títulos, e a frase que o senhor repete: se parar, não vai saber mais nada; é preciso correr atrás da garotada.",
-          "A turma corre. Leva daqui a serenidade diante do bug, o cuidado com quem está começando e a certeza de que ensinar é uma forma de permanecer. Obrigado por nos acompanhar de igual para igual, professor."
+          "A turma corre. Leva daqui a serenidade diante do bug, o cuidado com quem está começando e a convicção de que ensinar é permanecer. Obrigado por nos acompanhar de igual para igual, professor."
         ]
       },
       {
@@ -570,16 +553,6 @@ window.DADOS = [
             "src": "assets/img/homenageados/marcotti/foto-01.webp",
             "alt": "Imagem ilustrativa gerada por IA: Marcotti e a família reunidos em frente à estátua do Pequeno Príncipe, em um museu.",
             "legenda": "Com a família, no museu."
-          },
-          {
-            "src": "assets/img/homenageados/marcotti/foto-02.webp",
-            "alt": "Imagem ilustrativa gerada por IA: Marcotti criança sentado ao lado de um rádio antigo, em uma fotografia de álbum de família.",
-            "legenda": "O rádio desde cedo."
-          },
-          {
-            "src": "assets/img/homenageados/marcotti/foto-03.webp",
-            "alt": "Imagem ilustrativa gerada por IA: Marcotti em uma festa de família, com um balão vermelho diante do rosto.",
-            "legenda": "A festa em família."
           }
         ]
       },
@@ -618,7 +591,7 @@ window.DADOS = [
       },
       {
         "tipo": "texto",
-        "titulo": "O loop",
+        "titulo": "O ciclo",
         "paragrafos": [
           "O que mais te move em sala é a nossa motivação, e isso cria um ciclo difícil de explicar: quanto mais você se empolga, mais a gente quer aprender. Entre uma referência de anime, uma conversa sobre jogos e uma maratona cyberpunk, você lembrava que tecnologia também é cultura, repertório e prazer. O samba e o rap que você carrega davam o ritmo desse jeito de ensinar."
         ]
@@ -628,7 +601,7 @@ window.DADOS = [
         "titulo": "De aspirante a mestre",
         "paragrafos": [
           "De ex-aspirante Dev a mestre de IA, você mostra na prática que o conhecimento só cresce quando volta. A Alpha foi o seu começo e também é o lugar onde você escolheu devolver o que sabe.",
-          "Ter o Kenji como líder e mestre deixou marcas que hoje aparecem no seu jeito de conduzir a turma: pensar além do óbvio e não ter medo de experimentar. É esse ciclo que a gente quer continuar."
+          "Ter o Kenji como líder e mestre marcou seu jeito de conduzir a turma: pensar além do óbvio e experimentar sem medo. Obrigado por voltar e fazer esse ciclo continuar."
         ]
       },
       {
