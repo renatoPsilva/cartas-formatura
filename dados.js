@@ -98,7 +98,67 @@ window.DADOS = [
     "nome": "Kenji",
     "disciplina": "Coordenação de Hard Skills",
     "acento": "seal",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Querido Kenji",
+        "paragrafos": [
+          "Há professores que ensinam a escrever código e há quem ensine a pensar antes dele. Você fez as duas coisas. Na coordenação de hard skills, a régua alta nunca foi vaidade: era o jeito de dizer que a profissão que escolhemos exige preparo. Aprender com você foi descobrir que exigência e cuidado cabem na mesma frase, e que ser referência começa por não aceitar respostas pela metade."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "Os porquês",
+        "paragrafos": [
+          "A pergunta vinha logo depois da nossa resposta. E outra depois dela. No começo, parecia teste; com o tempo, entendemos que era método. Você queria o fundamento, não o atalho, e nos tirava da zona de conforto com uma paciência que ninguém via. De tanto explicar o porquê, aprendemos a desconfiar da resposta fácil e a procurar a origem das coisas. Isso vale para um sistema e para a vida."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O cafezinho",
+        "paragrafos": [
+          "Em algum intervalo entre códigos e refatorações, a tela se fechava e a conversa abria. O cafezinho com o Kenji era o lugar onde assuntos plurais entravam na aula: o país, o trabalho, o que faríamos com a oportunidade que recebemos. Você nos lembrava de que aprender na Alpha EdTech só faz sentido se virar impacto para alguém. Saíamos mais atentos ao mundo — e com a sensação de ter sido ouvidos."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O que fica",
+        "paragrafos": [
+          "Fica a ética antes do atalho, o método antes da pressa e a coragem de perguntar até entender. Fica a sua régua: a de quem forma arquitetos, não apenas programadores. Vamos levar o hábito de buscar o fundamento e de tratar as pessoas com o mesmo cuidado que dedicamos ao código. Obrigado por não nos deixar acomodar. A exigência que hoje reconhecemos como cuidado seguirá conosco."
+        ]
+      },
+      {
+        "tipo": "foto",
+        "titulo": "Registros",
+        "fotos": [
+          {
+            "src": "assets/img/homenageados/kenji/foto-01.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Kenji em frente ao painel de boas-vindas do Clube dos Sonhos, do Instituto Alpha Lumen.",
+            "legenda": "No Clube dos Sonhos, do Instituto Alpha Lumen."
+          },
+          {
+            "src": "assets/img/homenageados/kenji/foto-02.webp",
+            "alt": "Imagem ilustrativa gerada por IA: a comunidade da Alpha EdTech reunida com a bandeira oficial.",
+            "legenda": "A comunidade da Alpha EdTech."
+          },
+          {
+            "src": "assets/img/homenageados/kenji/foto-03.webp",
+            "alt": "Imagem ilustrativa gerada por IA: equipe e alunos na fachada do Instituto Alpha Lumen.",
+            "legenda": "Na fachada do Instituto Alpha Lumen."
+          }
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "Ser professor dessa nova geração significa ser referência. Referência de valores, dos valores éticos e morais para o futuro.",
+        "autor": "Kenji, sobre ensinar"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   },
   {
     "slug": "flavia",
@@ -303,13 +363,129 @@ window.DADOS = [
     "nome": "Marcotti",
     "disciplina": "Python & Engenharia de Software",
     "acento": "ameixa",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Querido Marcotti",
+        "paragrafos": [
+          "O código era só o começo. Antes da sintaxe vinha a calma de quem já viu muitos erros e sabe que nenhum é o fim do mundo. O senhor nos ensinou que dominar Python não é decorar comandos: é pensar com clareza e tratar cada erro com paciência.",
+          "Foi assim que sua presença virou referência. Não pelo volume da voz, mas pela segurança de quem explica de novo, quantas vezes precisar."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O mestre",
+        "paragrafos": [
+          "Em cada revisão de código, a lição vinha antes da correção: nomes que dizem o que fazem, funções que cabem na mão, lógica que outra pessoa consegue ler. O senhor ensina engenharia como quem arruma uma casa: sem pressa, sem excesso, cada coisa no lugar.",
+          "E faz isso com títulos e experiência que não aparecem no tom. A humildade é o que torna a sua autoridade fácil de seguir."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O avô",
+        "paragrafos": [
+          "Foi numa conversa qualquer que o time mudou: era Palmeiras, até o netinho chegar corintiano e virar a casa. Contou rindo, do mesmo jeito tranquilo com que fala do rádio na Jovem Pan e das viagens a São José, Jacareí e Taubaté.",
+          "Há também o “Perfume de Mulher” e a piada sobre olfato e daltonismo — um humor seco, que aparece de repente e explica o “Garfield” que o senhor diz ser."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O que fica",
+        "paragrafos": [
+          "O que fica não cabe num diploma. Fica a vontade de seguir aprendendo depois dos títulos, e a frase que o senhor repete: se parar, não vai saber mais nada; é preciso correr atrás da garotada.",
+          "A turma corre. Leva daqui a serenidade diante do bug, o cuidado com quem está começando e a certeza de que ensinar é uma forma de permanecer. Obrigado por nos acompanhar de igual para igual, professor."
+        ]
+      },
+      {
+        "tipo": "foto",
+        "titulo": "Registros",
+        "fotos": [
+          {
+            "src": "assets/img/homenageados/marcotti/foto-01.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Marcotti e a família reunidos em frente à estátua do Pequeno Príncipe, em um museu.",
+            "legenda": "Com a família, no museu."
+          },
+          {
+            "src": "assets/img/homenageados/marcotti/foto-02.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Marcotti criança sentado ao lado de um rádio antigo, em uma fotografia de álbum de família.",
+            "legenda": "O rádio desde cedo."
+          },
+          {
+            "src": "assets/img/homenageados/marcotti/foto-03.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Marcotti em uma festa de família, com um balão vermelho diante do rosto.",
+            "legenda": "A festa em família."
+          }
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "Se parar não vou saber mais nada, tenho que correr atrás dessa garotada.",
+        "autor": "Marcotti"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   },
   {
     "slug": "zanetti",
     "nome": "Zanetti",
     "disciplina": "IA Agêntica",
     "acento": "seal",
-    "paginas": []
+    "paginas": [
+      {
+        "tipo": "texto",
+        "titulo": "Querido Zanetti",
+        "paragrafos": [
+          "Você voltou à Alpha como mestre de IA, mas trouxe junto a história de quem já foi aspirante Dev da casa. Ver essa trajetória de perto mudou o nosso jeito de olhar o futuro: ele deixou de ser distante e passou a ter o seu rosto.",
+          "Com a sua mente rápida e o humor de quem já colocou vários agentes para rodar e saiu com a roupa do avesso, você transformou conceitos densos em algo fascinante e acessível."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "Código vivo",
+        "paragrafos": [
+          "Você nos ensinou que programar não é empilhar comandos, mas cuidar de organismos que precisam resolver problemas reais. Entre arquiteturas agênticas e experimentos que nem sempre davam certo, aprendemos a pensar fora da caixa com rigor e coragem. O futuro da programação já estava ali, e você fez questão de que a gente entrasse nele de olhos abertos."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "O loop",
+        "paragrafos": [
+          "O que mais te move em sala é a nossa motivação, e isso cria um ciclo difícil de explicar: quanto mais você se empolga, mais a gente quer aprender. Entre uma referência de anime, uma conversa sobre jogos e uma maratona cyberpunk, você lembrava que tecnologia também é cultura, repertório e prazer. O samba e o rap que você carrega davam o ritmo desse jeito de ensinar."
+        ]
+      },
+      {
+        "tipo": "texto",
+        "titulo": "De aspirante a mestre",
+        "paragrafos": [
+          "De ex-aspirante Dev a mestre de IA, você mostra na prática que o conhecimento só cresce quando volta. A Alpha foi o seu começo e também é o lugar onde você escolheu devolver o que sabe.",
+          "Ter o Kenji como líder e mestre deixou marcas que hoje aparecem no seu jeito de conduzir a turma: pensar além do óbvio e não ter medo de experimentar. É esse ciclo que a gente quer continuar."
+        ]
+      },
+      {
+        "tipo": "foto",
+        "titulo": "Registros",
+        "fotos": [
+          {
+            "src": "assets/img/homenageados/zanetti/foto-01.webp",
+            "alt": "Imagem ilustrativa gerada por IA: Zanetti sentado em uma pedra diante de uma cachoeira, em meio à natureza.",
+            "legenda": "Zanetti em um momento zen diante da cachoeira."
+          }
+        ]
+      },
+      {
+        "tipo": "citacao",
+        "texto": "O que mais me motiva é ver a motivação dos alunos, um ciclo que se retroalimenta.",
+        "autor": "Zanetti"
+      },
+      {
+        "tipo": "assinatura",
+        "texto": "Com admiração, Turma Ginga",
+        "ano": "2026"
+      }
+    ]
   }
 ];
