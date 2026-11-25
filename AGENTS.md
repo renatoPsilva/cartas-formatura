@@ -19,7 +19,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - `.nojekyll` na raiz.
 - Site em pt-BR; `lang="pt-BR"` em todas as páginas.
 - Todas as páginas com `noindex, nofollow`. `robots.txt` com `Disallow: /`.
-- Sem dados reais de homenageados. Nomes, disciplinas e imagens são placeholders.
+- Sem dados reais de homenageados, exceto o cartão `samir`, cujo conteúdo foi aprovado a partir do item “Alpha Edtech - Carta Afetiva: Samir” no Stitch. Os demais nomes, disciplinas e imagens são placeholders.
 - Sem lista pública de homenageados na raiz.
 - Sem confete, glitter, autoplay, música automática ou clichês de formatura. O único dourado é o carimbo de cera do envelope; não use ouro em nenhum outro elemento.
 

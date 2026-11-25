@@ -2,7 +2,7 @@
 
 Base de um site estático em português para a Turma Ginga presentear os homenageados da **Alpha EdTech** com cartões de gratidão personalizados, acessados por links individuais.
 
-O conteúdo deste repositório é **de exemplo**. Nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela Turma Ginga.
+O conteúdo deste repositório é **de exemplo**, exceto o cartão do Samir, que é o primeiro conteúdo real adaptado do item “Alpha Edtech - Carta Afetiva: Samir” no Stitch. Os demais nomes, disciplinas, textos e imagens são placeholders e devem ser substituídos pela Turma Ginga.
 
 A home usa o símbolo da Turma Ginga no cartão da coleção e repete os três selos institucionais no rodapé (Ginga, Alpha EdTech e Cummins).
 
@@ -55,6 +55,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 ├── LICENSES.md
 ├── carta/
 │   ├── homenageada-exemplo/index.html
+│   ├── samir/index.html
 │   └── homenageado-01..07/index.html
 ├── editor/
 │   └── index.html              # editor não listado, noindex
@@ -178,11 +179,12 @@ cp -r carta/homenageado-01 carta/homenageado-08
 
 Se o slug mudar, renomeie também a pasta e as meta tags. O editor avisa sobre isso.
 
-## Os 8 cartões desta base
+## Os 9 cartões desta base
 
 | Cartão | Slug | Link |
 |---|---|---|
 | Homenageada Exemplo (piloto) | `homenageada-exemplo` | `/carta/homenageada-exemplo/` |
+| Samir | `samir` | `/carta/samir/` |
 | Homenageado 01 | `homenageado-01` | `/carta/homenageado-01/` |
 | Homenageado 02 | `homenageado-02` | `/carta/homenageado-02/` |
 | Homenageado 03 | `homenageado-03` | `/carta/homenageado-03/` |
