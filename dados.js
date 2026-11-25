@@ -586,7 +586,7 @@ window.DADOS = [
         "tipo": "texto",
         "titulo": "Código vivo",
         "paragrafos": [
-          "Você nos ensinou que programar não é empilhar comandos, mas cuidar de organismos que precisam resolver problemas reais. Entre arquiteturas agênticas e experimentos que nem sempre davam certo, aprendemos a pensar fora da caixa com rigor e coragem. O futuro da programação já estava ali, e você fez questão de que a gente entrasse nele de olhos abertos."
+          "Você nos ensinou que programar não é empilhar comandos, mas cuidar de organismos que precisam resolver problemas reais. Entre arquiteturas agênticas e experimentos que nem sempre davam certo, aprendemos a pensar por conta própria com rigor e coragem. O futuro da programação já estava ali, e você fez questão de que a gente entrasse nele de olhos abertos."
         ]
       },
       {
@@ -611,7 +611,7 @@ window.DADOS = [
           {
             "src": "assets/img/homenageados/zanetti/foto-01.webp",
             "alt": "Imagem ilustrativa gerada por IA: Zanetti sentado em uma pedra diante de uma cachoeira, em meio à natureza.",
-            "legenda": "Zanetti em um momento zen diante da cachoeira."
+            "legenda": "Zanetti diante da cachoeira."
           }
         ]
       },
