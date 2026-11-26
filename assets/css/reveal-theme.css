@@ -111,34 +111,149 @@ html[data-theme="dark"] .card::after {
 }
 
 .envelope__selos {
-  position: relative;
+  position: absolute;
+  top: 36px;
+  right: 60px;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
-  gap: 18px;
-  flex: 0 0 auto;
-  padding-top: 18px;
+  gap: 16px;
 }
 
+/* Selo postal: papel creme perfurado com um campo de cor vintage.
+   A máscara fica só no papel; a logo não é recortada. */
 .envelope__selo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  --stamp-inset: 7px;
+  --stamp-hole: 3.6px;
+  --stamp-pitch: 13px;
+  --stamp-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  --stamp-mask:
+    radial-gradient(
+        circle at 50% 0,
+        transparent var(--stamp-hole),
+        #000 calc(var(--stamp-hole) + 0.5px)
+      )
+      top / var(--stamp-pitch) 100% repeat-x,
+    radial-gradient(
+        circle at 50% 100%,
+        transparent var(--stamp-hole),
+        #000 calc(var(--stamp-hole) + 0.5px)
+      )
+      bottom / var(--stamp-pitch) 100% repeat-x,
+    radial-gradient(
+        circle at 0 50%,
+        transparent var(--stamp-hole),
+        #000 calc(var(--stamp-hole) + 0.5px)
+      )
+      left / 100% var(--stamp-pitch) repeat-y,
+    radial-gradient(
+        circle at 100% 50%,
+        transparent var(--stamp-hole),
+        #000 calc(var(--stamp-hole) + 0.5px)
+      )
+      right / 100% var(--stamp-pitch) repeat-y;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 100px;
+  flex: 0 0 auto;
+}
+
+.envelope__selo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--stamp-paper);
+  background-image: var(--stamp-grain);
+  background-size: 110px 110px;
+  background-blend-mode: soft-light;
+  -webkit-mask: var(--stamp-mask);
+  -webkit-mask-composite: source-in;
+  mask: var(--stamp-mask);
+  mask-composite: intersect;
+}
+
+.envelope__selo::after {
+  content: "";
+  position: absolute;
+  inset: var(--stamp-inset);
+  z-index: 1;
+  background: var(--stamp-field, var(--stamp-verde));
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--stamp-ink) 24%, transparent);
+}
+
+/* Grão de papel e meio-tom sobre o campo de cor e a marca. */
+.envelope__selo-textura {
+  position: absolute;
+  inset: var(--stamp-inset);
+  z-index: 3;
+  pointer-events: none;
+  background-image: var(--stamp-grain),
+    radial-gradient(
+      circle at 50% 50%,
+      rgb(16 30 32 / 26%) 0.5px,
+      transparent 0.8px
+    );
+  background-size: 100px 100px, 3px 3px;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
 }
 
 .envelope__selo[hidden] {
   display: none;
 }
 
+.envelope__selo--verde {
+  --stamp-field: var(--stamp-verde);
+}
+
+.envelope__selo--azul {
+  --stamp-field: var(--stamp-azul);
+}
+
+.envelope__selo--terra {
+  --stamp-field: var(--stamp-terra);
+}
+
+.envelope__selo picture {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .envelope__selo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 52px;
+  max-width: 72%;
+  max-height: 68%;
   object-fit: contain;
   filter: brightness(0) invert(1);
-  opacity: 0.7;
+  opacity: 0.92;
+  transform: translate(-50%, -50%);
+}
+
+.envelope__selo--ginga img {
+  max-width: 70%;
+  max-height: 68%;
+}
+
+.envelope__selo--alpha img {
+  max-width: 60%;
+  max-height: 66%;
+}
+
+.envelope__selo--cummins img {
+  max-width: 70%;
+  max-height: 60%;
 }
 
 /* --------------------------------------------------------------------------
@@ -827,12 +942,14 @@ html[data-theme="dark"] .assinatura__ginga img {
   }
 
   .envelope__selos {
-    gap: 22px;
-    padding-top: 22px;
+    gap: 18px;
   }
 
-  .envelope__selo img {
-    max-height: 64px;
+  .envelope__selo {
+    --stamp-hole: 4px;
+    --stamp-pitch: 14px;
+    width: 88px;
+    height: 110px;
   }
 
   .envelope__address {
@@ -957,12 +1074,14 @@ html[data-theme="dark"] .assinatura__ginga img {
   }
 
   .envelope__selos {
-    gap: 26px;
-    padding-top: 24px;
+    gap: 20px;
   }
 
-  .envelope__selo img {
-    max-height: 74px;
+  .envelope__selo {
+    --stamp-hole: 4.2px;
+    --stamp-pitch: 14.5px;
+    width: 92px;
+    height: 116px;
   }
 
   .envelope__address {

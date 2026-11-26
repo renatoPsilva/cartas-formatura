@@ -1,5 +1,7 @@
 # Plano de implementação — Cartões de Gratidão
 
+> **Revisão (26/nov/2026):** os três selos institucionais do envelope viram **selos postais** de papel creme perfurado, com campo de cor vintage (verde, azul e terracota), a marca centralizada em creme e textura de grão/meio-tom em CSS, no **canto superior direito**. O tratamento existe só no envelope; a home e a assinatura seguem monocromáticas. Carimbo de correio e outros props de scrapbook continuam proibidos. Esta revisão substitui a posição e o tratamento dos três selos nas notas anteriores.
+
 > **Revisão (25/nov/2026):** os 8 placeholders e a carta piloto foram removidos. O site passa a ter **10 cartas reais**, adaptadas dos itens “Carta Afetiva” do projeto Stitch da Turma Ginga: Nuricel, Cummins, Samir, Rogério, Kenji, Flávia, Luis, Mori, Marcotti e Zanetti. O Stitch é fonte de conteúdo, não de layout: o visual continua o envelope + folha descrito neste plano. As imagens dos homenageados são ilustrações geradas por IA, com aviso no alt. As cartas usam 6–7 páginas: abertura, o traço, além da aula, o que fica, foto, citação e assinatura “Com admiração, Turma Ginga” (2026). Rogério tem 6 páginas e não tem foto, porque a única imagem do Stitch era um print de perfil; adicione uma foto real quando houver. As menções a placeholders, piloto e `homenageado-01..07` abaixo estão superadas por esta revisão.
 
 > **Revisão (25/nov/2026):** o retrato opcional foi removido do envelope, do modelo de dados, do renderer e do editor. O envelope passa a ter apenas nome, três selos, carimbo e fio de acento. No editor, acento e selo deixam de ser editáveis: cartões existentes mantêm os valores e cartões novos recebem acento automático e iniciais derivadas do nome. Também trocamos o termo “professor” por “homenageado” na interface, nos slugs, nas pastas, nos caminhos de imagem e nas meta tags; os links publicados mudaram. Esta revisão substitui as menções a retrato abaixo.
@@ -151,7 +153,7 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 
 - Cartão horizontal, base de design **1160×820**. Ver a nota de revisão no topo.
 - Fundo pedra; cartão centralizado com borda fina, sombra suave e textura de papel discreta.
-- **Envelope:** nome, três selos no canto inferior direito, carimbo de cera, fio de acento. Sem disciplina, marca, retrato ou rodapé na frente. O envelope é o estado fechado da página 1; o carimbo é o único botão.
+- **Envelope:** nome, três selos postais no canto superior direito, carimbo de cera, fio de acento. Sem disciplina, marca, retrato ou rodapé na frente. O envelope é o estado fechado da página 1; o carimbo é o único botão.
 - **Página de texto:** só o conteúdo. Título opcional. Nenhum carimbo, moldura, nota de margem ou enfeite. O contador fica **fora** do cartão; o par de setas fica dentro, no canto inferior direito.
 - **Página de foto:** 1–3 imagens com legenda, layout limpo. Sem fita adesiva, polaroid ou scrapbook.
 - **Página de recados:** mensagens curtas com autor, em lista ou blocos discretos.
@@ -173,7 +175,7 @@ O acento aparece no fio curto sob o nome e em linhas finas do interior. No envel
 
 ### 5.6 Revisão contra clichês
 
-Evitar: papel creme + serifa de banco + terracota; cartões SaaS com sombra genérica; scrapbook postal (selo postal, carimbo de correio, fita, kraft, papel rasgado); confete; dourado fora do carimbo de cera; autoplay. A identidade vem da tipografia Fraunces, do cartão limpo, do envelope com carimbo de cera, do selo tipográfico e do acento por homenageado. Usar a skill `frontend-design` e tirar screenshots para se autocriticar.
+Evitar: papel creme + serifa de banco + terracota; cartões SaaS com sombra genérica; scrapbook postal (carimbo de correio, fita, kraft, papel rasgado — selo postal só nos três selos do envelope); confete; dourado fora do carimbo de cera; autoplay. A identidade vem da tipografia Fraunces, do cartão limpo, do envelope com carimbo de cera, do selo tipográfico e do acento por homenageado. Usar a skill `frontend-design` e tirar screenshots para se autocriticar.
 
 ## 6. Modelo de dados
 
@@ -201,7 +203,7 @@ window.DADOS = [
 
 Regras:
 
-- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos fixos; o envelope não tem retrato. A `disciplina` continua nos metadados, mas não aparece na frente.
+- O **envelope é automático** (não é um bloco de `paginas`). Ele usa `nome`, `acento`, `selo` e os três selos postais fixos; o envelope não tem retrato. A `disciplina` continua nos metadados, mas não aparece na frente.
 - `paginas` é uma lista aberta de blocos internos. Tipos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - O renderer monta: a página 1 com o envelope por cima (estado fechado) e mais um slide por bloco seguinte. Se não houver `assinatura`, adicionar uma assinatura padrão no fim. O envelope não é um slide separado.
 - Se uma foto estiver faltando, mostrar um placeholder discreto.
@@ -225,7 +227,7 @@ Regras:
 - Parágrafo curto explicando o intuito: uma coleção de cartas da Turma Ginga; cada homenageado recebeu um link próprio.
 - Nenhuma lista de homenageados.
 - Toggle de tema.
-- Visual com o símbolo da Turma Ginga no cartão da coleção e os três selos no rodapé, usando os tokens.
+- Visual com o símbolo da Turma Ginga no cartão da coleção e as três marcas no rodapé, em monocromático, usando os tokens.
 - `noindex`.
 
 ### Páginas de homenageado
@@ -335,7 +337,7 @@ Incluir convenções:
 - Ler `.opencode/skills/frontend-design/SKILL.md` antes de mudanças visuais.
 - Stack: HTML/CSS/JS puro; sem frameworks; sem build; sem CDN em runtime.
 - Caminhos relativos.
-- Cartões: envelope com identidade (nome, três selos, carimbo de cera, fio de acento, sem disciplina, marca ou rodapé); interior de texto limpo.
+- Cartões: envelope com identidade (nome, três selos postais no canto superior direito, carimbo de cera, fio de acento, sem disciplina, marca ou rodapé); interior de texto limpo.
 - Dados em `dados.js` (`window.DADOS`).
 - Testar claro/escuro, mobile, teclado e `prefers-reduced-motion`.
 - Não usar dados reais de homenageados.

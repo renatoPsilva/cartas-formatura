@@ -4,9 +4,9 @@ Base de um site estático em português para a Turma Ginga presentear os homenag
 
 O conteúdo deste repositório é **real**, adaptado dos itens “Carta Afetiva” do projeto Stitch da Turma Ginga. As 10 cartas são Nuricel, Cummins, Samir, Rogério, Kenji, Flávia, Luis, Mori, Marcotti e Zanetti. As imagens dos homenageados são ilustrações geradas por IA a partir dos briefs da turma; quando houver fotos reais, substitua os arquivos mantendo os mesmos caminhos.
 
-A home usa o símbolo da Turma Ginga no cartão da coleção e repete os três selos institucionais no rodapé (Ginga, Alpha EdTech e Cummins).
+A home usa o símbolo da Turma Ginga no cartão da coleção e repete as três marcas institucionais no rodapé (Ginga, Alpha EdTech e Cummins), em monocromático. O tratamento de selo postal existe só no envelope.
 
-Cada carta é um cartão horizontal de 1160 × 820. Ela começa fechada dentro de um envelope verde com um carimbo de cera dourado; o carimbo é o único botão e, ao abrir, a folha sobe por trás dele e o envelope sai de cena. O envelope não conta como página e a carta não fecha de novo — para voltar ao envelope, recarregue o link sem hash (ou com `#/1`). Recarregar um link profundo `#/2` ou posterior reabre a carta naquela página. A troca de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada.
+Cada carta é um cartão horizontal de 1160 × 820. Ela começa fechada dentro de um envelope verde com um carimbo de cera dourado e três selos postais no canto superior direito; o carimbo é o único botão e, ao abrir, a folha sobe por trás dele e o envelope sai de cena. O envelope não conta como página e a carta não fecha de novo — para voltar ao envelope, recarregue o link sem hash (ou com `#/1`). Recarregar um link profundo `#/2` ou posterior reabre a carta naquela página. A troca de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada.
 
 ## URLs
 
@@ -92,7 +92,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
 2. Escolha o cartão na lista lateral. Para remover um cartão do rascunho, use o **×** ao lado do nome; a pasta em `carta/` não é apagada.
-3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos e o carimbo são fixos. O envelope não tem retrato.
+3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos postais e o carimbo são fixos. O envelope não tem retrato.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
 6. Use a prévia e o tema claro/escuro para conferir. A prévia reproduz o cartão 1160 × 820; os rótulos mostram “Capa” (o envelope) e depois as páginas 1..N, sem contar o envelope.

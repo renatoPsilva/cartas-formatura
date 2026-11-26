@@ -78,6 +78,13 @@
   --envelope-muted: #c9c1b4;
   --envelope-line: rgb(242 236 225 / 18%);
 
+  /* Selos postais do envelope — cores fixas nos dois temas, como papel. */
+  --stamp-paper: #ede4d3;
+  --stamp-ink: #f2ece1;
+  --stamp-verde: #56705c;
+  --stamp-azul: #466677;
+  --stamp-terra: #985746;
+
   /* Tipografia */
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-ui: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;

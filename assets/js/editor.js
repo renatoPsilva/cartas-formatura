@@ -20,18 +20,24 @@
   var SELO_PNG = "../assets/img/marca/selo-cera.png";
   var SELOS_ENVELOPE = [
     {
+      cor: "azul",
+      marca: "ginga",
       webp: "../assets/img/marca/selos/selo-01.webp",
       png: "../assets/img/marca/selos/selo-01.png",
       largura: 180,
       altura: 180,
     },
     {
+      cor: "verde",
+      marca: "alpha",
       webp: "../assets/img/marca/selos/selo-02.webp",
       png: "../assets/img/marca/selos/selo-02.png",
       largura: 155,
       altura: 180,
     },
     {
+      cor: "terra",
+      marca: "cummins",
       webp: "../assets/img/marca/selos/selo-03.webp",
       png: "../assets/img/marca/selos/selo-03.png",
       largura: 180,
@@ -639,7 +645,7 @@
   function painelEnvelope(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do homenageado. O acento e o selo tipográfico são automáticos; os três selos do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
+      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do homenageado. O acento e o selo tipográfico são automáticos; os três selos postais do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
       esc(professor.acento) +
       '" aria-hidden="true">' +
       svgSelo(professor) +
@@ -1712,7 +1718,12 @@
   function previewCapa(professor) {
     var selos = SELOS_ENVELOPE.map(function (selo) {
       return (
-        '<picture class="envelope__selo">' +
+        '<span class="envelope__selo envelope__selo--' +
+        selo.cor +
+        " envelope__selo--" +
+        selo.marca +
+        '">' +
+        "<picture>" +
         '<source srcset="' +
         selo.webp +
         '" type="image/webp">' +
@@ -1723,7 +1734,9 @@
         '" height="' +
         selo.altura +
         '" loading="lazy" data-envelope-selo>' +
-        "</picture>"
+        "</picture>" +
+        '<span class="envelope__selo-textura" aria-hidden="true"></span>' +
+        "</span>"
       );
     }).join("");
     return (
@@ -1755,7 +1768,7 @@
       "</span>" +
       "</span>" +
       "</div>" +
-      '<p class="envelope__hint">Toque no selo para abrir.</p>' +
+      '<p class="envelope__hint">Toque no carimbo para abrir.</p>' +
       "</div>"
     );
   }

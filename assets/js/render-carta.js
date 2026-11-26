@@ -18,18 +18,24 @@
   var ASSET_SELO_PNG = "../../assets/img/marca/selo-cera.png";
   var SELOS_ENVELOPE = [
     {
+      cor: "azul",
+      marca: "ginga",
       webp: "../../assets/img/marca/selos/selo-01.webp",
       png: "../../assets/img/marca/selos/selo-01.png",
       largura: 180,
       altura: 180,
     },
     {
+      cor: "verde",
+      marca: "alpha",
       webp: "../../assets/img/marca/selos/selo-02.webp",
       png: "../../assets/img/marca/selos/selo-02.png",
       largura: 155,
       altura: 180,
     },
     {
+      cor: "terra",
+      marca: "cummins",
       webp: "../../assets/img/marca/selos/selo-03.webp",
       png: "../../assets/img/marca/selos/selo-03.png",
       largura: 180,
@@ -136,7 +142,12 @@
       '<div class="envelope__selos" aria-hidden="true">' +
       SELOS_ENVELOPE.map(function (selo) {
         return (
-          '<picture class="envelope__selo">' +
+          '<span class="envelope__selo envelope__selo--' +
+          selo.cor +
+          " envelope__selo--" +
+          selo.marca +
+          '">' +
+          "<picture>" +
           '<source srcset="' +
           selo.webp +
           '" type="image/webp">' +
@@ -147,7 +158,9 @@
           '" height="' +
           selo.altura +
           '" loading="eager" decoding="async" data-envelope-selo>' +
-          "</picture>"
+          "</picture>" +
+          '<span class="envelope__selo-textura" aria-hidden="true"></span>' +
+          "</span>"
         );
       }).join("") +
       "</div>"
@@ -191,7 +204,7 @@
       '">' +
       sealHtml(professor) +
       "</button>" +
-      '<p class="envelope__hint">Toque no selo para abrir.</p>' +
+      '<p class="envelope__hint">Toque no carimbo para abrir.</p>' +
       "</div>"
     );
   }

@@ -26,7 +26,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 ## Estrutura de conteúdo
 
 - `dados.js` define `window.DADOS`, um script clássico.
-- O envelope é automático: `nome`, `acento` e `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos fixos no canto inferior direito. Não há retrato. A disciplina continua nos dados, mas não aparece na frente.
+- O envelope é automático: `nome`, `acento` e `selo` (iniciais do selo tipográfico e fallback do carimbo) e três selos postais fixos no canto superior direito. Não há retrato. A disciplina continua nos dados, mas não aparece na frente.
 - `paginas` é uma lista ordenada de blocos: `texto`, `foto`, `recados`, `citacao`, `assinatura`.
 - Se não houver `assinatura`, o renderer adiciona uma no fim.
 - O envelope é o **estado fechado da página 1**, não um slide extra. O total do contador é o número de páginas internas; em uma carta de 7 páginas, `1 / 7`.
@@ -40,14 +40,14 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 ## Direção visual
 
 - O cartão parece uma folha, não um slide corporativo.
-- O envelope tem identidade: nome grande, três selos no canto inferior direito, carimbo de cera dourado e fio de acento; sem disciplina, marca, retrato ou rodapé na frente.
-- Os três selos são marcas discretas em creme monocromático; não competem com o carimbo.
+- O envelope tem identidade: nome grande, três selos postais no canto superior direito, carimbo de cera dourado e fio de acento; sem disciplina, marca, retrato ou rodapé na frente.
+- Os três selos do envelope são selos postais de papel creme perfurado, com campo de cor vintage — verde, azul e terracota —, a marca centralizada em creme e textura de grão/meio-tom em CSS. Não usam ocre/dourado, texto postal, rotação ou sombra, e não competem com o carimbo.
 - Interior de texto limpo: sem molduras, carimbos, números ou enfeites dentro da folha.
 - O fecho da carta usa o símbolo da Turma Ginga em monocromático, no lugar do selo de iniciais. O selo de iniciais continua no envelope como fallback do carimbo.
 - O contador de páginas fica **fora** do cartão, no fundo, e só aparece depois da abertura. O par de setas fica **dentro** do cartão, no canto inferior direito, sem círculos. Não há barra de progresso.
 - O carimbo de cera é o elemento memorável. Não adicione outro objeto decorativo além dos três selos do envelope.
-- A capa da home usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da home repete os três selos do envelope (Ginga, Alpha EdTech e Cummins), em monocromático.
-- O envelope e o carimbo são planos: sem sombra projetada. A separação vem da borda fina e do fundo.
+- A capa da home usa o símbolo da Turma Ginga no lugar do selo CG, em verde; o rodapé da home repete as três marcas do envelope (Ginga, Alpha EdTech e Cummins), em monocromático, sem tratamento de selo postal.
+- O envelope, os selos e o carimbo são planos: sem sombra projetada. A separação vem da borda fina, da perfuração e do fundo.
 - O acento aparece no fio curto sob o nome e em linhas finas do interior; o carimbo é dourado. Nunca no corpo do texto.
 - A transição entre páginas é fade-out, respiro curto e fade-in apenas no conteúdo (texto, fotos, recados); a folha do cartão fica parada. Sem deslize, giro ou barra.
 - Fraunces para display/corpo da carta; IBM Plex Sans para navegação e interface.
@@ -84,6 +84,7 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Chrome headless via `puppeteer-core` em 390 × 844 e 1440 × 900.
 - Raiz, pelo menos duas cartas reais, editor e 404.
 - Envelope fechado, quadro do meio da abertura (folha saindo por trás do carimbo) e página 1 aberta, em claro/escuro.
+- Os três selos postais no canto superior direito: perfuração, campos verde/azul/terracota, textura de grão/meio-tom, marcas centralizadas em creme e legibilidade nas duas larguras; a home e a assinatura continuam monocromáticas.
 - A transição entre páginas é fade-out, respiro curto e fade-in; o conteúdo antigo deve sumir antes do novo entrar, mas a folha do cartão não pode piscar nem desaparecer. O contador atualiza o número sem fazer fade.
 - Contador e setas ocultos fechado; visíveis e corretos depois. Setas `disabled` na primeira e na última página; sem círculos e sem barra de progresso.
 - Claro/escuro + persistência.
@@ -105,5 +106,5 @@ Este repositório é uma base estática para os **Cartões de Gratidão** da Tur
 - Não renomear/slug sem atualizar a pasta `carta/<slug>/`, as meta tags e os caminhos de imagem.
 - Não editar o conteúdo de `.opencode/skills/frontend-design/SKILL.md` nem remover a licença.
 - Não transformar a raiz em uma lista de cartões.
-- Não usar ouro fora do carimbo de cera. Não adicionar selo postal, carimbo de correio, fita, papel kraft, papel rasgado ou qualquer outro prop de scrapbook.
+- Não usar ouro fora do carimbo de cera. Selo postal só nos três selos do envelope; carimbo de correio, fita, papel kraft, papel rasgado ou qualquer outro prop de scrapbook continuam proibidos.
 - Não voltar ao giro 3D da capa na lombada: a abertura é o envelope e a folha saindo.
