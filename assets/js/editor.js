@@ -645,7 +645,7 @@
   function painelEnvelope(professor) {
     return (
       '<section class="panel">' +
-      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do homenageado. O acento e o selo tipográfico são automáticos; os três selos postais do envelope e o carimbo de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
+      '<div class="panel__head"><div><h2>Envelope</h2><p>Nome do homenageado. O acento e o selo tipográfico são automáticos; os três selos postais do envelope e o lacre de cera são fixos.</p></div><div class="panel__seal" data-acento="' +
       esc(professor.acento) +
       '" aria-hidden="true">' +
       svgSelo(professor) +
@@ -1113,6 +1113,9 @@
     });
 
     window.addEventListener("resize", ajustarEscalaPreview);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(ajustarAbasPreview).catch(function () {});
+    }
   }
 
   function atualizarMeta(input) {
@@ -1742,17 +1745,16 @@
     return (
       '<div class="envelope">' +
       '<div class="envelope__body">' +
+      '<svg class="envelope__aba" viewBox="0 0 1080 690" preserveAspectRatio="none" aria-hidden="true" focusable="false">' +
+      '<path class="envelope__aba-fill" d="M0 0H1080L540 430Z"></path>' +
+      '<path class="envelope__aba-seam" d="M0 0L540 430L1080 0"></path>' +
+      "</svg>" +
       '<div class="envelope__address">' +
       '<p class="envelope__para">Para</p>' +
       '<h1 class="envelope__nome">' +
       esc(professor.nome) +
       "</h1>" +
       '<span class="envelope__rule" aria-hidden="true"></span>' +
-      "</div>" +
-      '<div class="envelope__selos" aria-hidden="true">' +
-      selos +
-      "</div>" +
-      "</div>" +
       '<div class="seal-button" aria-hidden="true">' +
       '<span class="seal-button__media">' +
       '<picture class="seal-wax">' +
@@ -1768,7 +1770,12 @@
       "</span>" +
       "</span>" +
       "</div>" +
-      '<p class="envelope__hint">Toque no carimbo para abrir.</p>' +
+      "</div>" +
+      '<div class="envelope__selos" aria-hidden="true">' +
+      selos +
+      "</div>" +
+      "</div>" +
+      '<p class="envelope__hint">Toque no lacre para abrir.</p>' +
       "</div>"
     );
   }
@@ -1907,6 +1914,57 @@
     var largura = slide.getBoundingClientRect().width;
     if (!largura) return;
     stage.style.setProperty("--preview-scale", String(largura / 1160));
+    ajustarAbasPreview();
+  }
+
+  /* A prévia precisa do mesmo vértice do site: o centro do lacre em
+     coordenadas de 1080 × 690. A escala do preview é desfeita pela razão
+     entre a altura da aba e o desenho. */
+  function ajustarAbaPreview(envelope) {
+    if (!envelope) return;
+    var aba = $(".envelope__aba", envelope);
+    var lacre = $(".seal-button", envelope);
+    var preenchimento = $(".envelope__aba-fill", envelope);
+    var costura = $(".envelope__aba-seam", envelope);
+    if (!aba || !lacre || !preenchimento || !costura) return;
+
+    var abaRect = aba.getBoundingClientRect();
+    var lacreRect = lacre.getBoundingClientRect();
+    if (!abaRect.height || !lacreRect.height) return;
+
+    var escala = abaRect.height / 690;
+    if (!escala) return;
+    var apex = (lacreRect.top + lacreRect.height / 2 - abaRect.top) / escala;
+    apex = Math.max(120, Math.min(660, apex));
+
+    /* Mesmo ajuste do site: o nome não pode cruzar a costura do V. */
+    var nome = $(".envelope__nome", envelope);
+    if (nome) {
+      nome.style.removeProperty("--nome-escala");
+      var intervalo = document.createRange();
+      intervalo.selectNodeContents(nome);
+      var textoRect = intervalo.getBoundingClientRect();
+      if (textoRect.height && textoRect.width) {
+        var nomeBase = (textoRect.bottom - abaRect.top) / escala;
+        var meiaAba = 540 * (1 - nomeBase / apex);
+        var meiaTexto = textoRect.width / escala / 2;
+        var limite = meiaAba - 8;
+        if (limite > 0 && meiaTexto > limite) {
+          var escalaNome = Math.max(0.4, limite / meiaTexto);
+          nome.style.setProperty("--nome-escala", escalaNome.toFixed(3));
+        }
+      }
+    }
+
+    var valor = apex.toFixed(2);
+    preenchimento.setAttribute("d", "M0 0H1080L540 " + valor + "Z");
+    costura.setAttribute("d", "M0 0L540 " + valor + "L1080 0");
+  }
+
+  function ajustarAbasPreview() {
+    var stage = $("[data-preview]");
+    if (!stage) return;
+    $$(".envelope", stage).forEach(ajustarAbaPreview);
   }
 
   function ligarFalhasImagensPreview() {
@@ -2150,8 +2208,8 @@
       "- O editor não publica sozinho; ele apenas exporta arquivos.\n" +
       "- Para um homenageado novo, crie carta/<slug>/index.html copiando um shell existente e ajuste data-homenageado e as meta tags.\n" +
       "- O editor deve ser removido ou bloqueado após a formatura.\n" +
-      "- O envelope é o estado fechado da página 1 e não conta no total de páginas; o carimbo de cera abre a carta.\n" +
-      "- O carimbo (assets/img/marca/selo-cera.*) e os três selos (assets/img/marca/selos/) são assets do site e não entram no ZIP.\n" +
+      "- O envelope é o estado fechado da página 1 e não conta no total de páginas; o lacre de cera fecha a aba em V e abre a carta.\n" +
+      "- O lacre (assets/img/marca/selo-cera.*) e os três selos (assets/img/marca/selos/) são assets do site e não entram no ZIP.\n" +
       "- Textos: no desktop, até ~600 caracteres; no celular, até ~400. Textos maiores devem ser divididos em mais páginas.\n" +
       "- O site é noindex/nofollow e não aparece em buscadores; os links são privados por obscuridade, não por login.\n" +
       "- Imagens ausentes no ZIP continuam as que já estão no repositório.\n"

@@ -930,14 +930,14 @@ html[data-theme="dark"] .image-upload__warn {
   transition: none;
 }
 
-/* A prévia é estática: o carimbo não é um botão aqui. */
+/* A prévia é estática: o lacre não é um botão aqui. */
 .preview-slide .seal-button {
   cursor: default;
 }
 
 .preview-slide .seal-button:hover,
 .preview-slide .seal-button:active {
-  transform: translate(-50%, -50%);
+  transform: none;
 }
 
 .preview-empty {

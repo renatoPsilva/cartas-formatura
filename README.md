@@ -6,7 +6,7 @@ O conteúdo deste repositório é **real**, adaptado dos itens “Carta Afetiva�
 
 A home usa o símbolo da Turma Ginga no cartão da coleção e repete as três marcas institucionais no rodapé (Ginga, Alpha EdTech e Cummins), em monocromático. O tratamento de selo postal existe só no envelope.
 
-Cada carta é um cartão horizontal de 1160 × 820. Ela começa fechada dentro de um envelope verde com um carimbo de cera dourado e três selos postais no canto superior direito; o carimbo é o único botão e, ao abrir, a folha sobe por trás dele e o envelope sai de cena. O envelope não conta como página e a carta não fecha de novo — para voltar ao envelope, recarregue o link sem hash (ou com `#/1`). Recarregar um link profundo `#/2` ou posterior reabre a carta naquela página. A troca de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada.
+Cada carta é um cartão horizontal de 1160 × 820. Ela começa fechada dentro de um envelope verde com uma aba superior em V, um lacre de cera dourado no vértice e três selos postais no canto inferior direito; o lacre fecha a aba e é o único botão. Ao abrir, a folha sobe por trás do envelope, o envelope desliza para fora e a folha cresce até o palco. O envelope não conta como página e a carta não fecha de novo — para voltar ao envelope, recarregue o link sem hash (ou com `#/1`). Recarregar um link profundo `#/2` ou posterior reabre a carta naquela página. A troca de páginas é fade-out, respiro curto e fade-in apenas no conteúdo; a folha do cartão fica parada.
 
 ## URLs
 
@@ -92,7 +92,7 @@ Não é preciso instalar nada. O servidor local evita restrições de `file://`,
 
 1. Abra o editor em `/editor/` (local ou na URL publicada).
 2. Escolha o cartão na lista lateral. Para remover um cartão do rascunho, use o **×** ao lado do nome; a pasta em `carta/` não é apagada.
-3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos postais e o carimbo são fixos. O envelope não tem retrato.
+3. Edite o envelope: apenas o nome. Em **Publicação**, ajuste o slug e a disciplina; a disciplina fica nos dados, não no envelope. O acento e o selo tipográfico são automáticos; os três selos postais e o lacre são fixos. O envelope não tem retrato.
 4. Edite as páginas internas. É possível adicionar, remover, duplicar e reordenar blocos de **texto**, **foto**, **recados**, **citação** e **assinatura**.
 5. Envie imagens pelo próprio editor. Ele redimensiona o maior lado para no máximo 1600 px, tenta converter para WebP e usa JPEG como fallback. Dimensões e peso final aparecem no campo.
 6. Use a prévia e o tema claro/escuro para conferir. A prévia reproduz o cartão 1160 × 820; os rótulos mostram “Capa” (o envelope) e depois as páginas 1..N, sem contar o envelope.
@@ -114,7 +114,7 @@ O GitHub Pages publica a branch `main` automaticamente. Pode levar alguns minuto
 - **Rascunho textual:** `localStorage`, chave `cg-editor-draft-v1`.
 - **Imagens enviadas:** IndexedDB do navegador, banco `cartoes-gratidao-editor`.
 - **Nada é enviado a um servidor.** O editor não tem login, banco ou token.
-- O ZIP contém `dados.js`, as imagens referenciadas em `assets/img/homenageados/...` e um `LEIA-ME.txt` com o passo a passo. O carimbo de cera (`assets/img/marca/selo-cera.*`) e os três selos (`assets/img/marca/selos/`) são assets do site, não do ZIP.
+- O ZIP contém `dados.js`, as imagens referenciadas em `assets/img/homenageados/...` e um `LEIA-ME.txt` com o passo a passo. O lacre de cera (`assets/img/marca/selo-cera.*`) e os três selos (`assets/img/marca/selos/`) são assets do site, não do ZIP.
 - Ao trocar de navegador ou limpar os dados do site, o rascunho local se perde. Exporte o ZIP com frequência.
 
 ### Importar um dados.js
@@ -147,9 +147,9 @@ Regras:
 
 - O envelope é gerado automaticamente. Ele não é um bloco de `paginas`.
 - O envelope é o estado fechado da página 1. O contador mostra apenas as páginas internas: em uma carta de 7 páginas, `1 / 7`, não `1 / 8`.
-- O carimbo de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do carimbo, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
+- O lacre de cera é o único botão. A página 1 começa atrás do envelope, em `scale(.83)`; a folha sobe por trás do envelope, o envelope desliza para fora, a página 1 cresce até o palco e recebe o foco quando a abertura termina.
 - `acento` aceita `seal`, `azul`, `verde`, `ameixa` ou `ocre`. O editor o define automaticamente e não expõe o campo; cartões existentes mantêm o valor.
-- `selo` são as iniciais do selo tipográfico usado como fallback do carimbo de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do homenageado. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
+- `selo` são as iniciais do selo tipográfico usado como fallback do lacre de cera. Não são os três selos do envelope. O fecho da carta usa o símbolo da Turma Ginga em monocromático, não o `selo` do homenageado. O editor não expõe o campo: cartões antigos mantêm o valor até o nome ser editado, e cartões novos derivam as iniciais do nome.
 - O envelope não tem retrato. As fotos da carta ficam nas páginas de `foto`.
 - Se não houver página de assinatura, o renderer adiciona uma assinatura padrão no fim.
 - **Caminhos de imagem são relativos à raiz do site** (`assets/img/...`). O renderer da carta, que fica em `carta/<slug>/`, prefixa `../../` automaticamente. O editor usa `../` para a prévia. O ZIP mantém os caminhos da raiz.

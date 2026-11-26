@@ -190,23 +190,78 @@
     return (
       '<div class="envelope" data-envelope>' +
       '<div class="envelope__body">' +
+      '<svg class="envelope__aba" viewBox="0 0 1080 690" preserveAspectRatio="none" aria-hidden="true" focusable="false">' +
+      '<path class="envelope__aba-fill" d="M0 0H1080L540 430Z"></path>' +
+      '<path class="envelope__aba-seam" d="M0 0L540 430L1080 0"></path>' +
+      "</svg>" +
       '<div class="envelope__address">' +
       '<p class="envelope__para">Para</p>' +
       '<h1 class="envelope__nome">' +
       esc(nome) +
       "</h1>" +
       '<span class="envelope__rule" aria-hidden="true"></span>' +
-      "</div>" +
-      selosHtml() +
-      "</div>" +
       '<button class="seal-button" type="button" data-open-card aria-label="Abrir a carta de ' +
       esc(nome) +
       '">' +
       sealHtml(professor) +
       "</button>" +
-      '<p class="envelope__hint">Toque no carimbo para abrir.</p>' +
+      "</div>" +
+      selosHtml() +
+      "</div>" +
+      '<p class="envelope__hint">Toque no lacre para abrir.</p>' +
       "</div>"
     );
+  }
+
+  /* O vértice da aba precisa cair no centro do lacre, qualquer que seja o
+     tamanho do nome. A aba é desenhada em coordenadas de 1080 × 690, então
+     medimos o centro do lacre no mesmo sistema do SVG. */
+  function ajustarAba(envelope) {
+    if (!envelope) return;
+    var aba = envelope.querySelector(".envelope__aba");
+    var lacre = envelope.querySelector(".seal-button");
+    var preenchimento = envelope.querySelector(".envelope__aba-fill");
+    var costura = envelope.querySelector(".envelope__aba-seam");
+    if (!aba || !lacre || !preenchimento || !costura) return;
+
+    var abaRect = aba.getBoundingClientRect();
+    var lacreRect = lacre.getBoundingClientRect();
+    if (!abaRect.height || !lacreRect.height) return;
+
+    var escala = abaRect.height / 690;
+    if (!escala) return;
+    var apex = (lacreRect.top + lacreRect.height / 2 - abaRect.top) / escala;
+    apex = Math.max(120, Math.min(660, apex));
+
+    /* Se o nome for mais largo do que o V na altura da base dele, reduz a
+       escala visual do texto até caber com uma folga de 8 px de desenho.
+       Nomes reais como Cummins já cabem; isso protege o editor e nomes novos. */
+    var nome = envelope.querySelector(".envelope__nome");
+    if (nome) {
+      nome.style.removeProperty("--nome-escala");
+      var intervalo = document.createRange();
+      intervalo.selectNodeContents(nome);
+      var textoRect = intervalo.getBoundingClientRect();
+      if (textoRect.height && textoRect.width) {
+        var nomeBase = (textoRect.bottom - abaRect.top) / escala;
+        var meiaAba = 540 * (1 - nomeBase / apex);
+        var meiaTexto = textoRect.width / escala / 2;
+        var limite = meiaAba - 8;
+        if (limite > 0 && meiaTexto > limite) {
+          var escalaNome = Math.max(0.4, limite / meiaTexto);
+          nome.style.setProperty("--nome-escala", escalaNome.toFixed(3));
+        }
+      }
+    }
+
+    var valor = apex.toFixed(2);
+    preenchimento.setAttribute("d", "M0 0H1080L540 " + valor + "Z");
+    costura.setAttribute("d", "M0 0L540 " + valor + "L1080 0");
+  }
+
+  function ajustarAbas() {
+    var envelopes = document.querySelectorAll("[data-envelope]");
+    Array.prototype.forEach.call(envelopes, ajustarAba);
   }
 
   function textoHtml(pagina) {
@@ -808,6 +863,11 @@
     }
 
     ligarImagens();
+    ajustarAbas();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(ajustarAbas).catch(function () {});
+    }
+    window.addEventListener("resize", ajustarAbas);
 
     if (!window.Reveal) {
       mostrarErro(
@@ -872,6 +932,7 @@
         prepararCapaFechada();
       }
 
+      ajustarAbas();
       window.addEventListener("hashchange", aoMudarHash);
 
       if (app) app.dataset.estado = "pronto";
